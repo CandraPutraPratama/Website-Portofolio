@@ -1,65 +1,96 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+// ============================================================
+// PAGE.TSX — Halaman Utama (Single-Page Portfolio)
+// ============================================================
+// Semua section dikumpulkan di sini secara berurutan.
+// Untuk menambah section baru:
+//   1. Buat komponen baru di /src/components/NamaSection.tsx
+//   2. Import di bawah
+//   3. Tambahkan <NamaSection /> di dalam <main> sesuai urutan
+// ============================================================
+
+import { ThemeProvider, useTheme } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import dynamic from "next/dynamic";
+
+// Dynamic imports to optimize initial bundle size and make page loads fast (lightweight)
+const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
+const About = dynamic(() => import("@/components/About"), { ssr: false });
+const Projects = dynamic(() => import("@/components/Projects"), { ssr: false });
+const Journey = dynamic(() => import("@/components/Journey"), { ssr: false });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
+
+// ============================================================
+// INNER PAGE — Komponen dalam yang menggunakan context tema
+// ============================================================
+function PageContent() {
+  // Ambil state dark mode & language dari ThemeProvider
+  const { isDark, toggleDark, lang, toggleLang } = useTheme();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    // ── WRAPPER UTAMA ─────────────────────────────────────────
+    // min-h-screen: pastikan halaman selalu tinggi penuh
+    // bg-white dark:bg-black: warna dasar halaman
+    <div className="relative w-full min-h-screen bg-white dark:bg-black overflow-x-hidden transition-colors duration-300">
+
+      {/* ── NAVBAR ─────────────────────────────────────────────
+          Sticky di atas, menerima props dark mode & bahasa
+          Untuk dark mode auto (berdasarkan OS), hapus isDark/toggleDark
+          dan ganti dengan prefers-color-scheme di globals.css
+          ──────────────────────────────────────────────────── */}
+      <Navbar
+        isDark={isDark}
+        toggleDark={toggleDark}
+        lang={lang}
+        toggleLang={toggleLang}
+      />
+
+      {/* ── MAIN CONTENT ────────────────────────────────────────
+          pt-20 = memberi ruang sebesar tinggi Navbar (80px = 20 * 4px)
+          ──────────────────────────────────────────────────── */}
+      <main className="pt-20">
+
+        {/* ── 1. HERO SECTION ────────────────────────────────── */}
+        {/* Nama besar, floating chips, dan bottom bar */}
+        <Hero />
+
+        {/* ── 2. ABOUT SECTION ───────────────────────────────── */}
+        {/* Bento grid: bio, profil, pendidikan, tech stack */}
+        <About />
+
+        {/* ── 3. PROJECTS SECTION ────────────────────────────── */}
+        {/* Daftar proyek dengan metrics dan screenshot */}
+        <Projects />
+
+        {/* ── 4. JOURNEY SECTION ─────────────────────────────── */}
+        {/* Timeline pengalaman & pendidikan dengan tab switcher */}
+        <Journey />
+
+        {/* ── 5. CONTACT SECTION ─────────────────────────────── */}
+        {/* Form kontak, social links, dan footer */}
+        <Contact />
+
+        {/* ──────────────────────────────────────────────────────
+            ── UNTUK MENAMBAH SECTION BARU: ──
+            import NamaSection from "@/components/NamaSection";
+            lalu tambahkan di sini:
+            <NamaSection />
+            ────────────────────────────────────────────────── */}
+
       </main>
     </div>
+  );
+}
+
+// ============================================================
+// HOME — Export utama halaman
+// ThemeProvider membungkus segalanya agar dark mode berfungsi
+// ============================================================
+export default function Home() {
+  return (
+    <ThemeProvider>
+      <PageContent />
+    </ThemeProvider>
   );
 }
