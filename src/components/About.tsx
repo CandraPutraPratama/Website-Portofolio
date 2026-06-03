@@ -159,7 +159,7 @@ const About = () => {
                 >
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   <Download className="w-3.5 h-3.5 relative z-10" />
-                  <span className="relative z-10">Download Resume</span>
+                  <span className="relative z-10">Unduh CV</span>
                 </a>
               </div>
             </div>
@@ -182,7 +182,7 @@ const About = () => {
               title="Junior Web Developer"
               handle="candraaaptra"
               status="Online"
-              contactText="Hire Me"
+              contactText="Rekrut Saya"
               avatarUrl="/profil.png"
               enableTilt={true}
               enableMobileTilt={false}
@@ -210,7 +210,7 @@ const About = () => {
                 </div>
                 {/* ── GANTI TAHUN LULUS DI SINI ── */}
                 <span className="text-[10px] font-bold border border-black dark:border-white px-2 py-1 rounded-full bg-black dark:bg-white text-white dark:text-black uppercase">
-                  Graduated 2028
+                  Lulus Tahun 2028
                 </span>
               </div>
               <div className="space-y-3">
@@ -265,7 +265,7 @@ const About = () => {
             <div className="flex flex-col gap-5">
               {/* ── Core Languages ── */}
               <div>
-                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Core Languages</h4>
+                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Bahasa Pemrograman</h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.core.map((tech) => (
                     <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
@@ -293,7 +293,7 @@ const About = () => {
               </div>
               {/* ── Tools & Ecosystem ── */}
               <div>
-                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Tools &amp; Ecosystem</h4>
+                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Tools &amp; Ekosistem</h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.tools.map((tech) => (
                     <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>

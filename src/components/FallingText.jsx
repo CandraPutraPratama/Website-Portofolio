@@ -114,6 +114,16 @@ const FallingText = ({
     });
     render.mouse = mouse;
 
+    // Prevent Matter.js from capturing scroll and touch events so page scrolling works normally
+    if (mouse.element) {
+      mouse.element.removeEventListener("wheel", mouse.mousewheel);
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+      mouse.element.removeEventListener("touchstart", mouse.mousedown);
+      mouse.element.removeEventListener("touchmove", mouse.mousemove);
+      mouse.element.removeEventListener("touchend", mouse.mouseup);
+    }
+
     World.add(engine.world, [floor, leftWall, rightWall, ceiling, mouseConstraint, ...wordBodies.map(wb => wb.body)]);
 
     const runner = Runner.create();

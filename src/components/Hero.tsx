@@ -156,18 +156,18 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
               </span>
-              <span className="font-bold">Open to Work</span>
+              <span className="font-bold">Menerima Tawaran Kerja</span>
             </div>
 
             {/* Kolom 2: Lokasi — GANTI KOTA DI SINI */}
             <div className="p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
-              <span>Based in Surabaya, ID</span>
+              <span>BERBASIS DI SURABAYA, ID</span>
             </div>
 
             {/* Kolom 3: Tanggal otomatis */}
             <div className="p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
               <span className="flex gap-2">
-                <span className="font-bold">TODAY:</span>
+                <span className="font-bold">HARI INI:</span>
                 <span>{today}</span>
               </span>
             </div>
@@ -177,7 +177,7 @@ const Hero = () => {
               href="#about"
               className="p-4 flex items-center justify-center gap-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-pointer animate-pulse"
             >
-              <span>Scroll Down</span>
+              <span>GULIR KE BAWAH</span>
               <ArrowDown className="w-4 h-4" aria-hidden="true" />
             </a>
 

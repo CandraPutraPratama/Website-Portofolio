@@ -41,7 +41,7 @@ const Contact = () => {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("styfensagala7@gmail.com");
+    navigator.clipboard.writeText("candraputrap46@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -314,8 +314,8 @@ const Contact = () => {
 
       {/* Footer */}
       <div className="max-w-5xl mx-auto mt-20 pt-8 border-t border-neutral-800 dark:border-neutral-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-400 dark:text-neutral-500">
-        <p>© {new Date().getFullYear()} Candra Putra. All rights reserved.</p>
-        <p className="font-mono">Built with Next.js + Framer Motion ✦</p>
+        <p>© {new Date().getFullYear()} Candra Putra. Hak Cipta Dilindungi.</p>
+        <p className="font-mono">Dibangun dengan Next.js + Framer Motion ✦</p>
       </div>
     </section>
   );

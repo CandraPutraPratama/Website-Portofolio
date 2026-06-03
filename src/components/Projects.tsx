@@ -325,7 +325,7 @@ const Projects = () => {
                   >
                     <FileText className="w-4 h-4 text-neutral-400 dark:text-neutral-500 group-hover/link:text-white dark:group-hover/link:text-black transition-transform duration-300 group-hover/link:rotate-12 group-hover/link:scale-110" />
                     <span className="relative py-1">
-                      Read Case Study
+                      Baca Studi Kasus
                       <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white dark:bg-black transition-all duration-300 group-hover/link:w-full" />
                     </span>
                   </motion.button>
@@ -336,7 +336,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
                   >
-                    VISIT SITE
+                    KUNJUNGI SITUS
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
@@ -372,7 +372,7 @@ const Projects = () => {
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                     <div className="px-6 py-3.5 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-full shadow-2xl flex items-center gap-2 transform translate-y-3 opacity-0 group-hover/preview:opacity-100 group-hover/preview:translate-y-0 transition-all duration-300 ease-out">
                       <FileText className="w-4 h-4 text-black" />
-                      LIHAT STUDI KASUS
+                      BACA STUDI KASUS
                     </div>
                   </div>
                 </TiltedCard>
@@ -422,7 +422,7 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent z-10" />
                 <div className="relative z-20 flex flex-col">
                   <span className="inline-block self-start text-[10px] font-black px-3 py-1 bg-white text-black rounded-full uppercase tracking-widest mb-4">
-                    Case Study
+                    Studi Kasus
                   </span>
                   <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight max-w-xl leading-tight text-white">
                     {selectedProject.title}
@@ -439,7 +439,7 @@ const Projects = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block animate-pulse" />
                       <span className="text-red-500 font-bold text-sm uppercase tracking-wider">
-                        The Problem
+                        Permasalahan
                       </span>
                     </div>
                     <p className="text-neutral-400 text-sm leading-relaxed">
@@ -452,7 +452,7 @@ const Projects = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block animate-pulse" />
                       <span className="text-green-500 font-bold text-sm uppercase tracking-wider">
-                        The Solution
+                        Solusi
                       </span>
                     </div>
                     <p className="text-neutral-400 text-sm leading-relaxed">
@@ -468,7 +468,7 @@ const Projects = () => {
                   {/* Background */}
                   <div>
                     <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">
-                      Project Background
+                      Latar Belakang Proyek
                     </h4>
                     <p className="text-neutral-400 text-sm leading-relaxed">
                       {selectedProject.caseStudyContent.background}
@@ -478,7 +478,7 @@ const Projects = () => {
                   {/* Key Features */}
                   <div>
                     <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">
-                      Key Features
+                      Fitur Utama
                     </h4>
                     <ul className="space-y-3">
                       {selectedProject.caseStudyContent.features.map((feature, idx) => (
@@ -501,7 +501,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
                   >
-                    VISIT SITE
+                    KUNJUNGI SITUS
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
