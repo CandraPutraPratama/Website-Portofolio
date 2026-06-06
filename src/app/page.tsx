@@ -12,14 +12,11 @@
 
 import { ThemeProvider, useTheme } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
-import dynamic from "next/dynamic";
-
-// Dynamic imports to optimize initial bundle size and make page loads fast (lightweight)
-const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
-const About = dynamic(() => import("@/components/About"), { ssr: false });
-const Projects = dynamic(() => import("@/components/Projects"), { ssr: false });
-const Journey = dynamic(() => import("@/components/Journey"), { ssr: false });
-const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Journey from "@/components/Journey";
+import Contact from "@/components/Contact";
 
 // ============================================================
 // INNER PAGE — Komponen dalam yang menggunakan context tema

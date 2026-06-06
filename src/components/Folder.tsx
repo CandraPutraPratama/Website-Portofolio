@@ -85,7 +85,20 @@ const Folder: React.FC<FolderProps> = ({ color, size = 1, items = [], className 
 
   return (
     <div style={scaleStyle} className={className}>
-      <div className={folderClassName} style={folderStyle} onClick={handleClick}>
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Arsip proyek folder"
+        className={folderClassName}
+        style={folderStyle}
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      >
         <div className="folder__back">
           {papers.map((item, i) => (
             <div

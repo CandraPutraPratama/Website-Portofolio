@@ -183,7 +183,7 @@ const About = () => {
               handle="candraaaptra"
               status="Online"
               contactText="Rekrut Saya"
-              avatarUrl="/profil.png"
+              avatarUrl="/profil hero.png"
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={() => {

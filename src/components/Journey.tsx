@@ -24,7 +24,7 @@ const journeyItems = [
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
     folderSublabel: "Klik Folder",
-    images: ["/journey/j12026.jpg", "/journey/j22026.jpg", "/journey/j312026.png"]
+    images: ["/journey/jf12026.jpg", "/journey/jf22026.jpg", "/journey/jf312026.png"]
   },
   {
     id: 2,
@@ -38,7 +38,7 @@ const journeyItems = [
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
     folderSublabel: "Klik Folder",
-    images: ["/journey/j12025.JPG", "/journey/j22025.JPG", "/journey/j32025.jpg"]
+    images: ["/journey/jf12025.JPG", "/journey/jf22025.JPG", "/journey/jf32025.jpg"]
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const journeyItems = [
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
     folderSublabel: "Klik Folder",
-    images: ["/journey/j12024.jpg", "/journey/j22024.jpg", "/journey/j32024.JPG"]
+    images: ["/journey/jf12024.jpg", "/journey/jf22024.jpg", "/journey/jf32024.JPG"]
   }
 ];
 
@@ -283,11 +283,21 @@ const Journey = () => {
                             const papers = folderImages.map((imgSrc, i) => (
                               <div
                                 key={i}
+                                role="button"
+                                tabIndex={0}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setZoomedImage(imgSrc);
                                 }}
-                                className="relative w-full h-full cursor-zoom-in group/img"
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter" || e.key === " ") {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setZoomedImage(imgSrc);
+                                  }
+                                }}
+                                aria-label={`Perbesar gambar dokumentasi proyek ${i + 1}`}
+                                className="relative w-full h-full cursor-zoom-in group/img focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white rounded-lg"
                               >
                                 <Image
                                   src={imgSrc}

@@ -121,9 +121,11 @@ const Contact = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                 EMAIL LANGSUNG
               </span>
-              <div
+              <button
+                type="button"
                 onClick={handleCopyEmail}
-                className="flex items-center justify-between px-6 py-4.5 bg-neutral-900 dark:bg-neutral-50 border border-neutral-800 dark:border-neutral-200 rounded-2xl cursor-pointer hover:border-neutral-600 dark:hover:border-neutral-400 transition-all select-none group w-fit max-w-full"
+                aria-label="Salin alamat email"
+                className="flex items-center justify-between px-6 py-4.5 bg-neutral-900 dark:bg-neutral-50 border border-neutral-800 dark:border-neutral-200 rounded-2xl cursor-pointer hover:border-neutral-600 dark:hover:border-neutral-400 transition-all select-none group w-fit max-w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600"
               >
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-neutral-400 dark:text-neutral-500" />
@@ -141,7 +143,7 @@ const Contact = () => {
                     </svg>
                   )}
                 </div>
-              </div>
+              </button>
             </motion.div>
 
             {/* Social icons */}

@@ -259,6 +259,7 @@
 
 .pc-avatar-content .avatar {
   width: 100%;
+  height: auto;
   position: absolute;
   left: 50%;
   transform-origin: 50% 100%;

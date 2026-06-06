@@ -66,7 +66,7 @@ const projects: ProjectItem[] = [
       github: "https://github.com/CandraPutraPratama/sistem-manajemen-data-pegawai",
       caseStudy: null,
     },
-    image: "/projects/project-1b.png",
+    image: "/projects/project1.png",
     caseStudyContent: {
       problem: "Data pegawai masih sering dikelola secara manual melalui berkas fisik atau file spreadsheet terpisah. Hal ini membuat data lebih sulit dicari, rawan duplikasi, dan kurang efisien saat admin perlu menambah, mengubah, atau mengecek informasi pegawai.",
       solution: "Membangun sistem manajemen data pegawai berbasis web menggunakan PHP Native dan PostgreSQL. Sistem ini menyediakan login admin, dashboard, pencarian data, serta fitur CRUD lengkap agar pengelolaan data pegawai menjadi lebih rapi, cepat, dan terstruktur.",
@@ -101,7 +101,7 @@ const projects: ProjectItem[] = [
       github: "https://github.com/CandraPutraPratama/sistem-inventaris-barang",
       caseStudy: null,
     },
-    image: "/projects/project-21.png",
+    image: "/projects/project2.png",
     caseStudyContent: {
       problem: "Pengelolaan data barang secara manual sering membuat pencatatan stok menjadi tidak rapi. Data barang bisa tercecer, stok masuk dan keluar sulit dilacak, serta pencarian barang membutuhkan waktu lama ketika jumlah data semakin banyak.",
       solution: "Dibangun sistem inventaris berbasis web menggunakan PHP Native dan PostgreSQL untuk mengelola data barang secara digital. Sistem ini menyediakan dashboard, CRUD barang, kategori, pencarian data, stok masuk, stok keluar, serta riwayat transaksi stok yang tersimpan di database.",
@@ -134,7 +134,7 @@ const projects: ProjectItem[] = [
       github: "https://github.com",
       caseStudy: null,
     },
-    image: "/projects/project-31.png",
+    image: "/projects/project3.png",
     caseStudyContent: {
       problem: "Proses pencatatan produk, stok, dan transaksi penjualan yang masih dilakukan secara manual sering menimbulkan kesalahan data, stok tidak akurat, dan laporan penjualan yang sulit direkap. Pengelolaan barang juga menjadi kurang efisien karena admin harus mengecek stok dan transaksi secara terpisah.",
       solution: "Membangun sistem kasir sederhana berbasis PHP Native dan PostgreSQL untuk mengelola produk, transaksi penjualan, laporan, serta stok barang dalam satu aplikasi terintegrasi. Sistem ini membantu proses penjualan menjadi lebih cepat, pencatatan lebih rapi, dan data stok maupun laporan lebih mudah dipantau.",
@@ -167,7 +167,7 @@ const projects: ProjectItem[] = [
       github: "https://github.com",
       caseStudy: null,
     },
-    image: "/projects/project-41.png",
+    image: "/projects/project4.png",
     caseStudyContent: {
       problem: "Banyak orang masih mencatat pemasukan dan pengeluaran secara manual, sehingga data keuangan mudah tercecer, sulit dilacak, dan tidak memiliki ringkasan yang jelas. Akibatnya, pengguna kesulitan mengetahui total pengeluaran, pemasukan, serta kondisi saldo secara cepat.",
       solution: "Dibangun sebuah aplikasi web manajemen keuangan pribadi berbasis PHP dan PostgreSQL untuk mencatat transaksi secara digital. Sistem ini menyediakan dashboard ringkasan, pengelolaan kategori, filter transaksi, serta laporan bulanan agar pengguna lebih mudah memantau kondisi keuangan.",
@@ -200,7 +200,7 @@ const projects: ProjectItem[] = [
       github: "http://localhost/roombook/index.php",
       caseStudy: null,
     },
-    image: "/projects/projek5.png",
+    image: "/projects/projek51.png",
     caseStudyContent: {
       problem: "Proses peminjaman ruangan kampus yang masih dilakukan secara manual melalui chat atau pencatatan terpisah membuat data reservasi sulit dipantau, rawan bentrok jadwal, dan status pengajuan tidak terdokumentasi dengan jelas.",
       solution: "Dikembangkan sistem reservasi ruangan kampus berbasis web dengan database terpusat. Admin dapat mengelola data ruangan, memantau jadwal penggunaan, menyetujui atau menolak reservasi, serta memastikan tidak ada jadwal yang saling bertabrakan.",
@@ -343,8 +343,17 @@ const Projects = () => {
               </div>
 
               <div
+                role="button"
+                tabIndex={0}
                 onClick={() => setSelectedProject(project)}
-                className="md:col-span-7 order-1 md:order-2 aspect-video overflow-visible cursor-pointer relative"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedProject(project);
+                  }
+                }}
+                aria-label={`Lihat studi kasus ${project.title}`}
+                className="md:col-span-7 order-1 md:order-2 aspect-video overflow-visible cursor-pointer relative focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 rounded-2xl"
               >
                 <TiltedCard
                   containerHeight="100%"
@@ -417,6 +426,7 @@ const Projects = () => {
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   fill
+                  sizes="(max-w-1024px) 100vw, 1000px"
                   className="object-cover object-top opacity-35 pointer-events-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent z-10" />

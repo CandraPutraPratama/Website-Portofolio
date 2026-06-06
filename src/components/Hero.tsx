@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, CodeXml, Asterisk } from "lucide-react";
-import FallingText from "@/components/FallingText";
+import dynamic from "next/dynamic";
+const FallingText = dynamic(() => import("@/components/FallingText"), { ssr: false });
 import Typewriter from "./Typewriter";
 
 // ============================================================
