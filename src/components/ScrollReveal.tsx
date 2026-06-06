@@ -69,7 +69,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       });
 
       // Class toggler for active styling (like folder coloring)
-      ScrollTrigger.create({
+      const stToggler = ScrollTrigger.create({
         trigger: el,
         scroller,
         start: 'top center+=25%',
@@ -86,9 +86,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       .to(el, { opacity: 1, filter: 'blur(0px)', duration: 0.4 })
       .to(el, { opacity: baseOpacity, filter: initialBlur, rotate: -baseRotation, duration: 0.3, ease: 'power1.in' });
 
+      return () => {
+        if (tl.scrollTrigger) tl.scrollTrigger.kill();
+        tl.kill();
+        stToggler.kill();
+      };
     } else {
       // Original Text mode
-      gsap.fromTo(
+      const anim1 = gsap.fromTo(
         el,
         { transformOrigin: '0% 50%', rotate: baseRotation },
         {
@@ -106,7 +111,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
       const wordElements = el.querySelectorAll('.word');
 
-      gsap.fromTo(
+      const anim2 = gsap.fromTo(
         wordElements,
         { opacity: baseOpacity, willChange: 'opacity' },
         {
@@ -123,8 +128,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         }
       );
 
+      let anim3: gsap.core.Tween | null = null;
       if (enableBlur) {
-        gsap.fromTo(
+        anim3 = gsap.fromTo(
           wordElements,
           { filter: `blur(${blurStrength}px)` },
           {
@@ -141,11 +147,18 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           }
         );
       }
-    }
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+      return () => {
+        if (anim1.scrollTrigger) anim1.scrollTrigger.kill();
+        anim1.kill();
+        if (anim2.scrollTrigger) anim2.scrollTrigger.kill();
+        anim2.kill();
+        if (anim3) {
+          if (anim3.scrollTrigger) anim3.scrollTrigger.kill();
+          anim3.kill();
+        }
+      };
+    }
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength, isContainer]);
 
   if (isContainer) {

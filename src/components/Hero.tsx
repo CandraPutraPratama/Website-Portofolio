@@ -35,6 +35,7 @@ const CODE_TEXT = `const INITIALIZE_SYSTEM = async () => { const Developer = { I
 // ============================================================
 const Hero = () => {
   const [today, setToday] = useState("");
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const now = new Date();
@@ -44,6 +45,15 @@ const Hero = () => {
       year: "numeric",
     }).toUpperCase();
     setToday(formatted);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -60,41 +70,43 @@ const Hero = () => {
           flex-1 mengisi sisa ruang dari atas layar sampai
           teks besar, sehingga batas dinding/lantainya pas.
           ──────────────────────────────────────────────────── */}
-      <div className="flex-1 w-full relative z-40 pointer-events-auto hidden md:block">
-        <FallingText
-          gravity={1.2}
-          mouseConstraintStiffness={0.2}
-          trigger="hover"
-        >
-          {floatingChips.map((chip, index) => (
-            <div
-              key={index}
-              className="falling-item inline-block w-max h-max cursor-grab active:cursor-grabbing select-none z-10 pointer-events-auto touch-none absolute"
-              style={{
-                left: chip.left ?? undefined,
-                right: chip.right ?? undefined,
-                top: chip.top,
-              }}
-            >
+      {isDesktop && (
+        <div className="flex-1 w-full relative z-40 pointer-events-auto">
+          <FallingText
+            gravity={1.2}
+            mouseConstraintStiffness={0.2}
+            trigger="hover"
+          >
+            {floatingChips.map((chip, index) => (
               <div
-                className={`flex items-center justify-center whitespace-nowrap font-bold border-2 border-black dark:border-white leading-none
-                  transition-transform duration-300 ease-out hover:scale-110
-                  ${chip.type.includes("flat") ? "" : "shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.4)]"}
-                  ${chip.type === "circle"
-                    ? "rounded-full w-16 h-16 bg-white dark:bg-black text-black dark:text-white"
-                    : chip.type === "circle-dark"
-                      ? "rounded-full w-16 h-16 bg-black dark:bg-white text-white dark:text-black"
-                      : chip.type === "pill-flat"
-                        ? "rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black uppercase tracking-wide"
-                        : "rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base bg-white dark:bg-black text-black dark:text-white uppercase tracking-wide"
-                  }`}
+                key={index}
+                className="falling-item inline-block w-max h-max cursor-grab active:cursor-grabbing select-none z-10 pointer-events-auto touch-none absolute"
+                style={{
+                  left: chip.left ?? undefined,
+                  right: chip.right ?? undefined,
+                  top: chip.top,
+                }}
               >
-                {chip.icon || chip.text}
+                <div
+                  className={`flex items-center justify-center whitespace-nowrap font-bold border-2 border-black dark:border-white leading-none
+                    transition-transform duration-300 ease-out hover:scale-110
+                    ${chip.type.includes("flat") ? "" : "shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.4)]"}
+                    ${chip.type === "circle"
+                      ? "rounded-full w-16 h-16 bg-white dark:bg-black text-black dark:text-white"
+                      : chip.type === "circle-dark"
+                        ? "rounded-full w-16 h-16 bg-black dark:bg-white text-white dark:text-black"
+                        : chip.type === "pill-flat"
+                          ? "rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black uppercase tracking-wide"
+                          : "rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base bg-white dark:bg-black text-black dark:text-white uppercase tracking-wide"
+                    }`}
+                >
+                  {chip.icon || chip.text}
+                </div>
               </div>
-            </div>
-          ))}
-        </FallingText>
-      </div>
+            ))}
+          </FallingText>
+        </div>
+      )}
 
       {/* ── AREA NAMA BESAR ────────────────────────────────────
           Wrapper relatif untuk nama besar dan kode teks di bawahnya

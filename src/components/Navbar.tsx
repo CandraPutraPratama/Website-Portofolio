@@ -36,6 +36,8 @@ const Logo = () => (
   <img
     src="/logo.svg"
     alt="Logo"
+    width={60}
+    height={60}
     className="h-15 w-auto object-contain dark:invert transition-all duration-300"
   />
 );

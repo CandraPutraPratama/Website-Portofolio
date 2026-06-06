@@ -38,31 +38,18 @@ const Typewriter = ({ text, delay = 20, className = "" }: TypewriterProps) => {
     return () => clearInterval(timer);
   }, [text, delay, isTyping]);
 
+  const visibleText = text.slice(0, visibleCount);
+  const invisibleText = text.slice(visibleCount);
+
   return (
     <div className={className}>
-      {/* Kursor saat belum mulai ngetik */}
-      {visibleCount === 0 && (
-        <span className="inline-block w-0 animate-pulse overflow-visible relative">
-          <span className="absolute top-0 left-0 border-l-[2px] border-black dark:border-white h-[1.2em] -mt-[2px]"></span>
-        </span>
-      )}
-      
-      {text.split('').map((char: string, index: number) => (
-        <span 
-          key={index}
-          className="relative"
-          style={{ 
-            opacity: index < visibleCount ? 1 : 0,
-            transition: 'opacity 0.1s' 
-          }}
-        >
-          {char}
-          {/* Kursor absolute yang tidak mengganggu letak teks (word wrapping) */}
-          {index === visibleCount - 1 && (
-            <span className="absolute top-0 -right-[2px] border-l-[2px] border-black dark:border-white h-[1.2em] animate-pulse"></span>
-          )}
-        </span>
-      ))}
+      <span className="relative">
+        {visibleText}
+        {isTyping && (
+          <span className="absolute top-0 -right-[2px] border-l-[2px] border-black dark:border-white h-[1.2em] animate-pulse"></span>
+        )}
+      </span>
+      <span className="opacity-0 pointer-events-none select-none">{invisibleText}</span>
     </div>
   );
 };
