@@ -427,6 +427,7 @@ const Projects = () => {
                   alt={selectedProject.title}
                   fill
                   sizes="(max-w-1024px) 100vw, 1000px"
+                  priority
                   className="object-cover object-top opacity-35 pointer-events-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent z-10" />

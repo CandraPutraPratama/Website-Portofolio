@@ -447,13 +447,13 @@ const Journey = () => {
               className="relative max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950/40 shadow-2xl flex items-center justify-center">
+              <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={zoomedImage}
                   alt="Zoomed project view"
                   fill
+                  unoptimized
                   className="object-contain"
-                  sizes="(max-w-1200px) 100vw, 1200px"
                   priority
                 />
               </div>
