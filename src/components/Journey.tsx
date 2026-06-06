@@ -385,9 +385,9 @@ const Journey = () => {
                         </div>
 
                         {/* Role Title */}
-                        <h4 className="text-xl md:text-2xl font-black uppercase tracking-tight text-black dark:text-white leading-tight mb-1">
+                        <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-black dark:text-white leading-tight mb-1">
                           {item.role}
-                        </h4>
+                        </h3>
 
                         {/* Company/Institution with Pin Icon */}
                         <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-500 dark:text-neutral-400 mb-4">

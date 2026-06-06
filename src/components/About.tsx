@@ -18,7 +18,7 @@ import {
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
 
 const FigmaOriginalIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 130" className={className}>
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 130" className={className}>
     <path className="fill-current group-hover:fill-[#0acf83] transition-colors duration-300" d="M45.5 129c11.9 0 21.5-9.6 21.5-21.5V86H45.5C33.6 86 24 95.6 24 107.5S33.6 129 45.5 129zm0 0" />
     <path className="fill-current group-hover:fill-[#a259ff] transition-colors duration-300" d="M24 64.5C24 52.6 33.6 43 45.5 43H67v43H45.5C33.6 86 24 76.4 24 64.5zm0 0" />
     <path className="fill-current group-hover:fill-[#f24e1e] transition-colors duration-300" d="M24 21.5C24 9.6 33.6 0 45.5 0H67v43H45.5C33.6 43 24 33.4 24 21.5zm0 0" />
@@ -158,7 +158,7 @@ const About = () => {
                   className="group relative inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
                 >
                   <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  <Download className="w-3.5 h-3.5 relative z-10" />
+                  <Download aria-hidden="true" className="w-3.5 h-3.5 relative z-10" />
                   <span className="relative z-10">Unduh CV</span>
                 </a>
               </div>
@@ -216,12 +216,12 @@ const About = () => {
               <div className="space-y-3">
                 <div>
                   {/* ── GANTI NAMA UNIVERSITAS DAN JURUSAN DI SINI ── */}
-                  <h5 className="text-xs font-bold text-gray-500 dark:text-neutral-400 uppercase mb-1">
+                  <p className="text-xs font-bold text-gray-500 dark:text-neutral-400 uppercase mb-1">
                     Politeknik Elektronika Negeri Surabaya
-                  </h5>
-                  <h4 className="font-bold text-lg uppercase leading-tight">
+                  </p>
+                  <h3 className="font-bold text-lg uppercase leading-tight">
                     Teknik Informatika
-                  </h4>
+                  </h3>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] font-bold text-gray-400 dark:text-neutral-500 uppercase">
@@ -270,7 +270,7 @@ const About = () => {
                   {techStack.core.map((tech) => (
                     <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
                       </div>
                       <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
                     </div>
@@ -284,7 +284,7 @@ const About = () => {
                   {techStack.frameworks.map((tech) => (
                     <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
                       </div>
                       <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
                     </div>
@@ -298,7 +298,7 @@ const About = () => {
                   {techStack.tools.map((tech) => (
                     <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
                       </div>
                       <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
                     </div>
@@ -318,7 +318,7 @@ const About = () => {
             <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center md:items-stretch relative z-10 h-full">
               <div className="flex-shrink-0 flex flex-col items-center justify-center w-full md:w-1/3 text-center md:text-left md:items-start border-b-2 md:border-b-0 md:border-r-2 border-black/10 dark:border-white/10 pb-6 md:pb-0 md:pr-10">
                 <div className="p-4 bg-black dark:bg-white text-white dark:text-black rounded-full mb-4 shadow">
-                  <Cpu className="w-6 h-6 md:w-8 md:h-8" />
+                  <Cpu aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8" />
                 </div>
                 <h3 className="text-xl md:text-3xl font-black uppercase leading-tight tracking-tight">
                   Filosofi Kerja
@@ -353,8 +353,8 @@ const About = () => {
               <div className="flex gap-4 justify-start md:justify-end flex-wrap">
                 {/* ── GANTI TOMBOL FOCUS DI SINI ── */}
                 {[
-                  { label: "Pengembangan Sistem Web", icon: <FaLaptopCode className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
-                  { label: "Arsitektur Database", icon: <FaDatabase className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
+                  { label: "Pengembangan Sistem Web", icon: <FaLaptopCode aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
+                  { label: "Arsitektur Database", icon: <FaDatabase aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3 px-5 py-3 border border-neutral-700 dark:border-neutral-300 rounded-xl bg-neutral-900/50 dark:bg-white/10 hover:border-white dark:hover:border-black transition-colors duration-300 group">
                     <span className="text-neutral-400 dark:text-neutral-600 group-hover:text-white dark:group-hover:text-black transition-colors">{item.icon}</span>
