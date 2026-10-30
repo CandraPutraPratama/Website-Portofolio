@@ -480,13 +480,16 @@ const Projects = () => {
               className="relative w-full max-w-4xl h-[90vh] md:h-[85vh] bg-[#121212] border border-neutral-800 rounded-3xl overflow-y-auto scrollbar-thin text-white font-mono flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* ── Close Button ── */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-10 h-10 bg-black/40 hover:bg-black/80 border border-neutral-800 hover:border-neutral-500 text-white rounded-full flex items-center justify-center transition-all cursor-pointer z-20 outline-none"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              {/* ── Close Button (sticky: tetap terlihat saat modal di-scroll) ── */}
+              <div className="sticky top-0 z-20 flex justify-end pointer-events-none -mb-16">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  aria-label="Tutup studi kasus"
+                  className="pointer-events-auto mt-6 mr-6 w-10 h-10 bg-black/40 hover:bg-black/80 border border-neutral-800 hover:border-neutral-500 text-white rounded-full flex items-center justify-center transition-all cursor-pointer outline-none flex-shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
               {/* ── Banner Header ── */}
               <div className={`relative p-8 md:p-12 min-h-[220px] md:min-h-[280px] flex flex-col justify-end overflow-hidden ${selectedProject.caseStudyContent.bannerBg}`}>
