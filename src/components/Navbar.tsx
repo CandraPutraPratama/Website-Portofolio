@@ -55,7 +55,7 @@ const Navbar = ({ isDark, toggleDark, lang, toggleLang }: NavbarProps) => {
     // z-50 = di atas semua konten
     // backdrop-blur = efek blur bg (glassmorphism ringan)
     // Untuk membuat Navbar transparan, hapus bg-white dan tambah bg-transparent
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-neutral-200 dark:border-neutral-800 font-mono transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-black/95 md:backdrop-blur-sm border-b border-neutral-200 dark:border-neutral-800 font-mono transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
 
         {/* ── LOGO ─────────────────────────────────────────────
