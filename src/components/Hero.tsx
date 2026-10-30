@@ -28,7 +28,7 @@ const floatingChips = [
 // DATA — Teks kode di bawah nama
 // Ubah isi teks ini sesuai cerita Anda
 // ============================================================
-const CODE_TEXT = `const INITIALIZE_SYSTEM = async () => { const Developer = { ID: "CANDRA_PUTRA", Origin: "Surabaya_Indonesia", Role: "Creative_Engineer", Mindset: "Systematic_Thinking_With_Visual_Sensitivity" }; await System.load("Next.js", "React", "TypeScript", "Tailwind_CSS", "Framer_Motion"); if (Project.isComplex) return Developer.solveWith(Physics + Logic + Experience); const Mission = "Crafting digital experiences that feel alive, intentional, and intuitive."; const magic = Developer.create({ clarity: true, aesthetics: "Bold_but_Purposeful", interaction: "Smooth", motion: "Physics_Inspired" }); return magic.deploy(); }; // Status: ONLINE | Mode: OPEN_TO_WORK <END_OF_SCRIPT>`;
+const CODE_TEXT = `const INITIALIZE_SYSTEM = async () => { const Developer = { ID: "CANDRA_PUTRA", Origin: "Surabaya_Indonesia", Role: "Junior_Web_Developer", Mindset: "Systematic_Thinking_With_Visual_Sensitivity" }; await System.load("Next.js", "React", "TypeScript", "Tailwind_CSS", "Framer_Motion"); if (Project.isComplex) return Developer.solveWith(Physics + Logic + Experience); const Mission = "Crafting digital experiences that feel alive, intentional, and intuitive."; const magic = Developer.create({ clarity: true, aesthetics: "Bold_but_Purposeful", interaction: "Smooth", motion: "Physics_Inspired" }); return magic.deploy(); }; // Status: ONLINE | Mode: OPEN_TO_WORK <END_OF_SCRIPT>`;
 
 // ============================================================
 // HERO COMPONENT
