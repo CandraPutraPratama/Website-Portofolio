@@ -16,10 +16,10 @@ const journeyItems = [
     id: 1,
     year: "2026",
     badge: "PROFESSIONAL",
-    role: "JUNIOR UI/UX & MOBILE DEVELOPER",
-    company: "SEMESTER 4",
-    description: "Aktif membangun berbagai sistem informasi berbasis web sebagai bagian dari pengembangan akademik dan portofolio. Berfokus pada pembuatan aplikasi CRUD, perancangan basis data, penyusunan alur sistem, tampilan antarmuka, dan dokumentasi proyek melalui GitHub.",
-    tags: ["FIGMA", "PHP", "GITHUB", "FLUTTER"],
+    role: "JUNIOR WEB DEVELOPER",
+    company: "SEMESTER 5",
+    description: "Membangun dan mengoperasikan produk web production (Jasdor) sekaligus mengerjakan backend sistem anggaran (BudgEx) dalam tim. Berfokus pada arsitektur sistem, integrasi API, dan kode yang siap production.",
+    tags: ["NEXT.JS", "ASP.NET CORE", "TYPESCRIPT", "GITHUB"],
     align: "right", // Card is on the right, year is on the left
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
@@ -301,7 +301,7 @@ const Journey = () => {
                               >
                                 <Image
                                   src={imgSrc}
-                                  alt={`Project preview ${i + 1}`}
+                                  alt={`Dokumentasi kegiatan ${item.year} — foto ${i + 1}`}
                                   fill
                                   sizes="120px"
                                   className="object-cover grayscale group-hover/img:grayscale-0 transition-all duration-500"
