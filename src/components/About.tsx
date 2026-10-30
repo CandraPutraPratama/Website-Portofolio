@@ -331,7 +331,7 @@ const About = () => {
               <div className="flex-1 flex flex-col justify-center w-full">
                 {/* ── GANTI KUTIPAN FILOSOFI DI SINI ── */}
                 <p className="text-xs md:text-base lg:text-lg text-neutral-800 dark:text-neutral-300 leading-relaxed text-center md:text-left">
-                  Saya tidak hanya fokus menghafal sintaks, tapi lebih ke bagaimana sebuah sistem dirancang dan berjalan. Saya berperan dalam menyusun struktur database, logika aplikasi, serta alur pengguna, sambil memanfaatkan AI untuk membantu mempercepat proses penulisan kode dasar. Dengan cara ini, saya bisa lebih fokus pada pemecahan masalah nyata dan menghasilkan solusi yang lebih efektif.
+                  Saya tidak hanya fokus menghafal sintaks, tapi lebih ke bagaimana sebuah sistem dirancang dan berjalan. Saya berperan dalam menyusun struktur database, logika aplikasi, serta alur pengguna — dengan pendekatan kerja yang modern dan efisien, sehingga bisa lebih fokus pada pemecahan masalah nyata dan menghasilkan solusi yang lebih efektif.
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
                   {/* ── GANTI TAG FILOSOFI DI SINI ── */}
