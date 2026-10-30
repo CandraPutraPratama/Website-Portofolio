@@ -4,9 +4,10 @@ interface TypewriterProps {
   text: string;
   delay?: number;
   className?: string;
+  loop?: boolean;
 }
 
-const Typewriter = ({ text, delay = 20, className = "" }: TypewriterProps) => {
+const Typewriter = ({ text, delay = 20, className = "", loop = false }: TypewriterProps) => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
 
@@ -14,8 +15,9 @@ const Typewriter = ({ text, delay = 20, className = "" }: TypewriterProps) => {
     // Reset jika prop text berubah
     if (visibleCount > text.length) setVisibleCount(0);
 
-    // Kalau sedang tidak ngetik (sudah selesai), tunggu 4 detik lalu ulang
+    // Kalau sedang tidak ngetik (sudah selesai): berhenti, kecuali loop=true
     if (!isTyping) {
+      if (!loop) return;
       const timeout = setTimeout(() => {
         setVisibleCount(0);
         setIsTyping(true);
@@ -36,7 +38,7 @@ const Typewriter = ({ text, delay = 20, className = "" }: TypewriterProps) => {
     }, delay);
     
     return () => clearInterval(timer);
-  }, [text, delay, isTyping]);
+  }, [text, delay, isTyping, loop]);
 
   const visibleText = text.slice(0, visibleCount);
   const invisibleText = text.slice(visibleCount);
