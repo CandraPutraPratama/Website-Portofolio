@@ -11,8 +11,9 @@ import {
   Globe, Smartphone
 } from "lucide-react";
 import {
-  SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp,
+  SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp, SiSharp,
   SiNextdotjs, SiReact, SiLaravel, SiTailwindcss, SiBootstrap,
+  SiDotnet, SiFlutter,
   SiGit, SiGithub, SiPostman, SiVite
 } from "react-icons/si";
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
@@ -38,12 +39,15 @@ const techStack = {
     { name: "JavaScript", icon: SiJavascript, colorClass: "hover:border-[#F7DF1E] hover:text-[#F7DF1E]" },
     { name: "TypeScript", icon: SiTypescript, colorClass: "hover:border-[#3178C6] hover:text-[#3178C6]" },
     { name: "PHP", icon: SiPhp, colorClass: "hover:border-[#777BB4] hover:text-[#777BB4]" },
+    { name: "C#", icon: SiSharp, colorClass: "hover:border-[#9B4F96] hover:text-[#9B4F96]" },
     { name: "SQL", icon: FaDatabase, colorClass: "hover:border-[#4479A1] hover:text-[#4479A1]" },
   ],
   frameworks: [
     { name: "Next.js", icon: SiNextdotjs, colorClass: "hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white" },
     { name: "React", icon: SiReact, colorClass: "hover:border-[#61DAFB] hover:text-[#61DAFB]" },
     { name: "Laravel", icon: SiLaravel, colorClass: "hover:border-[#FF2D20] hover:text-[#FF2D20]" },
+    { name: "ASP.NET Core", icon: SiDotnet, colorClass: "hover:border-[#512BD4] hover:text-[#512BD4]" },
+    { name: "Flutter", icon: SiFlutter, colorClass: "hover:border-[#02569B] hover:text-[#02569B]" },
     { name: "Tailwind", icon: SiTailwindcss, colorClass: "hover:border-[#06B6D4] hover:text-[#06B6D4]" },
     { name: "Bootstrap", icon: SiBootstrap, colorClass: "hover:border-[#7952B3] hover:text-[#7952B3]" },
   ],
@@ -143,7 +147,7 @@ const About = () => {
                 Hai, Saya Candra Putra.
               </h3>
               <p className="text-gray-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
-                Saya adalah Junior Web Developer yang tertarik pada pengembangan aplikasi web terstruktur. Saya fokus memahami kebutuhan pengguna, merancang alur sistem, dan membangun solusi web menggunakan PHP, Laravel, dan Next.js.
+                Saya adalah Junior Web Developer yang tertarik pada pengembangan aplikasi web terstruktur. Saya fokus memahami kebutuhan pengguna, merancang alur sistem, dan membangun solusi web menggunakan PHP, Laravel, Next.js, dan ASP.NET Core.
                 <br /><br />
                 Dalam beberapa proyek, saya terlibat dalam proses pengembangan dari tahap perencanaan, desain, implementasi, hingga deployment. Saya selalu berusaha membuat sistem yang rapi, mudah digunakan, memiliki data yang akurat, serta kode yang mudah dikembangkan.
               </p>
