@@ -50,6 +50,73 @@ interface ProjectItem {
 // ============================================================
 const projects: ProjectItem[] = [
   {
+    id: 6,
+    category: "Web App Production",
+    title: "Jasdor — Jasa Order Kopi Promo",
+    description:
+      "Jasdor adalah platform jasa order kopi promo yang saya bangun dan operasikan sendiri. Mendukung 3 brand (Kopi Kenangan, Fore, Tomoro) dengan ribuan outlet, harga akurat per outlet, promo bundling, antrean real-time, dan checkout via WhatsApp — live production sejak Oktober 2026.",
+    metrics: [
+      { value: "3", label: "Brand Aktif" },
+      { value: "2000+", label: "Outlet" },
+      { value: "Live", label: "Production" },
+    ],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Cloudflare", "WhatsApp API"],
+    links: {
+      demo: "https://jasdor.cimagroup.my.id/",
+      github: null,
+      caseStudy: null,
+    },
+    image: "/projects/jasdor.svg",
+    caseStudyContent: {
+      problem: "Promo kopi seperti diskon 50% biasanya hanya bisa dinikmati dengan datang langsung ke outlet dan antre, atau lewat jasa titip yang tidak terstruktur via chat — rawan salah catat, tidak ada katalog harga yang jelas, dan pembayaran serba manual.",
+      solution: "Membangun platform jasa order berbasis web (PWA) dengan katalog multi-brand, harga per outlet yang akurat mengikuti tier (normal/mall/bandara), promo bundling dengan validasi otomatis, antrean real-time, dan checkout via WhatsApp dengan format pesanan otomatis.",
+      background: "Jasdor adalah bisnis yang saya bangun dan jalankan sendiri sejak Oktober 2026. Sistem menangani 3 brand dengan ribuan outlet, sinkronisasi status buka/tutup outlet, tier harga per outlet, paket bundling promo, sistem antrean dengan estimasi waktu, serta panel admin untuk mengelola pesanan dan operasional harian.",
+      features: [
+        "Katalog multi-brand (Kopi Kenangan, Fore, Tomoro) dengan pencarian outlet",
+        "Harga per outlet mengikuti tier: normal, mall, dan bandara",
+        "Promo bundling & B1G1 dengan validasi otomatis di server",
+        "Antrean real-time dengan estimasi waktu tunggu per pesanan",
+        "Checkout via WhatsApp dengan format pesanan otomatis",
+        "Panel admin: kelola pesanan, status operasional, dan laporan",
+        "PWA — dapat di-install di HP seperti aplikasi native"
+      ],
+      bannerBg: "bg-gradient-to-r from-amber-950 via-slate-900 to-neutral-900"
+    }
+  },
+  {
+    id: 7,
+    category: "Backend API • Proyek Tim",
+    title: "BudgEx — Sistem Anggaran (RAB)",
+    description:
+      "BudgEx adalah sistem pengajuan dan persetujuan anggaran (RAB) yang saya kembangkan bersama tim. Saya mengerjakan sisi backend: REST API dengan ASP.NET Core, alur approval bertingkat, modul OPEX & CAPEX, transfer antar departemen, dan laporan PDF/Excel — terintegrasi dengan aplikasi mobile Flutter.",
+    metrics: [
+      { value: "Backend", label: "Peran di Tim" },
+      { value: "OPEX+CAPEX", label: "Modul" },
+      { value: "3-Level", label: "Approval" },
+    ],
+    tags: ["ASP.NET Core", ".NET 10", "PostgreSQL", "EF Core", "Flutter", "xUnit"],
+    links: {
+      demo: null,
+      github: null,
+      caseStudy: null,
+    },
+    image: "/projects/budgex.svg",
+    caseStudyContent: {
+      problem: "Pengajuan dan persetujuan anggaran (RAB) di perusahaan masih sering dilakukan manual lewat form kertas atau chat — status pengajuan sulit dilacak, tidak ada jejak audit yang jelas, dan laporan harus direkap manual satu per satu.",
+      solution: "Membangun backend sistem budgeting dengan alur approval bertingkat (Dept Head → Finance → Director), mendukung anggaran OPEX dan CAPEX, transfer anggaran antar departemen, revisi RAB, serta laporan PDF/Excel otomatis yang siap unduh.",
+      background: "BudgEx adalah proyek tim pada mata kuliah PdBL yang dikerjakan sejak semester 4 hingga semester 5. Saya berperan di tim backend: merancang endpoint REST API, logika approval, dan integrasi database PostgreSQL dengan Entity Framework Core. API yang sama dikonsumsi oleh aplikasi mobile yang dibangun dengan Flutter.",
+      features: [
+        "Alur approval bertingkat: Dept Head → Finance → Director",
+        "Modul OPEX & CAPEX dengan fitur revisi RAB",
+        "Transfer anggaran antar departemen",
+        "Laporan PDF & Excel otomatis",
+        "REST API yang dikonsumsi aplikasi mobile (Flutter)",
+        "Unit & integration test untuk menjaga kualitas kode"
+      ],
+      bannerBg: "bg-gradient-to-r from-emerald-950 via-slate-900 to-neutral-900"
+    }
+  },
+  {
     id: 1,
     category: "Aplikasi web Full-Stack",
     title: "Sistem Manajemen Data Pegawai",
