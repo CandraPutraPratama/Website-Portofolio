@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Candra Putra | Portfolio",
     description: "Membangun solusi sistem informasi end-to-end dengan fokus pada akurasi data dan efisiensi operasional.",
-    url: "https://candraputra.vercel.app",
+    url: "https://website-portofolio-lac-pi.vercel.app",
     siteName: "Candra Putra Portfolio",
     locale: "id_ID",
     type: "website",
@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
       {/* suppressHydrationWarning: menghindari warning dark mode dari localStorage */}
