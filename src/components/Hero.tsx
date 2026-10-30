@@ -160,11 +160,11 @@ const Hero = () => {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="absolute bottom-0 left-0 w-full z-30"
       >
-        <div className="w-full border-t-2 border-b-2 border-black dark:border-neutral-700 bg-white dark:bg-neutral-950 text-black dark:text-white font-mono text-xs md:text-sm uppercase tracking-wider transition-colors duration-300">
+        <div className="w-full border-t-2 border-b-2 border-black dark:border-neutral-700 bg-white dark:bg-neutral-950 text-black dark:text-white font-mono text-[10px] md:text-sm uppercase tracking-wider transition-colors duration-300">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x-2 divide-black dark:divide-neutral-700">
 
             {/* Kolom 1: Open to Work */}
-            <div className="p-4 flex items-center justify-center md:justify-start gap-3 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
+            <div className="p-3 md:p-4 flex items-center justify-center md:justify-start gap-2 md:gap-3 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
               <span className="relative flex h-3 w-3 flex-shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
@@ -173,12 +173,12 @@ const Hero = () => {
             </div>
 
             {/* Kolom 2: Lokasi — GANTI KOTA DI SINI */}
-            <div className="p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
+            <div className="p-3 md:p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
               <span>BERBASIS DI SURABAYA, ID</span>
             </div>
 
             {/* Kolom 3: Tanggal otomatis */}
-            <div className="p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
+            <div className="p-3 md:p-4 flex items-center justify-center md:justify-start hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-default">
               <span className="flex gap-2">
                 <span className="font-bold">HARI INI:</span>
                 <span>{today}</span>
@@ -188,7 +188,7 @@ const Hero = () => {
             {/* Kolom 4: Scroll Down */}
             <a
               href="#about"
-              className="p-4 flex items-center justify-center gap-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-pointer animate-pulse"
+              className="p-3 md:p-4 flex items-center justify-center gap-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors cursor-pointer animate-pulse"
             >
               <span>GULIR KE BAWAH</span>
               <ArrowDown className="w-4 h-4" aria-hidden="true" />
