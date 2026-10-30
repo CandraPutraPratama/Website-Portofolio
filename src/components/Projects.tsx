@@ -123,13 +123,13 @@ const projects: ProjectItem[] = [
     description:
       "Sistem Manajemen Data Pegawai adalah aplikasi web berbasis PHP dan PostgreSQL yang digunakan untuk mengelola data pegawai secara digital. Website ini menyediakan fitur login admin, dashboard, pencarian data, serta proses CRUD untuk menambah, melihat, mengubah, dan menghapus data pegawai.",
     metrics: [
-      { value: ">90%", label: "Efisiensi" },
-      { value: "CRUD", label: "Sistem" },
-      { value: "92/100", label: "Skor Proyek" },
+      { value: "8", label: "Fitur Utama" },
+      { value: "Login Admin", label: "Hak Akses" },
+      { value: "PDO", label: "Koneksi Aman" },
     ],
     tags: ["PHP Native", "PostgreSQL", "Bootstrap", "PDO", "Laragon"],
     links: {
-      demo: "http://sistem-manajemen-data-pegawai.test/login.php",
+      demo: null,
       github: "https://github.com/CandraPutraPratama/sistem-manajemen-data-pegawai",
       caseStudy: null,
     },
@@ -158,13 +158,13 @@ const projects: ProjectItem[] = [
     description:
       "Sistem Inventaris Barang adalah aplikasi web berbasis PHP dan PostgreSQL yang digunakan untuk mengelola data inventaris secara digital. Website ini menyediakan fitur dashboard, pencarian barang, kategori, stok masuk, stok keluar, riwayat stok, serta proses CRUD untuk menambah, melihat, mengubah, dan menghapus data barang.",
     metrics: [
-      { value: ">90%", label: "Efisiensi" },
-      { value: "CRUD", label: "Sistem" },
-      { value: "95/100", label: "Skor Proyek" },
+      { value: "6", label: "Fitur Utama" },
+      { value: "Masuk & Keluar", label: "Arus Stok" },
+      { value: "Riwayat", label: "Perubahan Stok" },
     ],
     tags: ["PHP Native", "PostgreSQL", "HTML/CSS", "PDO", "Laragon"],
     links: {
-      demo: "http://localhost/sistem-inventaris-barang/public/",
+      demo: null,
       github: "https://github.com/CandraPutraPratama/sistem-inventaris-barang",
       caseStudy: null,
     },
@@ -191,14 +191,14 @@ const projects: ProjectItem[] = [
     description:
       "Sistem Kasir Sederhana adalah aplikasi web berbasis PHP dan PostgreSQL yang digunakan untuk mengelola produk, stok barang, transaksi penjualan, serta laporan penjualan secara digital. Website ini menyediakan fitur dashboard, pencarian produk, proses transaksi, cetak struk, riwayat transaksi, laporan berdasarkan tanggal, dan manajemen stok masuk maupun stok keluar.",
     metrics: [
-      { value: ">90%", label: "Efisiensi" },
-      { value: "CRUD", label: "Sistem" },
-      { value: "94/100", label: "Skor Proyek" },
+      { value: "6", label: "Fitur Utama" },
+      { value: "Cetak", label: "Struk Otomatis" },
+      { value: "Filter", label: "Laporan Tanggal" },
     ],
     tags: ["PHP Native", "PostgreSQL", "Bootstrap", "pg_query"],
     links: {
-      demo: "http://localhost/project4-kasir/",
-      github: "https://github.com",
+      demo: null,
+      github: null,
       caseStudy: null,
     },
     image: "/projects/project3.png",
@@ -224,14 +224,14 @@ const projects: ProjectItem[] = [
     description:
       "Sistem Manajemen Keuangan Pribadi adalah aplikasi web berbasis PHP dan PostgreSQL yang digunakan untuk mencatat pemasukan, pengeluaran, serta mengelola kategori transaksi secara digital. Website ini menyediakan fitur dashboard ringkasan, CRUD kategori, CRUD transaksi, filter data, dan laporan bulanan untuk membantu pengguna memantau kondisi keuangan pribadi dengan lebih rapi.",
     metrics: [
-      { value: ">90%", label: "Efisiensi" },
-      { value: "CRUD", label: "Transaksi" },
-      { value: "90/100", label: "Skor Proyek" },
+      { value: "6", label: "Fitur Utama" },
+      { value: "Kelola", label: "Kategori" },
+      { value: "Laporan", label: "Bulanan" },
     ],
     tags: ["PHP Native", "PostgreSQL", "CSS", "pgAdmin", "Laragon"],
     links: {
-      demo: "http://localhost/keuangan-pribadi/index.php",
-      github: "https://github.com",
+      demo: null,
+      github: null,
       caseStudy: null,
     },
     image: "/projects/project4.png",
@@ -257,14 +257,14 @@ const projects: ProjectItem[] = [
     description:
       "RoomBook adalah aplikasi web berbasis PHP dan PostgreSQL untuk mengelola reservasi ruangan kampus. Sistem ini mendukung manajemen data ruangan, pengajuan reservasi, validasi jadwal bentrok, pemantauan jadwal aktif, serta riwayat peminjaman ruangan.",
     metrics: [
-      { value: ">90%", label: "Akurasi" },
-      { value: "ROOMBOOK", label: "Sistem" },
-      { value: "95/100", label: "Skor Proyek" },
+      { value: "5", label: "Fitur Utama" },
+      { value: "Cegah", label: "Jadwal Bentrok" },
+      { value: "4", label: "Status Reservasi" },
     ],
     tags: ["PHP Native", "PostgreSQL", "Bootstrap 5", "PDO", "JavaScript", "HTML", "CSS"],
     links: {
       demo: null,
-      github: "http://localhost/roombook/index.php",
+      github: null,
       caseStudy: null,
     },
     image: "/projects/projek51.png",
@@ -397,15 +397,17 @@ const Projects = () => {
                     </span>
                   </motion.button>
 
-                  <a
-                    href={project.links.demo || project.links.github || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
-                  >
-                    KUNJUNGI SITUS
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
+                  {(project.links.demo || project.links.github) && (
+                    <a
+                      href={(project.links.demo || project.links.github) as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
+                    >
+                      KUNJUNGI SITUS
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -439,7 +441,7 @@ const Projects = () => {
                     src={project.image}
                     alt={`Screenshot ${project.title}`}
                     fill
-                    sizes="(max-w-768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-contain object-center transition-all duration-500 filter brightness-[0.65] contrast-[0.95] group-hover/preview:brightness-100 group-hover/preview:contrast-100 group-hover/preview:scale-[1.02]"
                     priority={i === 0}
                   />
@@ -572,17 +574,19 @@ const Projects = () => {
                 <div className="border-t border-neutral-800" />
 
                 {/* ── Row 3: Action Button ── */}
-                <div className="pt-2">
-                  <a
-                    href={selectedProject.links.demo || selectedProject.links.github || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
-                  >
-                    KUNJUNGI SITUS
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                </div>
+                {(selectedProject.links.demo || selectedProject.links.github) && (
+                  <div className="pt-2">
+                    <a
+                      href={(selectedProject.links.demo || selectedProject.links.github) as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black hover:bg-neutral-200 transition-colors duration-300 font-bold text-xs uppercase tracking-wider rounded-lg"
+                    >
+                      KUNJUNGI SITUS
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
