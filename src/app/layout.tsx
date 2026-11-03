@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const hanken = Hanken_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://website-portofolio-lac-pi.vercel.app"),
-  title: "Candra Putra | Web & Frontend Developer Intern",
+  title: "Candra Putra — Junior Web & Backend Developer",
   description:
-    "Portofolio profesional Candra Putra, Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Spesialis pengembangan aplikasi web modern (Next.js, React, TypeScript) dan sistem basis data terstruktur (PostgreSQL, PHP).",
+    "Portofolio Candra Putra, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan: Jasdor (live production, 3 brand, 2000+ outlet) dan backend BudgEx (ASP.NET Core + PostgreSQL). Terbuka untuk magang.",
   keywords: [
     "Candra Putra",
     "Web Developer Intern",
-    "Frontend Developer",
+    "Backend Developer",
     "Next.js",
-    "React",
-    "TypeScript",
+    "ASP.NET Core",
     "PENS Surabaya",
     "Portofolio Magang",
   ],
@@ -33,9 +28,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Candra Putra | Web & Frontend Developer Intern",
+    title: "Candra Putra — Junior Web & Backend Developer",
     description:
-      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun solusi web modern dan sistem informasi terstruktur dengan Next.js, React, dan PostgreSQL.",
+      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan. Terbuka untuk magang.",
     url: "https://website-portofolio-lac-pi.vercel.app",
     siteName: "Candra Putra Portfolio",
     locale: "id_ID",
@@ -45,15 +40,15 @@ export const metadata: Metadata = {
         url: "/profil-hero.png",
         width: 1200,
         height: 630,
-        alt: "Candra Putra - Web & Frontend Developer Portfolio",
+        alt: "Candra Putra - Web & Backend Developer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Candra Putra | Web & Frontend Developer Intern",
+    title: "Candra Putra — Junior Web & Backend Developer",
     description:
-      "Portofolio profesional Candra Putra, Mahasiswa D4 Teknik Informatika PENS (IPK 3.76).",
+      "Portofolio Candra Putra, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Terbuka untuk magang.",
     images: ["/profil-hero.png"],
   },
   robots: {
@@ -68,10 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
-    >
+    <html lang="id" className={`${hanken.variable} scroll-smooth`}>
       <body suppressHydrationWarning className="antialiased">
         {children}
       </body>

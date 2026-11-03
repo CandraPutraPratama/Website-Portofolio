@@ -1,72 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Send, Check } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Copy, Check } from "lucide-react";
 import Turnstile from "react-turnstile";
 import { useTheme } from "./ThemeProvider";
-import { translations } from "@/lib/translations";
+import { translations, EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/translations";
+import Reveal from "./Reveal";
 
-const GithubIcon = () => (
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const LinkedinIcon = () => (
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
-
-const Contact = () => {
-  const { isDark, lang } = useTheme();
+export default function Contact() {
+  const { lang } = useTheme();
   const t = translations[lang].contact;
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -74,7 +18,7 @@ const Contact = () => {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("candraputrap46@gmail.com");
+    navigator.clipboard.writeText(EMAIL);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -87,7 +31,7 @@ const Contact = () => {
       setErrorMessage(
         lang === "US"
           ? "Please complete the security verification first."
-          : "Harap selesaikan verifikasi captcha terlebih dahulu."
+          : "Harap selesaikan verifikasi keamanan terlebih dahulu."
       );
       return;
     }
@@ -96,20 +40,16 @@ const Contact = () => {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          subject: form.subject,
+          subject: `Pesan dari portofolio — ${form.name}`,
           message: form.message,
           captchaToken: turnstileToken,
         }),
       });
-
       const data = await response.json();
-
       if (response.ok && data.success) {
         setIsSubmitted(true);
       } else {
@@ -120,8 +60,7 @@ const Contact = () => {
               : "Gagal mengirim pesan. Silakan hubungi langsung via email.")
         );
       }
-    } catch (error) {
-      console.error("Error submitting contact form:", error);
+    } catch {
       setErrorMessage(
         lang === "US"
           ? "Network connection issue. Please use direct email."
@@ -132,280 +71,166 @@ const Contact = () => {
     }
   };
 
-  const isSubmitDisabled = isSubmitting || !turnstileToken;
+  const rows = [
+    { label: t.emailLabel, value: EMAIL, href: `mailto:${EMAIL}`, copy: true },
+    { label: t.githubLabel, value: "github.com/CandraPutraPratama", href: GITHUB_URL },
+    { label: t.linkedinLabel, value: "linkedin.com/in/candra-putra", href: LINKEDIN_URL },
+  ];
+
+  const inputCls =
+    "w-full bg-surface px-4 py-3.5 text-[16px] text-ink placeholder:text-muted/70 focus:outline-none";
 
   return (
-    <section
-      id="contact"
-      className="w-full px-4 sm:px-6 py-16 md:py-32 bg-neutral-50 dark:bg-black text-black dark:text-white font-mono border-t border-neutral-200 dark:border-neutral-800 transition-colors duration-300"
-    >
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* ── LEFT COLUMN ── */}
-          <div className="lg:col-span-5 flex flex-col gap-6 lg:-mt-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-4">
-                {t.headingPart1}
-                <br />
-                {t.headingPart2}
-              </h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-xs md:text-base leading-relaxed font-sans">
-                {t.subtitle}
-              </p>
-            </motion.div>
+    <section id="kontak" aria-label={t.heading} className="px-5 py-24 md:px-8 md:py-32">
+      <Reveal>
+        <h2 className="max-w-[16ch] text-[clamp(2rem,1.3rem+3.2vw,4rem)] font-extrabold leading-[1.05] tracking-tight">
+          {t.heading}
+        </h2>
+      </Reveal>
+      <Reveal delay={0.08}>
+        <p className="mt-6 max-w-[52ch] text-ink/85">{t.sub}</p>
+      </Reveal>
 
-            {/* Direct Contact Cards (Numbered 01, 02, 03 style) */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col gap-3"
-            >
-              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                {t.directEmail}
-              </span>
-
-              {/* 01 Email */}
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                aria-label="Salin alamat email candraputrap46@gmail.com"
-                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all select-none group w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white shadow-sm"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">01</span>
-                  <Mail className="w-4 h-4 text-neutral-500 flex-shrink-0" />
-                  <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
-                    candraputrap46@gmail.com
-                  </span>
-                </div>
-                <div className="text-neutral-500 group-hover:text-black dark:group-hover:text-white transition-colors flex-shrink-0">
-                  {copied ? (
-                    <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 dark:text-green-400">
-                      <Check className="w-3.5 h-3.5" />
-                      {lang === "US" ? "Copied" : "Tersalin"}
-                    </span>
-                  ) : (
-                    <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-black dark:group-hover:text-white">
-                      {lang === "US" ? "Copy" : "Salin"}
-                    </span>
-                  )}
-                </div>
-              </button>
-
-              {/* 02 GitHub */}
+      {/* Display rows */}
+      <div className="mt-12 md:mt-16">
+        {rows.map((r, i) => (
+          <Reveal key={r.label} delay={Math.min(i * 0.06, 0.18)}>
+            <div className="flex items-center gap-4 py-5 md:py-7">
+              <span className="w-20 shrink-0 text-sm text-muted md:w-28">{r.label}</span>
               <a
-                href="https://github.com/CandraPutraPratama"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Kunjungi profil GitHub Candra Putra"
-                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all group w-full text-left shadow-sm"
+                href={r.href}
+                target={r.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noreferrer"
+                className="group flex min-w-0 flex-1 items-center gap-3"
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">02</span>
-                  <div className="w-4 h-4 text-neutral-500 flex-shrink-0 flex items-center justify-center">
-                    <GithubIcon />
-                  </div>
-                  <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
-                    github.com/CandraPutraPratama
-                  </span>
-                </div>
-                <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-black dark:group-hover:text-white">
-                  ↗
+                <span className="truncate text-[clamp(1.15rem,3.4vw,2.6rem)] font-bold tracking-tight transition-colors group-hover:text-accent">
+                  {r.value}
                 </span>
+                <ArrowUpRight
+                  aria-hidden
+                  className="shrink-0 text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                  size={28}
+                />
               </a>
-
-              {/* 03 LinkedIn */}
-              <a
-                href="https://linkedin.com/in/candra-putra-a08231397"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Kunjungi profil LinkedIn Candra Putra"
-                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all group w-full text-left shadow-sm"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">03</span>
-                  <div className="w-4 h-4 text-neutral-500 flex-shrink-0 flex items-center justify-center">
-                    <LinkedinIcon />
-                  </div>
-                  <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
-                    linkedin.com/in/candra-putra
-                  </span>
-                </div>
-                <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-black dark:group-hover:text-white">
-                  ↗
-                </span>
-              </a>
-            </motion.div>
-          </div>
-
-          {/* ── RIGHT COLUMN: Form Bento Container ── */}
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col gap-6 shadow-md"
-            >
-              {isSubmitted ? (
-                <div className="flex flex-col items-center justify-center h-full text-center py-16 gap-4">
-                  <div className="text-5xl">🎉</div>
-                  <h3 className="text-2xl font-black uppercase text-black dark:text-white">
-                    {t.sentTitle}
-                  </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm max-w-sm font-sans">
-                    {t.sentDesc}
-                  </p>
-                  <button
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setTurnstileToken(null);
-                      setForm({ name: "", email: "", subject: "", message: "" });
-                    }}
-                    className="mt-4 px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-xs font-bold rounded-xl uppercase tracking-widest hover:opacity-85 transition-opacity"
-                  >
-                    {t.sendAnother}
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  {errorMessage && (
-                    <div className="p-3 rounded-lg bg-red-100 dark:bg-red-950/60 border border-red-300 dark:border-red-800 text-red-800 dark:text-red-200 text-xs font-mono">
-                      {errorMessage}
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Field: Nama */}
-                    <div className="flex flex-col gap-1.5">
-                      <label
-                        htmlFor="contact-name"
-                        className="text-[10px] font-bold uppercase tracking-widest text-neutral-500"
-                      >
-                        {t.nameLabel}
-                      </label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        required
-                        placeholder={t.namePlaceholder}
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-sm font-mono text-black dark:text-white placeholder-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors"
-                      />
-                    </div>
-
-                    {/* Field: Email */}
-                    <div className="flex flex-col gap-1.5">
-                      <label
-                        htmlFor="contact-email"
-                        className="text-[10px] font-bold uppercase tracking-widest text-neutral-500"
-                      >
-                        {t.emailLabel}
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        required
-                        placeholder={t.emailPlaceholder}
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-sm font-mono text-black dark:text-white placeholder-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Field: Subjek */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="contact-subject"
-                      className="text-[10px] font-bold uppercase tracking-widest text-neutral-500"
-                    >
-                      {t.subjectLabel}
-                    </label>
-                    <input
-                      id="contact-subject"
-                      type="text"
-                      required
-                      placeholder={t.subjectPlaceholder}
-                      value={form.subject}
-                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-sm font-mono text-black dark:text-white placeholder-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors"
-                    />
-                  </div>
-
-                  {/* Field: Pesan */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="contact-message"
-                      className="text-[10px] font-bold uppercase tracking-widest text-neutral-500"
-                    >
-                      {t.messageLabel}
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      required
-                      rows={4}
-                      placeholder={t.messagePlaceholder}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-sm font-mono text-black dark:text-white placeholder-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors resize-none"
-                    />
-                  </div>
-
-                  {/* Cloudflare Turnstile */}
-                  <div className="self-start max-w-full overflow-x-auto my-1">
-                    <Turnstile
-                      key={isDark ? "dark" : "light"}
-                      sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
-                      theme={isDark ? "dark" : "light"}
-                      onVerify={(token) => {
-                        setTurnstileToken(token);
-                        setErrorMessage(null);
-                      }}
-                      onExpire={() => setTurnstileToken(null)}
-                      onError={() => setTurnstileToken(null)}
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitDisabled}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-[0.15em] rounded-xl hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow"
-                  >
-                    {isSubmitting ? (
-                      <span className="animate-pulse">{t.sendingBtn}</span>
-                    ) : (
-                      <>
-                        <Send className="w-3.5 h-3.5" />
-                        {t.sendBtn}
-                      </>
-                    )}
-                  </motion.button>
-                </form>
+              {r.copy && (
+                <button
+                  onClick={handleCopyEmail}
+                  aria-label={t.copyEmailAria}
+                  className="shrink-0 p-2 text-muted transition-colors hover:text-accent"
+                >
+                  {copied ? <Check size={18} className="text-accent" /> : <Copy size={18} />}
+                </button>
               )}
-            </motion.div>
-          </div>
-        </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
+      {copied && (
+        <p role="status" className="text-sm text-accent">
+          {t.emailCopied}
+        </p>
+      )}
 
-      {/* Footer */}
-      <div className="max-w-5xl mx-auto mt-16 md:mt-20 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] md:text-xs text-neutral-500 text-center md:text-left">
-        <p>© {new Date().getFullYear()} Candra Putra. {t.copyright}</p>
-        <p className="font-mono">{t.builtWith}</p>
+      {/* Form */}
+      <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <Reveal>
+            <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-muted">
+              {lang === "US" ? "Or via the form" : "Atau lewat formulir"}
+            </p>
+          </Reveal>
+        </div>
+        <div className="md:col-span-8">
+          {isSubmitted ? (
+            <Reveal>
+              <div className="bg-surface p-8">
+                <p className="text-2xl font-bold tracking-tight">{t.sentTitle}</p>
+                <p className="mt-3 text-ink/85">{t.sentDesc}</p>
+                <button
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setForm({ name: "", email: "", message: "" });
+                    setTurnstileToken(null);
+                  }}
+                  className="mt-6 rounded-full border border-ink/25 px-6 py-3 text-[15px] font-bold transition-colors hover:border-accent hover:text-accent"
+                >
+                  {t.sendAnother}
+                </button>
+              </div>
+            </Reveal>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <Reveal>
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold uppercase tracking-[0.14em] text-muted">
+                    {t.nameLabel}
+                  </span>
+                  <input
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder={t.namePlaceholder}
+                    className={inputCls}
+                  />
+                </label>
+              </Reveal>
+              <Reveal delay={0.06}>
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold uppercase tracking-[0.14em] text-muted">
+                    {t.emailFieldLabel}
+                  </span>
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder={t.emailPlaceholder}
+                    className={inputCls}
+                  />
+                </label>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <label className="block">
+                  <span className="mb-2 block text-[13px] font-bold uppercase tracking-[0.14em] text-muted">
+                    {t.messageLabel}
+                  </span>
+                  <textarea
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder={t.messagePlaceholder}
+                    className={`${inputCls} resize-y`}
+                  />
+                </label>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <Turnstile
+                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+                  onVerify={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                  onError={() => setTurnstileToken(null)}
+                  theme="dark"
+                />
+              </Reveal>
+              {errorMessage && (
+                <p role="alert" className="text-[15px] text-red-400">
+                  {errorMessage}
+                </p>
+              )}
+              <Reveal delay={0.2}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !turnstileToken}
+                  className="rounded-full bg-accent px-8 py-3.5 text-[15px] font-bold text-accent-ink transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+                >
+                  {isSubmitting ? t.sendingBtn : t.sendBtn}
+                </button>
+              </Reveal>
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}
