@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import ProfileCard from "./ProfileCard";
+import SpotlightProfileCard from "./SpotlightProfileCard";
 import { GraduationCap, Terminal, Download, Cpu } from "lucide-react";
 import {
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp, SiSharp,
@@ -145,33 +145,28 @@ const About = () => {
             </div>
           </BentoCard>
 
-          {/* ── CARD 2: PROFILE CARD ── */}
+          {/* ── CARD 2: SPOTLIGHT PROFILE CARD (Opsi 1) ── */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             custom={1}
-            className="md:col-span-1 min-h-[340px] overflow-visible flex items-center justify-center transform-gpu"
+            className="md:col-span-1 min-h-[340px] flex transform-gpu"
           >
-            <ProfileCard
+            <SpotlightProfileCard
               name="Candra Putra"
-              title="Junior Web Developer"
+              role="Junior Web Developer"
               handle="candraaaptra"
               status={t.statusOnline}
               contactText={t.contactBtn}
               avatarUrl="/profil-hero.png"
-              enableTilt={true}
-              enableMobileTilt={false}
               onContactClick={() => {
                 const contactEl = document.getElementById("contact");
                 if (contactEl) {
                   contactEl.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              behindGlowEnabled={true}
-              behindGlowColor="rgba(125, 190, 255, 0.4)"
-              innerGradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(25, 25, 25, 0.98) 100%)"
               className="w-full h-full"
             />
           </motion.div>
