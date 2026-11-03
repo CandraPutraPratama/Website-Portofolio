@@ -1,107 +1,223 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import { Menu, X, ArrowUp } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-import { Menu, X, ArrowUpRight } from "lucide-react";
 
-const NAV_LINKS = [
-  { label: "What I Can Do", href: "/#what-i-can-do" },
-  { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#work" },
-  { label: "Contact", href: "/#contact" },
-];
-
-export default function Header() {
+export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showCoffee, setShowCoffee] = useState(false);
+  const [coffeeCount, setCoffeeCount] = useState(42);
+  const [coffeePop, setCoffeePop] = useState(false);
+  const [coffeeLoading, setCoffeeLoading] = useState(true);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/coffee-count")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && typeof data.count === "number") {
+          setCoffeeCount(data.count);
+        }
+        setCoffeeLoading(false);
+      })
+      .catch(() => setCoffeeLoading(false));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleCoffeeClick = async (e) => {
+    e.preventDefault();
+    setCoffeePop(true);
+    const previousCount = coffeeCount;
+    const optimisticCount = previousCount + 1;
+    setCoffeeCount(optimisticCount);
+    try {
+      const res = await fetch("/api/coffee-count", { method: "POST" });
+      const data = await res.json();
+      if (typeof data.count === "number") {
+        setCoffeeCount(data.count);
+      } else {
+        setCoffeeCount(previousCount);
+      }
+    } catch {
+      setCoffeeCount(previousCount);
+    }
+  };
+
+  useEffect(() => {
+    if (!coffeePop) return;
+    const id = setTimeout(() => setCoffeePop(false), 400);
+    return () => clearTimeout(id);
+  }, [coffeePop]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
+      setShowBackToTop(alwaysShowBackToTop || window.scrollY > 400);
+      setShowCoffee(alwaysShowCoffee || window.scrollY > window.innerHeight * 0.5);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysShowCoffee, alwaysShowBackToTop]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleClickAway = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickAway);
+    document.addEventListener("touchstart", handleClickAway);
+    return () => {
+      document.removeEventListener("mousedown", handleClickAway);
+      document.removeEventListener("touchstart", handleClickAway);
+    };
+  }, [menuOpen]);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 py-3 pointer-events-none">
-      <div
-        className={`nav-bar pointer-events-auto flex items-center justify-between w-full max-w-5xl px-5 py-3 transition-all duration-300 ${
-          scrolled ? "scrolled" : "bg-transparent"
+    <>
+      <nav
+        ref={navRef}
+        className={`nav-bar ${scrolled ? "scrolled" : ""} ${
+          menuOpen ? "nav-bar--expanded" : ""
         }`}
       >
-        {/* Brand */}
-        <Link
-          href="/"
-          className="text-lg font-black tracking-tight font-display hover:opacity-80 transition-opacity"
-        >
-          candra<span className="text-emerald-500">.</span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 text-xs uppercase tracking-wider font-mono">
-          {NAV_LINKS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-muted hover:text-text transition-colors duration-200"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Action Controls */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-
-          <Link
-            href="/#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-text text-bg hover:opacity-90 transition-all font-mono tracking-wide"
-          >
-            Rekrut Saya <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
-
-          {/* Mobile Menu Button */}
+        <div className="nav-mobile-header">
+          <a href="/" className="nav-left">
+            <div className="nav-logo">C</div>
+            <div className="nav-brand">CANDRA</div>
+          </a>
+          <ThemeToggle
+            className="md:hidden nav-theme-toggle"
+            style={{ position: "relative", zIndex: 210 }}
+          />
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full border border-line bg-surface hover:bg-surface-2 transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden nav-menu-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 8,
+              position: "relative",
+              zIndex: 210,
+            }}
+            aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? (
-              <X className="w-4 h-4 text-text" />
-            ) : (
-              <Menu className="w-4 h-4 text-text" />
-            )}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Drawer Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden pointer-events-auto fixed inset-x-4 top-20 bg-surface/95 backdrop-blur-xl border border-line rounded-2xl p-5 shadow-2xl flex flex-col gap-4 font-mono text-sm animate-in fade-in slide-in-from-top-4 duration-200">
-          {NAV_LINKS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 px-3 rounded-lg text-muted hover:text-text hover:bg-surface-2 transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full text-center py-2.5 rounded-xl bg-text text-bg font-semibold font-mono text-xs uppercase"
-          >
-            Rekrut Saya &rarr;
-          </Link>
+        {menuOpen && (
+          <div className="nav-mobile-menu">
+            <div className="nav-mobile-menu-inner">
+              <a href="/#work" className="nav-link" onClick={() => setMenuOpen(false)}>
+                Work
+              </a>
+              <a
+                href="/#what-i-can-do"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                What I Can Do
+              </a>
+              <a
+                href="/#about"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="/#awards"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                Awards
+              </a>
+              <a
+                href="/#trainings"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                Experience
+              </a>
+              <a
+                href="/#contact"
+                className="nav-cta"
+                style={{ textAlign: "center" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                Hire Me
+              </a>
+            </div>
+          </div>
+        )}
+
+        <div className="nav-center hidden md:flex">
+          <a href="/#work" className="nav-link">
+            Work
+          </a>
+          <a href="/#what-i-can-do" className="nav-link">
+            What I Can Do
+          </a>
+          <a href="/#about" className="nav-link">
+            About
+          </a>
+          <a href="/#awards" className="nav-link">
+            Awards
+          </a>
+          <a href="/#trainings" className="nav-link">
+            Experience
+          </a>
         </div>
+
+        <div className="nav-right">
+          <ThemeToggle
+            className="nav-theme-toggle hidden md:inline-flex"
+            style={{ marginRight: 8 }}
+          />
+          <a href="/#contact" className="nav-cta hidden md:block">
+            Hire Me
+          </a>
+        </div>
+      </nav>
+
+      {showBackToTop && !menuOpen && (
+        <button
+          className="back-to-top"
+          onClick={scrollToTop}
+          aria-label="Back to top"
+        >
+          <ArrowUp size={20} />
+        </button>
       )}
-    </header>
+
+      <a
+        href="#"
+        className={`coffee-btn${showCoffee ? " coffee-btn--visible" : ""}`}
+        aria-label="Get me a coffee"
+        onClick={handleCoffeeClick}
+      >
+        <span className="coffee-text">Get me a coffee</span>
+        <img
+          src="/images/gif/coffee.gif"
+          alt="Coffee"
+          className={`coffee-gif${coffeePop ? " coffee-gif--pop" : ""}`}
+        />
+        <span className="coffee-count">{coffeeLoading ? "..." : coffeeCount}</span>
+      </a>
+    </>
   );
 }
