@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://candraputra.vercel.app"),
+  metadataBase: new URL("https://website-portofolio-lac-pi.vercel.app"),
   title: "Candra Putra | Web & Frontend Developer Intern",
   description:
     "Portofolio profesional Candra Putra, Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Spesialis pengembangan aplikasi web modern (Next.js, React, TypeScript) dan sistem basis data terstruktur (PostgreSQL, PHP).",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "PENS Surabaya",
     "Portofolio Magang",
   ],
-  authors: [{ name: "Candra Putra", url: "https://candraputra.vercel.app" }],
+  authors: [{ name: "Candra Putra", url: "https://website-portofolio-lac-pi.vercel.app" }],
   creator: "Candra Putra",
   alternates: {
     canonical: "/",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Candra Putra | Web & Frontend Developer Intern",
     description:
       "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun solusi web modern dan sistem informasi terstruktur dengan Next.js, React, dan PostgreSQL.",
-    url: "https://candraputra.vercel.app",
+    url: "https://website-portofolio-lac-pi.vercel.app",
     siteName: "Candra Putra Portfolio",
     locale: "id_ID",
     type: "website",

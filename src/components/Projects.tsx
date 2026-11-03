@@ -195,7 +195,7 @@ const projects: ProjectItem[] = [
     ],
     tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion", "Cloudflare Turnstile", "Resend API"],
     links: {
-      demo: "https://candraputra.vercel.app",
+      demo: "https://website-portofolio-lac-pi.vercel.app",
       github: "https://github.com/CandraPutraPratama",
       caseStudy: null,
     },
