@@ -192,3 +192,38 @@ body {
     @apply font-sans;
   }
 }
+
+/* Circular Ripple View Transition (Richard Miculob style) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Infinite Marquee (GPU Composited) */
+@keyframes infinite-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.outline-text-stroke {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}

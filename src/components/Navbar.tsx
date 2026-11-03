@@ -17,6 +17,41 @@ const Navbar = ({ isDark, toggleDark, lang, toggleLang }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const t = translations[lang].nav;
 
+  const handleToggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const doc = document as any;
+    if (!doc.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      toggleDark();
+      return;
+    }
+
+    const x = event.clientX;
+    const y = event.clientY;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = doc.startViewTransition(() => {
+      toggleDark();
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 500,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+  };
+
   const navLinks = [
     { name: t.home, href: "#home" },
     { name: t.about, href: "#about" },
@@ -69,11 +104,11 @@ const Navbar = ({ isDark, toggleDark, lang, toggleLang }: NavbarProps) => {
             <span>CV</span>
           </a>
 
-          {/* Tombol Dark Mode */}
+          {/* Tombol Dark Mode (Circular Wave View Transition) */}
           <button
-            onClick={toggleDark}
+            onClick={handleToggleTheme}
             aria-label="Toggle Theme"
-            className="p-2 md:p-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+            className="p-2 md:p-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
           >
             {isDark ? <Sun className="w-3.5 h-3.5 md:w-4 md:h-4" /> : <Moon className="w-3.5 h-3.5 md:w-4 md:h-4" />}
           </button>

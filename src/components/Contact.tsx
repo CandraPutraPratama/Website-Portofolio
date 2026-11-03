@@ -159,24 +159,27 @@ const Contact = () => {
               </p>
             </motion.div>
 
-            {/* Direct Email Card */}
+            {/* Direct Contact Cards (Numbered 01, 02, 03 style) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-3"
             >
               <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                 {t.directEmail}
               </span>
+
+              {/* 01 Email */}
               <button
                 type="button"
                 onClick={handleCopyEmail}
                 aria-label="Salin alamat email candraputrap46@gmail.com"
-                className="flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all select-none group w-full sm:w-fit max-w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white shadow-sm"
+                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all select-none group w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white shadow-sm"
               >
-                <div className="flex items-center gap-2.5 min-w-0">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">01</span>
                   <Mail className="w-4 h-4 text-neutral-500 flex-shrink-0" />
                   <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
                     candraputrap46@gmail.com
@@ -195,48 +198,50 @@ const Contact = () => {
                   )}
                 </div>
               </button>
-            </motion.div>
 
-            {/* Social Icons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-col gap-3"
-            >
-              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                {t.digitalPresence}
-              </span>
-              <div className="flex gap-3">
-                <a
-                  href="https://linkedin.com/in/candra-putra-a08231397"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Kunjungi profil LinkedIn Candra Putra"
-                  className="w-11 h-11 rounded-xl border border-neutral-300 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all shadow-sm"
-                >
-                  <LinkedinIcon />
-                </a>
-                <a
-                  href="https://github.com/CandraPutraPratama"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Kunjungi profil GitHub Candra Putra"
-                  className="w-11 h-11 rounded-xl border border-neutral-300 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all shadow-sm"
-                >
-                  <GithubIcon />
-                </a>
-                <a
-                  href="https://instagram.com/candraaaptra"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Kunjungi profil Instagram Candra Putra"
-                  className="w-11 h-11 rounded-xl border border-neutral-300 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all shadow-sm"
-                >
-                  <InstagramIcon />
-                </a>
-              </div>
+              {/* 02 GitHub */}
+              <a
+                href="https://github.com/CandraPutraPratama"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Kunjungi profil GitHub Candra Putra"
+                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all group w-full text-left shadow-sm"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">02</span>
+                  <div className="w-4 h-4 text-neutral-500 flex-shrink-0 flex items-center justify-center">
+                    <GithubIcon />
+                  </div>
+                  <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
+                    github.com/CandraPutraPratama
+                  </span>
+                </div>
+                <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-black dark:group-hover:text-white">
+                  ↗
+                </span>
+              </a>
+
+              {/* 03 LinkedIn */}
+              <a
+                href="https://linkedin.com/in/candra-putra-a08231397"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Kunjungi profil LinkedIn Candra Putra"
+                className="flex items-center justify-between gap-3 px-4 py-3.5 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-xl cursor-pointer hover:border-black dark:hover:border-white transition-all group w-full text-left shadow-sm"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">03</span>
+                  <div className="w-4 h-4 text-neutral-500 flex-shrink-0 flex items-center justify-center">
+                    <LinkedinIcon />
+                  </div>
+                  <span className="font-bold text-xs sm:text-sm text-black dark:text-white truncate">
+                    linkedin.com/in/candra-putra
+                  </span>
+                </div>
+                <span className="text-[10px] font-semibold text-neutral-400 group-hover:text-black dark:group-hover:text-white">
+                  ↗
+                </span>
+              </a>
             </motion.div>
           </div>
 
