@@ -311,7 +311,7 @@ const Journey = () => {
                               >
                                 <Image
                                   src={imgSrc}
-                                  alt={`Project preview ${i + 1}`}
+                                  alt={`Dokumentasi kegiatan ${item.year} — foto ${i + 1}`}
                                   fill
                                   sizes="120px"
                                   className="object-cover grayscale group-hover/img:grayscale-0 transition-all duration-500"
