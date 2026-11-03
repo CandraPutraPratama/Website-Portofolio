@@ -119,15 +119,25 @@ export default function TechnicalArchive() {
 
             {/* Link */}
             <div className="md:col-span-1 flex md:justify-end">
-              <a
-                href={p.link}
-                target={p.link.startsWith("http") ? "_blank" : "_self"}
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 font-mono text-xs text-text hover:text-emerald-500 font-semibold transition-colors"
-                aria-label={`Open link for ${p.title}`}
-              >
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
+              {p.link.startsWith("/") ? (
+                <Link
+                  href={p.link}
+                  className="inline-flex items-center gap-1 font-mono text-xs text-text hover:text-emerald-500 font-semibold transition-colors"
+                  aria-label={`Open link for ${p.title}`}
+                >
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-xs text-text hover:text-emerald-500 font-semibold transition-colors"
+                  aria-label={`Open link for ${p.title}`}
+                >
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
         ))}

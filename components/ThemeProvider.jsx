@@ -48,6 +48,12 @@ export function ThemeProvider({ children }) {
       Math.max(y, window.innerHeight - y)
     );
 
+    // Check prefers-reduced-motion
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      applyTheme(next);
+      return;
+    }
+
     // Native View Transitions API
     if (typeof document !== "undefined" && document.startViewTransition) {
       document.documentElement.style.setProperty("--vt-x", `${x}px`);
@@ -59,12 +65,14 @@ export function ThemeProvider({ children }) {
         flushSync(() => applyTheme(next));
       });
 
-      transition.finished.then(() => {
-        document.documentElement.classList.remove(
-          "vt-disable-anim",
-          "vt-wipe-active"
-        );
-      });
+      transition.finished
+        .catch(() => {})
+        .finally(() => {
+          document.documentElement.classList.remove(
+            "vt-disable-anim",
+            "vt-wipe-active"
+          );
+        });
       return;
     }
 

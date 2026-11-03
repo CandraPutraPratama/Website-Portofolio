@@ -58,8 +58,10 @@ export default function Contact() {
       timestamp: new Date().toISOString(),
     };
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
+
     try {
-      // Optional: replace with your active Google Apps Script web app URL
       const scriptUrl =
         process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL ||
         "https://script.google.com/macros/s/AKfycbz68sln0VIOOVOegEYiQLJwTdLonmPHMzq8jqzWCaqdgUAG2-LWxJVuRaEM5HQl6ABH/exec";
@@ -69,11 +71,14 @@ export default function Contact() {
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
       setFormStatus("success");
       form.reset();
     } catch (err) {
+      clearTimeout(timeoutId);
       setFormStatus("error");
     }
   };
@@ -221,16 +226,24 @@ export default function Contact() {
                 </div>
 
                 {formStatus === "success" && (
-                  <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-mono text-xs flex items-center gap-2">
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-mono text-xs flex items-center gap-2"
+                  >
                     <CheckCircle2 className="w-4 h-4 shrink-0" />
                     <span>Pesan berhasil dikirim! Saya akan membalas secepatnya.</span>
                   </div>
                 )}
 
                 {formStatus === "error" && (
-                  <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 font-mono text-xs flex items-center gap-2">
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 font-mono text-xs flex items-center gap-2"
+                  >
                     <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>Gagal mengirim pesan. Silakan hubungi via email langsung.</span>
+                    <span>Gagal mengirim pesan atau waktu habis. Silakan hubungi via email langsung.</span>
                   </div>
                 )}
 
