@@ -51,13 +51,13 @@ Jika kamu (AI) diminta untuk mengedit atau menambahkan sesuatu, **PATUHI ATURAN 
 ## 6. Daftar Tugas (To-Do List)
 Bagian ini adalah status saat ini dari apa yang perlu diselesaikan. Centang (ubah `[ ]` jadi `[x]`) jika sudah selesai.
 
-- [ ] **Projects Section**: Ganti placeholder gambar (kotak abu-abu) dengan gambar screenshot asli. Taruh gambar di `/public/projects/` dan panggil menggunakan `<Image />` dari Next.js.
-- [ ] **Hero Section**: Pastikan animasi teks (Typewriter/FallingText) berjalan mulus dan responsif di mobile.
-- [ ] **About Section**: Sesuaikan konten bio dan daftar keahlian (tech stack) dengan profil asli.
-- [ ] **Journey Section**: Lengkapi data riwayat pekerjaan dan edukasi.
-- [ ] **Contact Section**: Buat logika fungsional untuk form kontak (bisa arahkan ke `mailto:` atau pakai Web3Forms / Formspree).
-- [ ] **Review Animasi**: Tes seluruh halaman dari atas ke bawah untuk memastikan tidak ada animasi Framer Motion yang bentrok atau lag.
-- [ ] **SEO & Metadata**: Tambahkan title, deskripsi, dan open graph image di `src/app/layout.tsx`.
+- [x] **Projects Section**: Ganti placeholder gambar (kotak abu-abu) dengan gambar screenshot asli. Taruh gambar di `/public/projects/` dan panggil menggunakan `<Image />` dari Next.js.
+- [x] **Hero Section**: Pastikan animasi teks (Typewriter/FallingText) berjalan mulus dan responsif di mobile.
+- [x] **About Section**: Sesuaikan konten bio dan daftar keahlian (tech stack) dengan profil asli.
+- [x] **Journey Section**: Lengkapi data riwayat pekerjaan dan edukasi.
+- [x] **Contact Section**: Buat logika fungsional untuk form kontak (bisa arahkan ke `mailto:` atau pakai Web3Forms / Formspree / Resend).
+- [x] **Review Animasi**: Tes seluruh halaman dari atas ke bawah untuk memastikan tidak ada animasi Framer Motion yang bentrok atau lag.
+- [x] **SEO & Metadata**: Tambahkan title, deskripsi, dan open graph image di `src/app/layout.tsx`.
 
 ---
 *Catatan untuk USER: File ini dirancang agar AI langsung paham konteks proyekmu. Cukup lampirkan file ini atau suruh AI membaca `PRD.md` setiap kali kamu memulai sesi chat baru.*

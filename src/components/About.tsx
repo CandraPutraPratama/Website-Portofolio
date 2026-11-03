@@ -1,21 +1,18 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import ProfileCard from "./ProfileCard";
-import {
-  GraduationCap, Terminal, LayoutTemplate, Database,
-  Download, Cpu, Code2, Server, GitBranch,
-  Globe, Smartphone
-} from "lucide-react";
+import { GraduationCap, Terminal, Download, Cpu } from "lucide-react";
 import {
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp,
   SiNextdotjs, SiReact, SiLaravel, SiTailwindcss, SiBootstrap,
   SiGit, SiGithub, SiPostman, SiVite
 } from "react-icons/si";
 import { FaDatabase, FaLaptopCode } from "react-icons/fa";
+import { useTheme } from "./ThemeProvider";
+import { translations } from "@/lib/translations";
 
 const FigmaOriginalIcon = ({ className }: { className?: string }) => (
   <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 130" className={className}>
@@ -29,7 +26,6 @@ const FigmaOriginalIcon = ({ className }: { className?: string }) => (
 
 // ============================================================
 // DATA — Tech Stack
-// Tambah/hapus item di masing-masing kategori sesuai keahlian Anda
 // ============================================================
 const techStack = {
   core: [
@@ -41,11 +37,11 @@ const techStack = {
     { name: "SQL", icon: FaDatabase, colorClass: "hover:border-[#4479A1] hover:text-[#4479A1]" },
   ],
   frameworks: [
-    { name: "Next.js", icon: SiNextdotjs, colorClass: "hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white" },
-    { name: "React", icon: SiReact, colorClass: "hover:border-[#61DAFB] hover:text-[#61DAFB]" },
+    { name: "Next.js 16", icon: SiNextdotjs, colorClass: "hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white" },
+    { name: "React 19", icon: SiReact, colorClass: "hover:border-[#61DAFB] hover:text-[#61DAFB]" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, colorClass: "hover:border-[#06B6D4] hover:text-[#06B6D4]" },
     { name: "Laravel", icon: SiLaravel, colorClass: "hover:border-[#FF2D20] hover:text-[#FF2D20]" },
-    { name: "Tailwind", icon: SiTailwindcss, colorClass: "hover:border-[#06B6D4] hover:text-[#06B6D4]" },
-    { name: "Bootstrap", icon: SiBootstrap, colorClass: "hover:border-[#7952B3] hover:text-[#7952B3]" },
+    { name: "Bootstrap 5", icon: SiBootstrap, colorClass: "hover:border-[#7952B3] hover:text-[#7952B3]" },
   ],
   tools: [
     { name: "Git", icon: SiGit, colorClass: "hover:border-[#F05032] hover:text-[#F05032]" },
@@ -56,14 +52,8 @@ const techStack = {
   ],
 };
 
-// ============================================================
-// HELPER — Framer Motion: animasi masuk dari bawah
-// Gunakan variant ini untuk card/elemen yang masuk ke viewport
-// Untuk mengganti animasi ReactBits, bungkus <BentoCard> dengan
-// komponen dari ReactBits dan hapus motion.div-nya
-// ============================================================
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
@@ -71,12 +61,10 @@ const fadeUp: Variants = {
   }),
 };
 
-// ============================================================
-// SUB-KOMPONEN — BentoCard
-// Wrapper card dengan border, rounded corner, dan hover shadow
-// ============================================================
 const BentoCard = ({
-  children, className = "", index = 0,
+  children,
+  className = "",
+  index = 0,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -88,7 +76,7 @@ const BentoCard = ({
     whileInView="visible"
     viewport={{ once: true, margin: "-50px" }}
     custom={index}
-    className={`relative border-2 border-black dark:border-neutral-700 rounded-[2rem] p-6 flex flex-col justify-between
+    className={`relative border-2 border-black dark:border-neutral-700 rounded-2xl p-6 flex flex-col justify-between
       hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)]
       transition-shadow duration-300 overflow-hidden ${className}`}
   >
@@ -100,75 +88,56 @@ const BentoCard = ({
 // ABOUT COMPONENT
 // ============================================================
 const About = () => {
+  const { lang } = useTheme();
+  const t = translations[lang].about;
+
   return (
-    // ── SECTION WRAPPER ───────────────────────────────────────
     <section
       id="about"
-      className="w-full px-4 pt-8 pb-20 md:pt-10 md:pb-32 bg-white dark:bg-black text-black dark:text-white font-mono transition-colors duration-300 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)]"
+      className="w-full px-4 sm:px-6 pt-12 pb-20 md:pt-16 md:pb-32 bg-white dark:bg-black text-black dark:text-white font-mono transition-colors duration-300 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)]"
     >
       <div className="max-w-6xl mx-auto">
-
-        {/* ── HEADING ──────────────────────────────────────────
-            Untuk tambah animasi teks (misal split/reveal), bungkus
-            teks di dalam dengan komponen animasi dari ReactBits
-            ──────────────────────────────────────────────────── */}
+        {/* ── HEADING ── */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 md:mb-12 text-center md:text-left"
+          className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 md:mb-12 text-center md:text-left"
         >
-          Tentang Saya
+          {t.heading}
         </motion.h2>
 
-        {/* ── BENTO GRID ────────────────────────────────────────
-            3 kolom pada desktop, 1 kolom pada mobile
-            auto-rows: tinggi baris fleksibel minimal 180px
-            ──────────────────────────────────────────────────── */}
+        {/* ── BENTO GRID ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(180px,auto)]">
-
-          {/* ── CARD 1: BIO (lebar 2/3) ─────────────────────────
-              Ganti teks di sini dengan bio Anda sendiri
-              Ganti href CV dengan path file CV Anda di /public
-              ──────────────────────────────────────────────────── */}
+          {/* ── CARD 1: BIO ── */}
           <BentoCard index={0} className="md:col-span-2 bg-white dark:bg-neutral-900 min-h-[280px] md:min-h-[300px]">
             <div className="space-y-4">
-              {/* Ikon emoji — ganti emoji sesuai selera */}
               <div className="w-12 h-12 bg-black dark:bg-white rounded-full flex items-center justify-center text-white dark:text-black text-2xl animate-pulse">
                 👋
               </div>
-              {/* ── GANTI NAMA DAN BIO DI SINI ── */}
               <h3 className="text-2xl md:text-3xl font-bold leading-tight uppercase">
-                Hai, Saya Candra Putra.
+                {t.greeting}
               </h3>
-              <p className="text-gray-600 dark:text-neutral-400 text-sm md:text-base leading-relaxed">
-                Saya adalah Junior Web Developer yang tertarik pada pengembangan aplikasi web terstruktur. Saya fokus memahami kebutuhan pengguna, merancang alur sistem, dan membangun solusi web menggunakan PHP, Laravel, dan Next.js.
+              <p className="text-neutral-600 dark:text-neutral-300 text-sm md:text-base leading-relaxed font-sans">
+                {t.bio1}
                 <br /><br />
-                Dalam beberapa proyek, saya terlibat dalam proses pengembangan dari tahap perencanaan, desain, implementasi, hingga deployment. Saya selalu berusaha membuat sistem yang rapi, mudah digunakan, memiliki data yang akurat, serta kode yang mudah dikembangkan.
+                {t.bio2}
               </p>
-              {/* ── TOMBOL DOWNLOAD CV ────────────────────────────
-                  Ganti href dengan path file CV Anda di folder /public
-                  Misal: /cv-nama-anda.pdf
-                  ──────────────────────────────────────────────── */}
               <div className="pt-2">
                 <a
                   href="/cv.pdf"
                   download
-                  className="group relative inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
+                  className="group relative inline-flex items-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-[0.2em] rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow"
                 >
-                  <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  <Download aria-hidden="true" className="w-3.5 h-3.5 relative z-10" />
-                  <span className="relative z-10">Unduh CV</span>
+                  <Download aria-hidden="true" className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">{t.downloadCv}</span>
                 </a>
               </div>
             </div>
           </BentoCard>
 
-          {/* ── CARD 2: PROFILE CARD (lebar 1/3) ────────────────
-              Foto meluap ke atas card, info bar gelap di bawah
-              ── GANTI FOTO: cukup taruh file baru di /public/foto-diri.png ──
-              ──────────────────────────────────────────────────── */}
+          {/* ── CARD 2: PROFILE CARD ── */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -181,9 +150,9 @@ const About = () => {
               name="Candra Putra"
               title="Junior Web Developer"
               handle="candraaaptra"
-              status="Online"
-              contactText="Rekrut Saya"
-              avatarUrl="/profil hero.png"
+              status={t.statusOnline}
+              contactText={t.contactBtn}
+              avatarUrl="/profil-hero.png"
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={() => {
@@ -199,108 +168,145 @@ const About = () => {
             />
           </motion.div>
 
-          {/* ── CARD 3: EDUCATION (lebar 1/3) ───────────────────
-              Ganti universitas, jurusan, GPA, dan mata kuliah
-              ──────────────────────────────────────────────────── */}
-          <BentoCard index={2} className="md:col-span-1 bg-neutral-100 dark:bg-neutral-800">
+          {/* ── CARD 3: EDUCATION ── */}
+          <BentoCard index={2} className="md:col-span-1 bg-neutral-50 dark:bg-neutral-900">
             <div className="flex flex-col h-full justify-between gap-4">
               <div className="flex justify-between items-start">
-                <div className="p-3 bg-white dark:bg-neutral-900 border border-black dark:border-neutral-500 rounded-full shadow-sm">
+                <div className="p-3 bg-white dark:bg-neutral-800 border border-black dark:border-neutral-700 rounded-full shadow-sm">
                   <GraduationCap className="w-6 h-6" aria-hidden="true" />
                 </div>
-                {/* ── GANTI TAHUN LULUS DI SINI ── */}
-                <span className="text-[10px] font-bold border border-black dark:border-white px-2 py-1 rounded-full bg-black dark:bg-white text-white dark:text-black uppercase">
-                  Lulus Tahun 2028
+                <span className="text-[10px] font-bold border border-black dark:border-white px-2.5 py-1 rounded-full bg-black dark:bg-white text-white dark:text-black uppercase">
+                  {t.eduYear}
                 </span>
               </div>
               <div className="space-y-3">
                 <div>
-                  {/* ── GANTI NAMA UNIVERSITAS DAN JURUSAN DI SINI ── */}
-                  <p className="text-xs font-bold text-gray-500 dark:text-neutral-400 uppercase mb-1">
-                    Politeknik Elektronika Negeri Surabaya
+                  <p className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase mb-1">
+                    {t.eduUni}
                   </p>
                   <h3 className="font-bold text-lg uppercase leading-tight">
-                    Teknik Informatika
+                    {t.eduMajor}
                   </h3>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-gray-400 dark:text-neutral-500 uppercase">
-                    Mata Kuliah Relevan:
+                  <p className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase">
+                    {t.relevantCourses}
                   </p>
-                  {/* ── GANTI MATA KULIAH DI SINI ── */}
                   <div className="flex flex-wrap gap-1">
-                    {["Pemrograman Web", "Sistem Basis Data", "Rekayasa Perangkat Lunak", "OOP", "Struktur Data"].map((course) => (
-                      <span key={course} className="px-2 py-1 bg-white dark:bg-neutral-700 border border-gray-200 dark:border-neutral-600 rounded text-[9px] font-semibold text-gray-600 dark:text-neutral-300">
+                    {[
+                      "Pemrograman Web",
+                      "Sistem Basis Data",
+                      "Rekayasa Perangkat Lunak",
+                      "OOP",
+                      "Struktur Data",
+                    ].map((course) => (
+                      <span
+                        key={course}
+                        className="px-2 py-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded text-[9px] font-semibold text-neutral-700 dark:text-neutral-300"
+                      >
                         {course}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
-              {/* ── GANTI GPA DI SINI ── */}
-              <div className="pt-2 border-t border-gray-300 dark:border-neutral-600">
+              <div className="pt-2 border-t border-neutral-200 dark:border-neutral-700">
                 <div className="flex items-end gap-2">
                   <span className="text-4xl font-black">3.76</span>
                   <div className="flex flex-col justify-end pb-1">
-                    <span className="text-[10px] font-bold uppercase text-blue-700 dark:text-blue-400 leading-tight">Sangat Memuaskan</span>
-                    <span className="text-[10px] font-semibold text-gray-500 dark:text-neutral-400">/ 4.00 IPK</span>
+                    <span className="text-[10px] font-bold uppercase text-blue-600 dark:text-blue-400 leading-tight">
+                      {t.gpaBadge}
+                    </span>
+                    <span className="text-[10px] font-semibold text-neutral-500 dark:text-neutral-400">
+                      {t.gpaScale}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </BentoCard>
 
-          {/* ── CARD 4: TECH STACK (lebar 2/3) ──────────────────
-              Edit array techStack di bagian DATA di atas
-              Untuk menambah animasi tag hover dari ReactBits, bungkus
-              setiap <span> item di sini
-              ──────────────────────────────────────────────────── */}
+          {/* ── CARD 4: TECH STACK ── */}
           <BentoCard index={3} className="md:col-span-2 bg-white dark:bg-neutral-900">
-            <div className="flex items-center gap-3 mb-6 border-b-2 border-black/10 dark:border-white/10 pb-4">
+            <div className="flex items-center gap-3 mb-6 border-b border-black/10 dark:border-white/10 pb-4">
               <div className="p-2 bg-black dark:bg-white text-white dark:text-black rounded-lg">
                 <Terminal className="w-5 h-5" aria-hidden="true" />
               </div>
-              <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">Tech Stack</h3>
+              <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">
+                {t.techStackTitle}
+              </h3>
             </div>
             <div className="flex flex-col gap-5">
-              {/* ── Core Languages ── */}
+              {/* Core Languages */}
               <div>
-                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Bahasa Pemrograman</h4>
+                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                  {t.coreLang}
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.core.map((tech) => (
-                    <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
+                    <div
+                      key={tech.name}
+                      className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}
+                    >
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon
+                          aria-hidden="true"
+                          className={`transition-transform duration-300 group-hover:scale-125 ${
+                            tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"
+                          }`}
+                        />
                       </div>
-                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
+                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">
+                        {tech.name}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
-              {/* ── Frameworks & UI ── */}
+              {/* Frameworks & UI */}
               <div>
-                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Frameworks &amp; UI</h4>
+                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                  {t.frameworks}
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.frameworks.map((tech) => (
-                    <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
+                    <div
+                      key={tech.name}
+                      className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}
+                    >
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon
+                          aria-hidden="true"
+                          className="w-3.5 h-3.5 transition-transform duration-300 group-hover:scale-125"
+                        />
                       </div>
-                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
+                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">
+                        {tech.name}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
-              {/* ── Tools & Ecosystem ── */}
+              {/* Tools & Ecosystem */}
               <div>
-                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">Tools &amp; Ekosistem</h4>
+                <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                  {t.tools}
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.tools.map((tech) => (
-                    <div key={tech.name} className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}>
+                    <div
+                      key={tech.name}
+                      className={`group flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-md transition-all duration-300 cursor-default ${tech.colorClass}`}
+                    >
                       <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                        <tech.icon aria-hidden="true" className={`transition-transform duration-300 group-hover:scale-125 ${tech.name === "PHP" ? "w-5 h-5" : "w-3.5 h-3.5"}`} />
+                        <tech.icon
+                          aria-hidden="true"
+                          className="w-3.5 h-3.5 transition-transform duration-300 group-hover:scale-125"
+                        />
                       </div>
-                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">{tech.name}</span>
+                      <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 tracking-tight">
+                        {tech.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -308,11 +314,9 @@ const About = () => {
             </div>
           </BentoCard>
 
-          {/* ── CARD 5: PHILOSOPHY (lebar 3/3 full) ─────────────
-              Ganti kutipan dan deskripsi workflow di sini
-              ──────────────────────────────────────────────────── */}
-          <BentoCard index={4} className="md:col-span-3 bg-[#f8f8f8] dark:bg-neutral-900 min-h-[200px] !border-4">
-            <div className="absolute -top-6 -right-2 md:-top-10 md:-right-4 text-[6rem] md:text-[12rem] font-serif text-black/5 dark:text-white/5 pointer-events-none select-none z-0">
+          {/* ── CARD 5: PHILOSOPHY ── */}
+          <BentoCard index={4} className="md:col-span-3 bg-neutral-50 dark:bg-neutral-900 min-h-[200px]">
+            <div className="absolute top-2 right-2 md:-top-10 md:-right-4 text-[5rem] md:text-[12rem] font-serif text-black/5 dark:text-white/5 pointer-events-none select-none z-0 leading-none">
               &quot;
             </div>
             <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center md:items-stretch relative z-10 h-full">
@@ -321,50 +325,72 @@ const About = () => {
                   <Cpu aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8" />
                 </div>
                 <h3 className="text-xl md:text-3xl font-black uppercase leading-tight tracking-tight">
-                  Filosofi Kerja
+                  {t.philosophyTitle}
                 </h3>
               </div>
               <div className="flex-1 flex flex-col justify-center w-full">
-                {/* ── GANTI KUTIPAN FILOSOFI DI SINI ── */}
-                <p className="text-xs md:text-base lg:text-lg text-neutral-800 dark:text-neutral-300 leading-relaxed text-center md:text-left">
-                  Saya tidak hanya fokus menghafal sintaks, tapi lebih ke bagaimana sebuah sistem dirancang dan berjalan. Saya berperan dalam menyusun struktur database, logika aplikasi, serta alur pengguna, sambil memanfaatkan AI untuk membantu mempercepat proses penulisan kode dasar. Dengan cara ini, saya bisa lebih fokus pada pemecahan masalah nyata dan menghasilkan solusi yang lebih efektif.
+                <p className="text-xs md:text-base lg:text-lg text-neutral-800 dark:text-neutral-300 leading-relaxed text-center md:text-left font-sans">
+                  {t.philosophyDesc}
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-2">
-                  {/* ── GANTI TAG FILOSOFI DI SINI ── */}
-                  <span className="text-[8px] md:text-[10px] font-black px-3 py-1 bg-black dark:bg-white text-white dark:text-black rounded-full uppercase tracking-widest">Pemikir Sistem</span>
-                  <span className="text-[8px] md:text-[10px] font-black px-3 py-1 bg-white dark:bg-transparent border border-black dark:border-white text-black dark:text-white rounded-full uppercase tracking-widest">Pemecah Masalah</span>
+                  <span className="text-[8px] md:text-[10px] font-black px-3 py-1 bg-black dark:bg-white text-white dark:text-black rounded-full uppercase tracking-widest">
+                    {t.tagSystemThinker}
+                  </span>
+                  <span className="text-[8px] md:text-[10px] font-black px-3 py-1 bg-white dark:bg-transparent border border-black dark:border-white text-black dark:text-white rounded-full uppercase tracking-widest">
+                    {t.tagProblemSolver}
+                  </span>
                 </div>
               </div>
             </div>
           </BentoCard>
 
-          {/* ── CARD 6: FOCUS (lebar 3/3 full, hitam) ───────────
-              Ganti judul focus, deskripsi, dan tombol focus di sini
-              ──────────────────────────────────────────────────── */}
-          <BentoCard index={5} className="md:col-span-3 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-900 dark:hover:bg-neutral-100">
-            <div className="grid md:grid-cols-2 gap-8 items-center h-full">
+          {/* ── CARD 6: FOCUS ── */}
+          <BentoCard index={5} className="md:col-span-3 bg-neutral-900 dark:bg-neutral-900 text-white border-neutral-700">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center h-full">
               <div>
-                {/* ── GANTI JUDUL DAN DESKRIPSI FOCUS DI SINI ── */}
-                <h3 className="text-2xl md:text-3xl font-black uppercase mb-2">Fokus Saya</h3>
-                <p className="text-neutral-400 dark:text-neutral-600 text-sm leading-relaxed">
-                  Saya fokus membuat sistem web yang rapi, efisien, dan nyaman digunakan. Saya tertarik menghubungkan desain database, alur sistem, dan fitur aplikasi menjadi solusi yang bisa dipakai secara nyata.
+                <h3 className="text-2xl md:text-3xl font-black uppercase mb-2">
+                  {t.focusTitle}
+                </h3>
+                <p className="text-neutral-300 text-sm leading-relaxed font-sans">
+                  {t.focusDesc}
                 </p>
               </div>
-              <div className="flex gap-4 justify-start md:justify-end flex-wrap">
-                {/* ── GANTI TOMBOL FOCUS DI SINI ── */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-start md:justify-end flex-wrap">
                 {[
-                  { label: "Pengembangan Sistem Web", icon: <FaLaptopCode aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
-                  { label: "Arsitektur Database", icon: <FaDatabase aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" /> },
+                  {
+                    label: t.focusItem1,
+                    icon: (
+                      <FaLaptopCode
+                        aria-hidden="true"
+                        className="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+                      />
+                    ),
+                  },
+                  {
+                    label: t.focusItem2,
+                    icon: (
+                      <FaDatabase
+                        aria-hidden="true"
+                        className="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
+                      />
+                    ),
+                  },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 px-5 py-3 border border-neutral-700 dark:border-neutral-300 rounded-xl bg-neutral-900/50 dark:bg-white/10 hover:border-white dark:hover:border-black transition-colors duration-300 group">
-                    <span className="text-neutral-400 dark:text-neutral-600 group-hover:text-white dark:group-hover:text-black transition-colors">{item.icon}</span>
-                    <span className="font-bold text-sm tracking-wide">{item.label}</span>
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 px-4 md:px-5 py-3 border border-neutral-700 rounded-xl bg-neutral-800/80 hover:border-white transition-colors duration-300 group"
+                  >
+                    <span className="text-neutral-400 group-hover:text-white transition-colors flex-shrink-0">
+                      {item.icon}
+                    </span>
+                    <span className="font-bold text-xs md:text-sm tracking-wide">
+                      {item.label}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
           </BentoCard>
-
         </div>
       </div>
     </section>

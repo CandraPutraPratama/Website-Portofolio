@@ -44,9 +44,9 @@ function PageContent() {
       />
 
       {/* ── MAIN CONTENT ────────────────────────────────────────
-          pt-20 = memberi ruang sebesar tinggi Navbar (80px = 20 * 4px)
+          pt-16 di mobile (navbar 64px), pt-20 di desktop (navbar 80px)
           ──────────────────────────────────────────────────── */}
-      <main className="pt-20">
+      <main className="pt-16 md:pt-20">
 
         {/* ── 1. HERO SECTION ────────────────────────────────── */}
         {/* Nama besar, floating chips, dan bottom bar */}

@@ -101,10 +101,11 @@ ${message}
       { status: 200 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : "Terjadi kesalahan internal pada server.";
     console.error("Error pada Route Handler Contact:", error);
     return NextResponse.json(
-      { success: false, error: "Terjadi kesalahan internal pada server." },
+      { success: false, error: errMessage },
       { status: 500 }
     );
   }

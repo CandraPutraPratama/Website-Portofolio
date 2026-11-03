@@ -7,6 +7,8 @@ import { MapPin, CodeXml, Terminal, Laptop, GraduationCap, X } from "lucide-reac
 import TiltedCard from "./TiltedCard";
 import Folder from "./Folder";
 import ScrollReveal from "./ScrollReveal";
+import { useTheme } from "./ThemeProvider";
+import { translations } from "@/lib/translations";
 
 // ============================================================
 // DATA — Timeline Items
@@ -16,10 +18,12 @@ const journeyItems = [
     id: 1,
     year: "2026",
     badge: "PROFESSIONAL",
-    role: "JUNIOR UI/UX & MOBILE DEVELOPER",
+    role: "JUNIOR WEB & FRONTEND DEVELOPER",
+    roleEn: "JUNIOR WEB & FRONTEND DEVELOPER",
     company: "SEMESTER 4",
     description: "Aktif membangun berbagai sistem informasi berbasis web sebagai bagian dari pengembangan akademik dan portofolio. Berfokus pada pembuatan aplikasi CRUD, perancangan basis data, penyusunan alur sistem, tampilan antarmuka, dan dokumentasi proyek melalui GitHub.",
-    tags: ["FIGMA", "PHP", "GITHUB", "FLUTTER"],
+    descriptionEn: "Actively building web-based information systems as part of academic growth and portfolio development. Focused on CRUD architecture, relational database design, system workflow modeling, intuitive UI, and GitHub documentation.",
+    tags: ["FIGMA", "PHP", "GITHUB", "NEXT.JS", "TAILWIND"],
     align: "right", // Card is on the right, year is on the left
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
@@ -31,28 +35,32 @@ const journeyItems = [
     year: "2025",
     badge: "AKADEMIK",
     role: "WEB DEVELOPMENT",
+    roleEn: "WEB DEVELOPMENT",
     company: "SEMESTER 2/3",
     description: "Mengembangkan pemahaman awal tentang perancangan sistem web, pengelolaan data, dan logika aplikasi. Mulai terbiasa membuat project sederhana untuk melatih problem solving, struktur kode, dan alur kerja pengembangan perangkat lunak.",
+    descriptionEn: "Developed core understanding of web system design, data management, and application logic. Built structured projects to practice algorithmic problem-solving and software development workflows.",
     tags: ["HTML/CSS", "PHP BASIC", "DATABASE ARCHITECTURE", "PROBLEM SOLVING"],
     align: "left", // Card is on the left, year is on the right
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
     folderSublabel: "Klik Folder",
-    images: ["/journey/jf12025.JPG", "/journey/jf22025.JPG", "/journey/jf32025.jpg"]
+    images: ["/journey/jf12025.jpg", "/journey/jf22025.jpg", "/journey/jf32025.jpg"]
   },
   {
     id: 3,
     year: "2024",
     badge: "AKADEMIK",
     role: "D4 TEKNIK INFORMATIKA",
+    roleEn: "APPLIED INFORMATICS ENGINEERING",
     company: "POLITEKNIK ELEKTRONIKA NEGERI SURABAYA",
     description: "Mempelajari dasar yang kuat dalam pengembangan perangkat lunak, pemrograman, basis data, serta perancangan sistem berbasis teknologi. Terbiasa menganalisis kebutuhan, menyusun alur sistem, dan membangun solusi digital yang fungsional.",
+    descriptionEn: "Acquired a strong foundation in software engineering, programming paradigms, relational database systems, and software architecture at PENS. Skilled in analyzing requirements and building functional digital solutions.",
     tags: ["SOFTWARE DEVELOPMENT", "DATABASE SYSTEM", "SYSTEM ANALYSIS"],
     align: "right",
     showFolder: true,
     folderLabel: "ARSIP PROYEK",
     folderSublabel: "Klik Folder",
-    images: ["/journey/jf12024.jpg", "/journey/jf22024.jpg", "/journey/jf32024.JPG"]
+    images: ["/journey/jf12024.jpg", "/journey/jf22024.jpg", "/journey/jf32024.jpg"]
   }
 ];
 
@@ -72,6 +80,8 @@ const getYearIcon = (year: string) => {
 // JOURNEY COMPONENT
 // ============================================================
 const Journey = () => {
+  const { lang } = useTheme();
+  const t = translations[lang].journey;
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Tracks scroll progress inside the timeline container
@@ -180,22 +190,22 @@ const Journey = () => {
     // Includes neobrutalist grid background pattern
     <section
       id="journey"
-      className="relative w-full px-4 py-16 md:py-32 bg-white dark:bg-black text-black dark:text-white font-mono overflow-hidden transition-colors duration-300 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)]"
+      className="relative w-full px-4 sm:px-6 py-16 md:py-32 bg-white dark:bg-black text-black dark:text-white font-mono overflow-hidden transition-colors duration-300 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)]"
     >
       <div className="max-w-5xl mx-auto relative">
 
         {/* ── HEADING ────────────────────────────────────────── */}
-        <div className="flex flex-col items-center mb-16 md:mb-24">
+        <div className="flex flex-col items-center mb-12 md:mb-24">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-center relative z-10 select-none text-black dark:text-white"
+            className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter text-center relative z-10 select-none text-black dark:text-white"
           >
-            PERJALANAN{" "}
+            {t.headingPrefix}{" "}
             <span className="relative inline-block">
-              SAYA
+              {t.headingHighlight}
               <span className="absolute bottom-1.5 md:bottom-2 left-0 right-0 h-3 md:h-5 bg-neutral-200/80 dark:bg-neutral-800/80 -z-10" />
             </span>
           </motion.h2>
@@ -204,9 +214,9 @@ const Journey = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-xs md:text-sm text-neutral-500 dark:text-neutral-400 max-w-lg text-center leading-relaxed"
+            className="mt-4 text-xs md:text-sm text-neutral-500 dark:text-neutral-400 max-w-lg text-center leading-relaxed px-2"
           >
-            Perjalanan bertumbuh: dari ruang belajar kampus menuju proyek digital yang lebih nyata, rapi, dan siap dipresentasikan.
+            {t.subtitle}
           </motion.p>
         </div>
 
@@ -260,7 +270,7 @@ const Journey = () => {
                           {/* Year wrapper with hover floating animation */}
                           <div className="relative cursor-default mb-4 transition-transform duration-500 group-hover/archive:-translate-y-2">
                             <span
-                              className="text-6xl md:text-[100px] font-black text-transparent select-none transition-all duration-500 leading-none inline-block year-stroke group-hover/archive:scale-108 group-hover/archive:tracking-[0.15em] origin-center"
+                              className="text-7xl sm:text-8xl md:text-[100px] font-black text-transparent select-none transition-all duration-500 leading-none inline-block year-stroke group-hover/archive:scale-108 group-hover/archive:tracking-[0.15em] origin-center"
                               style={{
                                 WebkitTextStroke: "2px var(--year-stroke)",
                                 color: "transparent",
@@ -270,7 +280,7 @@ const Journey = () => {
                             </span>
                             {/* Centered code/icon badge */}
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ perspective: "1000px" }}>
-                              <div className="p-3 bg-black dark:bg-white text-white dark:text-black rounded-xl shadow-[4px_4px_0px_0px_rgba(200,200,200,0.4)] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover/archive:scale-110">
+                              <div className="p-2.5 md:p-3 bg-black dark:bg-white text-white dark:text-black rounded-xl shadow-[4px_4px_0px_0px_rgba(200,200,200,0.4)] dark:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover/archive:scale-110">
                                 {getYearIcon(item.year)}
                               </div>
                             </div>
@@ -311,7 +321,7 @@ const Journey = () => {
 
                             return (
                               <div className="flex flex-col items-center mt-4 transition-all duration-500 z-20">
-                                <div className="py-6">
+                                <div className="py-4 md:py-6 scale-90 md:scale-100">
                                   <Folder
                                     size={1.1}
                                     items={papers}
@@ -322,11 +332,11 @@ const Journey = () => {
                                 {/* Label */}
                                 <div className="mt-4 flex flex-col items-center gap-1 transition-opacity duration-500 opacity-50 group-hover/archive:opacity-100 font-mono">
                                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black dark:text-white">
-                                    {item.folderLabel}
+                                    {t.archiveLabel}
                                   </span>
                                   <div className="h-[1px] w-8 bg-black/20 dark:bg-white/20"></div>
                                   <span className="text-[9px] font-bold text-neutral-400">
-                                    {item.folderSublabel}
+                                    {t.archiveSublabel}
                                   </span>
                                 </div>
                               </div>
@@ -386,7 +396,7 @@ const Journey = () => {
 
                         {/* Role Title */}
                         <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-black dark:text-white leading-tight mb-1">
-                          {item.role}
+                          {lang === "US" ? item.roleEn : item.role}
                         </h3>
 
                         {/* Company/Institution with Pin Icon */}
@@ -397,7 +407,7 @@ const Journey = () => {
 
                         {/* Description */}
                         <p className="text-xs md:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed mb-6 font-sans">
-                          {item.description}
+                          {lang === "US" ? item.descriptionEn : item.description}
                         </p>
 
                         {/* Tags */}
@@ -450,9 +460,9 @@ const Journey = () => {
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={zoomedImage}
-                  alt="Zoomed project view"
+                  alt={t.zoomImageAria}
                   fill
-                  unoptimized
+                  sizes="(max-width: 1200px) 90vw, 1200px"
                   className="object-contain"
                   priority
                 />
