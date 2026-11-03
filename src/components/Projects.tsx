@@ -70,6 +70,116 @@ interface ProjectItem {
 // ============================================================
 const projects: ProjectItem[] = [
   {
+    id: 6,
+    category: "Aplikasi Web Live Production • PWA",
+    categoryEn: "Live Production Web App • PWA",
+    title: "Jasdor — Jasa Order Kopi Promo",
+    description:
+      "Platform jasa order kopi promo yang saya bangun dan operasikan sendiri. Mendukung 3 brand ternama (Kopi Kenangan, Fore, Tomoro) dengan 2.000+ outlet nasional, tier harga akurat per outlet, promo bundling otomatis, antrean real-time, dan checkout WhatsApp otomatis — live production sejak Oktober 2026.",
+    descriptionEn:
+      "Live production coffee ordering PWA built and operated independently. Supports 3 major brands (Kopi Kenangan, Fore, Tomoro) across 2,000+ nationwide outlets with tiered pricing, automated bundle promo validation, real-time queuing, and automated WhatsApp checkout.",
+    metrics: [
+      { value: "3 Brand", label: "Multi-Brand", labelEn: "Multi-Brand" },
+      { value: "2.000+", label: "Outlet Aktif", labelEn: "Active Outlets" },
+      { value: "Live PWA", label: "Status Produksi", labelEn: "Production Status" },
+    ],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PWA", "Cloudflare", "WhatsApp API"],
+    links: {
+      demo: "https://jasdor.cimagroup.my.id/",
+      github: null,
+      caseStudy: null,
+    },
+    image: "/projects/jasdor.svg",
+    caseStudyContent: {
+      problem:
+        "Promo kopi seperti diskon 50% atau B1G1 sering kali hanya bisa dinikmati dengan datang langsung ke gerai dan antre panjang. Jasa titip konvensional via chat rawan salah rekap, tidak memiliki katalog harga transparan, serta pembayarannya serba manual.",
+      problemEn:
+        "Promotional coffee deals like 50% discounts or B1G1 usually require in-store queues. Conventional order proxies via chat are error-prone, lack structured outlet pricing, and suffer from manual payment reconciliation.",
+      solution:
+        "Membangun platform PWA dengan katalog multi-brand terintegrasi, sinkronisasi harga per outlet berdasarkan tier (normal, mall, bandara), validasi otomatis bundling promo di sisi server, antrean pesanan real-time, dan checkout pesanan terformat ke WhatsApp API.",
+      solutionEn:
+        "Engineered a production-ready PWA with multi-brand catalogs, tier-based outlet pricing (standard, mall, airport), automated server-side bundle promo validation, real-time order queue estimates, and formatted WhatsApp checkout.",
+      background:
+        "Jasdor merupakan platform dan unit bisnis yang saya rancang, kembangkan, dan operasikan secara mandiri sejak Oktober 2026. Menangani katalog 3 brand besar dengan ribuan outlet di Indonesia, manajemen status operasional gerai, serta panel admin untuk pemrosesan pesanan harian.",
+      backgroundEn:
+        "Jasdor is an independently built and operated commercial venture launched in October 2026. It manages 3 major beverage chains across thousands of Indonesian outlets, handles live outlet open/closed status, and provides an admin operations console.",
+      features: [
+        "Katalog multi-brand (Kopi Kenangan, Fore, Tomoro) dengan fitur pencarian outlet cepat",
+        "Kalkulasi harga per outlet mengikuti tier spesifik (Reguler, Mall, Bandara)",
+        "Promo bundling dan promo B1G1 dengan validasi kuota otomatis di server",
+        "Sistem estimasi waktu tunggu antrean pesanan real-time",
+        "Generasi pesan checkout otomatis ke WhatsApp admin",
+        "Dashboard admin terintegrasi untuk pemantauan dan pengelolaan pesanan",
+        "Progressive Web App (PWA) yang dapat diinstal langsung di perangkat mobile",
+      ],
+      featuresEn: [
+        "Multi-brand catalog (Kopi Kenangan, Fore, Tomoro) with fast outlet search",
+        "Tier-based price calculation (Standard, Mall, Airport outlets)",
+        "Automated server-side promo bundling and B1G1 validation",
+        "Real-time order wait queue estimation",
+        "Automated structured WhatsApp order generation",
+        "Integrated admin dashboard for order and operational tracking",
+        "Installable Progressive Web App (PWA) with native-like mobile UX",
+      ],
+      bannerBg: "bg-gradient-to-r from-amber-950 via-slate-900 to-neutral-900",
+    },
+  },
+  {
+    id: 7,
+    category: "Backend API & Enterprise System • Proyek Tim",
+    categoryEn: "Backend API & Enterprise System • Team Project",
+    title: "BudgEx — Sistem Anggaran (RAB)",
+    description:
+      "Sistem pengajuan dan persetujuan Rencana Anggaran Biaya (RAB) perusahaan yang dikembangkan dalam tim. Berperan sebagai backend developer: merancang REST API dengan ASP.NET Core, alur persetujuan bertingkat (3-Level Approval), modul anggaran OPEX & CAPEX, transfer anggaran antar departemen, dan integrasi aplikasi Flutter.",
+    descriptionEn:
+      "Corporate budget request and approval system developed as a team project. Served as backend developer: engineered REST APIs with ASP.NET Core (.NET 10), multi-tier approval workflow (3-Level), OPEX & CAPEX modules, inter-departmental transfers, and Flutter mobile integration.",
+    metrics: [
+      { value: "Backend Dev", label: "Peran Tim", labelEn: "Team Role" },
+      { value: "OPEX + CAPEX", label: "Modul Anggaran", labelEn: "Budget Modules" },
+      { value: "3-Level", label: "Alur Approval", labelEn: "Approval Flow" },
+    ],
+    tags: ["ASP.NET Core", ".NET 10", "PostgreSQL", "EF Core", "Flutter", "xUnit", "REST API"],
+    links: {
+      demo: null,
+      github: null,
+      caseStudy: null,
+    },
+    image: "/projects/budgex.svg",
+    caseStudyContent: {
+      problem:
+        "Proses pengajuan dan revisi anggaran (RAB) di korporat sering dilakukan secara manual lewat dokumen cetak atau chat. Hal ini memicu kesulitan pelacakan status, hilangnya jejak audit approval, dan kompilasi laporan keuangan yang lambat.",
+      problemEn:
+        "Corporate budget planning and revisions often rely on paper documents or fragmented chats, creating blind spots in tracking, missing audit logs, and slow manual reporting.",
+      solution:
+        "Mengembangkan arsitektur backend REST API dengan ASP.NET Core dan PostgreSQL yang mendukung alur persetujuan bertingkat (Dept Head → Finance → Director), modul alokasi dana OPEX & CAPEX, mekanisme transfer anggaran antar divisi, serta ekspor laporan otomatis.",
+      solutionEn:
+        "Engineered a scalable REST API backend using ASP.NET Core and PostgreSQL featuring a 3-tier approval hierarchy (Dept Head → Finance → Director), OPEX/CAPEX allocation, cross-department budget transfers, and automated report exports.",
+      background:
+        "BudgEx merupakan proyek kolaborasi tim pada mata kuliah PdBL yang dikembangkan dari semester 4 hingga semester 5. Saya bertanggung jawab merancang database relasional, logika validasi approval, endpoint API, dan penjaminan kualitas kode melalui unit testing dengan xUnit.",
+      backgroundEn:
+        "BudgEx is a team project developed across semesters 4 and 5 in the PdBL curriculum. Responsible for relational database schema design, business approval logic, RESTful endpoints, and automated testing with xUnit.",
+      features: [
+        "Alur approval terstruktur 3 tingkat: Department Head → Finance → Director",
+        "Modul pemisahan anggaran operasional (OPEX) dan modal (CAPEX)",
+        "Fitur revisi dan riwayat perubahan proposal anggaran (audit log)",
+        "Transfer alokasi sisa anggaran antar departemen secara terkontrol",
+        "Generasi dokumen laporan anggaran format PDF dan spreadsheet Excel otomatis",
+        "Integrasi RESTful API untuk klien mobile Flutter dan web client",
+        "Pengujian otomatis dengan xUnit untuk memastikan reliabilitas endpoint",
+      ],
+      featuresEn: [
+        "3-level structured approval hierarchy: Department Head → Finance → Director",
+        "Dual-budget tracking modules for OPEX (operational) and CAPEX (capital)",
+        "Comprehensive revision history and immutable audit log",
+        "Controlled cross-department budget reallocation",
+        "Automated PDF and Excel report generation",
+        "RESTful API endpoints consumed by Flutter mobile and web clients",
+        "Automated unit & integration tests using xUnit for API reliability",
+      ],
+      bannerBg: "bg-gradient-to-r from-emerald-950 via-slate-900 to-neutral-900",
+    },
+  },
+  {
     id: 0,
     category: "Aplikasi Web Modern (Frontend & Full-Stack)",
     categoryEn: "Modern Web Application (Frontend & Full-Stack)",
@@ -612,14 +722,16 @@ const Projects = () => {
               className="relative w-full max-w-4xl h-[90vh] md:h-[85vh] bg-white dark:bg-[#121212] border border-neutral-300 dark:border-neutral-800 rounded-3xl overflow-y-auto scrollbar-thin text-black dark:text-white font-mono flex flex-col shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* ── Close Button ── */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                aria-label={t.closeModalAria}
-                className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-black/70 hover:bg-black/90 dark:bg-neutral-800/80 dark:hover:bg-neutral-700 border border-neutral-700 text-white rounded-full flex items-center justify-center transition-all cursor-pointer z-30 outline-none backdrop-blur-md shadow"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              {/* ── Close Button (sticky: tetap terlihat saat modal di-scroll) ── */}
+              <div className="sticky top-0 z-30 flex justify-end pointer-events-none -mb-12 md:-mb-14 pr-4 md:pr-6 pt-4 md:pt-6">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  aria-label={t.closeModalAria}
+                  className="pointer-events-auto w-10 h-10 bg-black/70 hover:bg-black/90 dark:bg-neutral-800/80 dark:hover:bg-neutral-700 border border-neutral-700 text-white rounded-full flex items-center justify-center transition-all cursor-pointer outline-none backdrop-blur-md shadow flex-shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
               {/* ── Banner Header ── */}
               <div

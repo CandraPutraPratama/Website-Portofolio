@@ -26,7 +26,7 @@ const Navbar = ({ isDark, toggleDark, lang, toggleLang }: NavbarProps) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 font-mono transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-black/95 md:backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 font-mono transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between relative">
         {/* ── LOGO ── */}
         <div className="flex-shrink-0 z-20">
