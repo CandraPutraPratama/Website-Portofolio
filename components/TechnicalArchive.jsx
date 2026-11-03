@@ -7,23 +7,31 @@ import TypewriterTitle from "./TypewriterTitle";
 import Reveal from "./Reveal";
 
 const TECH_LOGOS = {
-  "Python Django": "/images/logos/django.png",
-  "PHP": "/images/logos/php.png",
+  "ASP.NET Core": "/images/logos/dotnet.svg",
+  "C#": "/images/logos/csharp.svg",
+  "PostgreSQL": "/images/logos/postgresql.svg",
   "MySQL": "/images/logos/mysql.png",
+  "Next.js": "/images/logos/nextjs.svg",
+  "Next.js 14": "/images/logos/nextjs.svg",
+  "React": "/images/logos/react.png",
+  "React 18": "/images/logos/react.png",
+  "TypeScript": "/images/logos/typescript.svg",
+  "Tailwind CSS": "/images/logos/tailwind.svg",
+  "PHP": "/images/logos/php.png",
+  "JavaScript": "/images/logos/js.png",
   "HTML": "/images/logos/html.png",
   "CSS": "/images/logos/css.png",
-  "JavaScript": "/images/logos/js.png",
-  "CodeIgniter 4": "/images/logos/codeigniter.png",
-  "Python": "/images/logos/python.png",
-  "Python Flask": "/images/logos/flask.png",
+  "Git & GitHub": "/images/logos/git.svg",
+  "Postman": "/images/logos/postman.svg",
 };
 
 function TechTag({ tech }) {
   const logo = TECH_LOGOS[tech];
   if (logo) {
     return (
-      <span className="archive-tag">
+      <span className="archive-tag" title={tech}>
         <img src={logo} alt={tech} className="archive-tag-img" />
+        <span className="archive-tag-label">{tech}</span>
       </span>
     );
   }
@@ -50,7 +58,7 @@ export default function TechnicalArchive({ projects = [] }) {
               key={project.num}
               href={project.link}
               className="archive-row"
-              target="_blank"
+              target={project.link !== "#" ? "_blank" : undefined}
               rel="noopener noreferrer"
             >
               <span className="archive-row-num">{project.num}</span>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-export default function TypewriterTitle({ text, className = "", ...props }) {
+export default function TypewriterTitle({ text, className = "", as: Component = "h2", ...props }) {
   const [visible, setVisible] = useState(false);
   const ref = React.useRef(null);
 
@@ -26,12 +26,12 @@ export default function TypewriterTitle({ text, className = "", ...props }) {
   }, []);
 
   return (
-    <div
+    <Component
       ref={ref}
       className={`section-title fade-in-title ${visible ? "is-visible" : ""} ${className}`}
       {...props}
     >
       <span style={{ whiteSpace: "pre-line" }}>{text}</span>
-    </div>
+    </Component>
   );
 }

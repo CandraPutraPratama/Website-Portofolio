@@ -1,66 +1,117 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { Github, Mail, ExternalLink, X, Code2, FlaskConical, Rocket, Trophy, GraduationCap, Linkedin, Minus } from "lucide-react";
+import { 
+  Github, 
+  Mail, 
+  ExternalLink, 
+  X, 
+  Code2, 
+  FlaskConical, 
+  Rocket, 
+  Trophy, 
+  GraduationCap, 
+  Linkedin, 
+  Minus,
+  Check,
+  Sparkles,
+  Layers,
+  ShieldCheck,
+  Terminal,
+  Database
+} from "lucide-react";
 import Link from "next/link";
 import { PROJECTS } from "../data/projects";
 import Header from "./Header";
 import TypewriterTitle from "./TypewriterTitle";
 import Reveal from "./Reveal";
 
-const SKILLS = [
+const TECH_CATEGORIES = [
   {
-    group: 'Backend',
-    items: ['ASP.NET Core', 'C#', 'PHP', 'PostgreSQL', 'MySQL', 'REST APIs', 'Clean Architecture', 'Role-based auth'],
+    title: "Backend & Systems",
+    skills: [
+      { name: "ASP.NET Core", logo: "/images/logos/dotnet.svg" },
+      { name: "C#", logo: "/images/logos/csharp.svg" },
+      { name: "PostgreSQL", logo: "/images/logos/postgresql.svg" },
+      { name: "MySQL", logo: "/images/logos/mysql.png" },
+      { name: "PHP", logo: "/images/logos/php.png" },
+      { name: "REST APIs", icon: Terminal },
+    ],
   },
   {
-    group: 'Frontend',
-    items: ['Next.js 14', 'React 18', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'PWA', 'Responsive UI'],
+    title: "Frontend & Web",
+    skills: [
+      { name: "Next.js 14", logo: "/images/logos/nextjs.svg" },
+      { name: "React 18", logo: "/images/logos/react.png" },
+      { name: "TypeScript", logo: "/images/logos/typescript.svg" },
+      { name: "Tailwind CSS", logo: "/images/logos/tailwind.svg" },
+      { name: "JavaScript", logo: "/images/logos/js.png" },
+      { name: "PWA", icon: Rocket },
+    ],
   },
   {
-    group: 'Data & Ops',
-    items: ['Database Modeling', 'Relational Schemas', 'Git & GitHub', 'Postman', 'Vercel Deployment'],
-  },
-  {
-    group: 'Domain',
-    items: ['Multi-Brand Aggregation', '3-Tier Approval Workflow', 'POS & Kasir', 'Inventaris Gudang'],
+    title: "Architecture & DevOps",
+    skills: [
+      { name: "Clean Architecture", icon: Layers },
+      { name: "3-Tier Approval", icon: ShieldCheck },
+      { name: "Git & GitHub", logo: "/images/logos/git.svg" },
+      { name: "Postman", logo: "/images/logos/postman.svg" },
+      { name: "Database Design", icon: Database },
+      { name: "Production Deploy", icon: Sparkles },
+    ],
   },
 ];
 
 const WHAT_I_CAN_DO = [
   {
-    group: 'Web Development & Backend Engineering',
+    group: "Web Development & Backend Engineering",
     description:
-      'Membangun aplikasi web modern dari arsitektur backend andal berbasis ASP.NET Core & PHP, basis data relasional teroptimasi PostgreSQL, hingga frontend interaktif yang cepat dengan Next.js & Tailwind CSS.',
-    visual: 'qa',
-    size: 'large',
+      "Membangun aplikasi web modern dari arsitektur backend andal berbasis ASP.NET Core & PHP, basis data relasional teroptimasi PostgreSQL, hingga frontend interaktif yang cepat dengan Next.js & Tailwind CSS.",
+    visual: "coding",
+    size: "large",
     items: [
-      'Next.js 14',
-      'React 18',
-      'TypeScript',
-      'ASP.NET Core',
-      'C#',
-      'PHP',
-      'PostgreSQL',
-      'MySQL',
-      'RESTful APIs',
-      'Tailwind CSS',
-      'PWA',
-      'Clean Architecture',
+      "Next.js 14",
+      "React 18",
+      "TypeScript",
+      "ASP.NET Core",
+      "C#",
+      "PHP",
+      "PostgreSQL",
+      "MySQL",
+      "RESTful APIs",
+      "Tailwind CSS",
+      "PWA",
+      "Clean Architecture",
     ],
   },
   {
-    group: 'Production Systems & Multi-Brand Aggregation',
+    group: "Production Systems & Multi-Brand Aggregation",
     description:
-      'Berpengalaman meluncurkan produk yang dipakai pengguna betulan (Jasdor live production: 3 brand kopi & 2.000+ outlet) serta sistem korporat dengan alur persetujuan 3 tingkat.',
-    visual: 'va',
+      "Berpengalaman meluncurkan produk yang dipakai pengguna betulan (Jasdor live production: 3 brand kopi & 2.000+ outlet) serta sistem korporat dengan alur persetujuan 3 tingkat.",
+    visual: "assistant",
+    size: "medium",
     items: [
-      'Multi-Brand Aggregator',
-      '2.000+ Outlet Terhubung',
-      '3-Tier Approval Matrix',
-      'Real-Time Queue',
-      'WhatsApp API Checkout',
-      'Session & Role Auth',
+      "Multi-Brand Aggregator",
+      "2.000+ Outlet Terhubung",
+      "3-Tier Approval Matrix",
+      "Real-Time Queue",
+      "WhatsApp API Checkout",
+      "Session & Role Auth",
+    ],
+  },
+  {
+    group: "Enterprise Workflows & Database Systems",
+    description:
+      "Merancang sistem data transaksional terstruktur dengan audit trails, normalisasi skema relasional, dan kontrol hak akses bertingkat untuk keandalan operasional bisnis.",
+    visual: "social",
+    size: "medium",
+    items: [
+      "Audit Trail Logging",
+      "Role-Based Access Control",
+      "Relational Normalization",
+      "Query Optimization",
+      "Enterprise POS & Stock",
+      "PENS D4 IT (IPK 3.76)",
     ],
   },
 ];
@@ -72,21 +123,18 @@ const SOCIALS = [
 ];
 
 const CARDS = [
-  'Problem Solver',
-  'Backend & API Specialist',
-  'Detail-Oriented',
-  'PENS D4 IT (IPK 3.76)',
-  'Clean Code Advocate',
-  'Fast Learner',
-  'Reliable Team Player',
-  'Product-Minded',
-  'System Architecture',
-  'Open to Feedback',
+  "Problem Solver",
+  "Backend & API Specialist",
+  "Detail-Oriented",
+  "PENS D4 IT (IPK 3.76)",
+  "Clean Code Advocate",
+  "Fast Learner",
+  "Reliable Team Player",
+  "Product-Minded",
+  "System Architecture",
+  "Open to Feedback",
 ];
 
-// Fixed "chaotic" rotation/offset per card so each trait keeps its own
-// scattered position as it cycles through the stack (looks like a messy
-// pile of photos rather than a neat deck).
 const CARD_SCATTER = [
   { rot: -7, x: 6, y: -4 },
   { rot: 5, x: -8, y: 3 },
@@ -101,9 +149,9 @@ const CARD_SCATTER = [
 ];
 
 const CURRENTLY = [
-  { icon: Code2, label: 'Building', detail: 'Jasdor F&B unified ordering platform' },
-  { icon: FlaskConical, label: 'Exploring', detail: 'Enterprise backend & 3-tier approvals' },
-  { icon: Rocket, label: 'Learning', detail: 'D4 Teknik Informatika PENS (IPK 3.76)' },
+  { icon: Code2, label: "Building", detail: "Jasdor F&B unified ordering platform" },
+  { icon: FlaskConical, label: "Exploring", detail: "Enterprise backend & 3-tier approvals" },
+  { icon: Rocket, label: "Learning", detail: "D4 Teknik Informatika PENS (IPK 3.76)" },
 ];
 
 const EXPERIENCE = [
@@ -168,7 +216,6 @@ function ExperienceImageStack({ images, title }) {
       {images.map((src, i) => {
         const offset = (i - index + count) % count;
         const isExiting = offset === count - 1;
-        // Only the front 3 images and the one that just got flicked away are rendered.
         if (offset > 2 && !isExiting) return null;
 
         const scatter = CARD_SCATTER[i % CARD_SCATTER.length];
@@ -186,8 +233,8 @@ function ExperienceImageStack({ images, title }) {
         } else {
           const depth = offset;
           const isFront = depth === 0;
-          const calm = 0.4; // dampens the scatter chaos for the album stack
-          const dir = depth % 2 === 1 ? -1 : 1; // alternate: mid card peeks up, back card peeks down
+          const calm = 0.4;
+          const dir = depth % 2 === 1 ? -1 : 1;
           style = {
             "--tx": isFront ? "0px" : `${scatter.x * calm + depth * 8}px`,
             "--ty": isFront ? "0px" : `${scatter.y * calm + dir * depth * 10}px`,
@@ -212,9 +259,6 @@ function ExperienceImageStack({ images, title }) {
   );
 }
 
-// Mobile-only stacked album for the Work Gallery — same click-to-flick
-// mechanic as the Experience section's image stack, but cycling through
-// project cover images instead of a single experience's photos.
 function WorkAlbumStack({ projects, activeIndex, onAdvance }) {
   const count = projects.length;
 
@@ -223,7 +267,6 @@ function WorkAlbumStack({ projects, activeIndex, onAdvance }) {
       {projects.map((project, i) => {
         const offset = (i - activeIndex + count) % count;
         const isExiting = offset === count - 1;
-        // Only the front 3 cards and the one that just got flicked away are rendered.
         if (offset > 2 && !isExiting) return null;
 
         const scatter = CARD_SCATTER[i % CARD_SCATTER.length];
@@ -241,8 +284,8 @@ function WorkAlbumStack({ projects, activeIndex, onAdvance }) {
         } else {
           const depth = offset;
           const isFront = depth === 0;
-          const calm = 0.4; // dampens the scatter chaos for the album stack
-          const dir = depth % 2 === 1 ? -1 : 1; // alternate: mid card peeks up, back card peeks down
+          const calm = 0.4;
+          const dir = depth % 2 === 1 ? -1 : 1;
           style = {
             "--tx": isFront ? "0px" : `${scatter.x * calm + depth * 8}px`,
             "--ty": isFront ? "0px" : `${scatter.y * calm + dir * depth * 10}px`,
@@ -281,7 +324,18 @@ export default function Portfolio() {
   const [formStatus, setFormStatus] = useState("idle");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const activeProject = PROJECTS[activeIndex];
+
+  const copyEmailToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText("candraputrap46@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      window.location.href = "mailto:candraputrap46@gmail.com";
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -312,13 +366,10 @@ export default function Portfolio() {
     if (!track) return;
 
     const syncMarqueeSpeed = () => {
-      const enterSeconds = 8; // matches marquee-enter duration in CSS
-      const pxPerSecond = window.innerWidth / enterSeconds; // entrance travels 100vw in 4s
-      const loopDistance = track.scrollWidth / 2; // loop travels -50% of the doubled track
+      const enterSeconds = 8;
+      const pxPerSecond = window.innerWidth / enterSeconds;
+      const loopDistance = track.scrollWidth / 2;
       const loopSeconds = loopDistance / pxPerSecond;
-      // Set on the hero section (not the track itself) so every bg-name-track
-      // descendant -- the center row and all mobile fill rows -- inherits the
-      // exact same duration and stays in perfect sync as one cohesive animation.
       heroRef.current?.style.setProperty("--marquee-loop-duration", `${loopSeconds}s`);
     };
 
@@ -336,67 +387,34 @@ export default function Portfolio() {
   }, [cardPaused]);
 
   return (
-    <div
-  ref={rootRef}
-  className="portfolio-root"
->
-      <svg className="bg-lines" viewBox="0 0 1440 5000" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{width:'100%',height:'100%'}}>
-        <g opacity="0.28">
-          <path d="M-100 200 C 200 100, 500 300, 800 200 C 1100 100, 1300 280, 1540 180" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 350 C 300 250, 600 400, 900 320 C 1200 240, 1400 380, 1440 300" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-80 500 C 240 420, 540 580, 840 500 C 1140 420, 1360 560, 1500 480" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-        </g>
-        <g opacity="0.32">
-          <path d="M0 700 C 320 620, 620 780, 920 700 C 1220 620, 1420 760, 1440 680" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-100 850 C 260 780, 560 920, 860 860 C 1160 800, 1380 940, 1540 880" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 1000 C 300 940, 600 1060, 900 1000 C 1200 940, 1400 1080, 1440 1020" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-        </g>
-        <g opacity="0.22">
-          <path d="M-120 1250 C 200 1180, 500 1320, 820 1260 C 1140 1200, 1340 1340, 1560 1280" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 1400 C 280 1340, 580 1460, 880 1400 C 1180 1340, 1380 1480, 1440 1420" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-60 1550 C 240 1490, 540 1610, 840 1550 C 1140 1490, 1360 1630, 1500 1570" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 1700 C 320 1640, 620 1760, 920 1700 C 1220 1640, 1420 1780, 1440 1720" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-        </g>
-        <g opacity="0.3">
-          <path d="M-140 1950 C 220 1880, 520 2020, 860 1960 C 1200 1900, 1400 2040, 1580 1980" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 2100 C 300 2040, 600 2160, 900 2100 C 1200 2040, 1400 2180, 1440 2120" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-80 2250 C 240 2190, 540 2310, 840 2250 C 1140 2190, 1360 2330, 1500 2270" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-        </g>
-        <g opacity="0.26">
-          <path d="M0 2500 C 320 2440, 620 2560, 920 2500 C 1220 2440, 1420 2580, 1440 2520" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-100 2650 C 260 2590, 560 2710, 860 2650 C 1160 2590, 1380 2730, 1540 2670" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 2800 C 300 2740, 600 2860, 900 2800 C 1200 2740, 1400 2880, 1440 2820" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-60 2950 C 240 2890, 540 3010, 840 2950 C 1140 2890, 1360 3030, 1500 2970" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-        </g>
-        <g opacity="0.34">
-          <path d="M-120 3250 C 200 3180, 500 3320, 820 3260 C 1140 3200, 1340 3340, 1560 3280" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 3400 C 280 3340, 580 3460, 880 3400 C 1180 3340, 1380 3480, 1440 3420" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-80 3550 C 240 3490, 540 3610, 840 3550 C 1140 3490, 1360 3630, 1500 3570" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 3700 C 320 3640, 620 3760, 920 3700 C 1220 3640, 1420 3780, 1440 3720" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-        </g>
-        <g opacity="0.24">
-          <path d="M-100 4050 C 260 3990, 560 4110, 860 4050 C 1160 3990, 1380 4130, 1540 4070" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 4200 C 300 4140, 600 4260, 900 4200 C 1200 4140, 1400 4280, 1440 4220" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-          <path d="M-60 4350 C 240 4290, 540 4410, 840 4350 C 1140 4290, 1360 4430, 1500 4370" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-        </g>
-        <g opacity="0.3">
-          <path d="M-140 4600 C 220 4540, 520 4660, 860 4600 C 1200 4540, 1400 4680, 1580 4620" stroke="var(--light-gray)" strokeWidth="1.5" fill="none"/>
-          <path d="M0 4750 C 300 4690, 600 4810, 900 4750 C 1200 4690, 1400 4830, 1440 4770" stroke="var(--light-gray)" strokeWidth="1" fill="none"/>
-        </g>
-      </svg>
+    <div ref={rootRef} className="portfolio-root">
+      
+
       <Header />
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section id="hero" className="hero-root" ref={heroRef}>
+        <h1 className="hero-sr-title">Candra Putra — Junior Web & Backend Developer</h1>
+        {/* Ambient Luminous Spotlight (ATM Modification) */}
+        <div className="hero-ambient-spotlight" aria-hidden="true" />
 
-<div className="bg-name-marquee">
+        {/* Live Status Pill (ATM Modification) */}
+        <div className="hero-status-pill">
+          <span className="hero-status-dot" />
+          <span className="hero-status-text">
+            Available for Internship & Junior Backend Roles • Surabaya / Remote
+          </span>
+        </div>
+
+        {/* Dynamic Name Marquee */}
+        <div className="bg-name-marquee">
           <div className="bg-name-track" ref={marqueeTrackRef}>
             <span className="bg-name-text">CANDRA PUTRA</span>
             <span className="bg-name-text">CANDRA PUTRA</span>
           </div>
         </div>
 
-        {/* Mobile-only fill rows: 4 above + 4 below, same animation/style as the center row = 9 total */}
+        {/* Mobile-only fill rows */}
         {["t1", "t2", "t3", "t4", "b1", "b2", "b3", "b4"].map((pos) => (
           <div
             key={pos}
@@ -410,33 +428,77 @@ export default function Portfolio() {
           </div>
         ))}
 
+        {/* Concentric radar rings */}
         <div className="concentric-circles">
           <div className="circle circle-1" />
           <div className="circle circle-2" />
           <div className="circle circle-3" />
         </div>
 
+        {/* Profile Silhouette Cutout */}
         <div className="profile-wrap">
-          <img src="/images/profile.png" alt="CANDRA" className="profile-image" draggable={false} />
+          <img src="/images/profile.png" alt="CANDRA PUTRA" className="profile-image" draggable={false} />
         </div>
 
+        {/* Floating Quick Action Bar (ATM Modification) */}
+        <div className="hero-floating-actions">
+          <a href="#work" className="hero-action-pill hero-action-pill--primary">
+            <span>Explore Works</span>
+            <span className="hero-action-arrow">↓</span>
+          </a>
+
+          <button
+            type="button"
+            onClick={copyEmailToClipboard}
+            className="hero-action-pill hero-action-pill--secondary"
+            title="Salin Email Candra"
+          >
+            {emailCopied ? (
+              <>
+                <Check size={14} className="hero-action-icon text-emerald-400" />
+                <span className="text-emerald-400 font-semibold">Email Copied!</span>
+              </>
+            ) : (
+              <>
+                <Mail size={14} className="hero-action-icon" />
+                <span>Copy Email</span>
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setIsModalOpen(true);
+              setIsModalMinimized(false);
+            }}
+            className="hero-action-pill hero-action-pill--ghost"
+          >
+            <span>Get in Touch</span>
+            <span className="hero-action-arrow">→</span>
+          </button>
+        </div>
+
+        {/* Scroll Indicator */}
         <div className="scroll-indicator">
           <div className="scroll-line" />
           <span className="scroll-text">Scroll Down</span>
         </div>
       </section>
 
-      {/* WORK GALLERY */}
+      {/* WORK GALLERY SECTION */}
       <section id="work" className="section">
         <Reveal>
           <div className="work-header">
             <div>
               <div className="section-label">Selected Work</div>
               <TypewriterTitle text="Work Gallery" />
-              <div className="section-desc">A collection of systems, digital projects, and technical work I've built.</div>
+              <div className="section-desc">
+                A collection of production platforms, enterprise systems, and technical architectures I've built.
+              </div>
             </div>
             <Link href="/work" className="work-album-btn-top">
-              View More Projects <ExternalLink size={14} />
+              View All Projects <ExternalLink size={14} />
             </Link>
           </div>
         </Reveal>
@@ -446,7 +508,6 @@ export default function Portfolio() {
             <div className="work-album-inner">
               {PROJECTS.map((project, index) => {
                 const total = PROJECTS.length;
-
                 let diff = (index - activeIndex + total) % total;
                 if (diff > total / 2) diff -= total;
 
@@ -496,118 +557,89 @@ export default function Portfolio() {
 
         <Reveal delay={200}>
           <div className="work-info" key={activeProject.num}>
+            <div className="work-info-meta-chips">
+              <span className="work-chip work-chip--num">{activeProject.num}</span>
+              <span className="work-chip work-chip--category">{activeProject.category}</span>
+              {activeProject.year && <span className="work-chip work-chip--year">{activeProject.year}</span>}
+              {activeProject.awards?.[0] && (
+                <span className="work-chip work-chip--badge">
+                  <Sparkles size={11} style={{ marginRight: 4 }} />
+                  {activeProject.awards[0]}
+                </span>
+              )}
+            </div>
+
             <h3 className="work-info-title">{activeProject.title}</h3>
             <p className="work-info-desc">{activeProject.desc}</p>
 
-            <a
-              href={activeProject.link}
-              className="work-info-link"
-              target={activeProject.link !== "#" ? "_blank" : undefined}
-              rel="noopener noreferrer"
-            >
-              {activeProject.linkText}
-            </a>
+            <div className="work-tech-tags">
+              {activeProject.tech?.map((tech) => (
+                <span key={tech} className="work-tech-tag">{tech}</span>
+              ))}
+            </div>
+
+            <div className="work-info-actions">
+              <a
+                href={activeProject.link}
+                className="work-info-link"
+                target={activeProject.link !== "#" && !activeProject.link.startsWith("/") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+              >
+                {activeProject.linkText}
+              </a>
+              <Link href="/work" className="work-info-sublink">
+                Lihat Semua di Arsip Teknis →
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>
 
-      {/* WHAT I CAN DO */}
+      {/* WHAT I CAN DO SECTION */}
       <section id="what-i-can-do" className="section">
         <div className="what-i-can-do-grid">
+          {/* LEFT COLUMN: Clean Tech Stack Showcase */}
           <div className="what-i-can-do-left">
             <Reveal>
-              <div className="section-label">My Capabilities</div>
+              <div className="section-label">Engineering Stack</div>
               <TypewriterTitle text="What I Can Do" />
               <div className="what-i-can-do-desc">
-                I combine technical, problem-solving, and digital skills to build reliable systems, test systems, manage data, and support efficient digital workflows.
+                Kombinasi kemampuan rekayasa backend, perancangan basis data relasional terstruktur, dan frontend modern untuk membangun sistem digital yang andal dan teruji di lingkungan produksi.
               </div>
-              <div className="tech-stack">
-                <div className="tech-stack-column">
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/html.png" alt="HTML" draggable={false} />
-                    <span className="tech-stack-label">HTML</span>
+
+              {/* Categorized Tech Showcase (ATM Modification) */}
+              <div className="tech-stack-container">
+                {TECH_CATEGORIES.map((category) => (
+                  <div key={category.title} className="tech-category-group">
+                    <div className="tech-category-title">{category.title}</div>
+                    <div className="tech-chips-grid">
+                      {category.skills.map((skill) => {
+                        const Icon = skill.icon;
+                        return (
+                          <div key={skill.name} className="tech-chip">
+                            {skill.logo ? (
+                              <img src={skill.logo} alt={skill.name} className="tech-chip-img" draggable={false} />
+                            ) : Icon ? (
+                              <Icon size={14} className="tech-chip-icon" />
+                            ) : null}
+                            <span className="tech-chip-name">{skill.name}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/css.png" alt="CSS" draggable={false} />
-                    <span className="tech-stack-label">CSS</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/js.png" alt="JavaScript" draggable={false} />
-                    <span className="tech-stack-label">JavaScript</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/react.png" alt="React" draggable={false} />
-                    <span className="tech-stack-label">React</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/python.png" alt="Python" draggable={false} />
-                    <span className="tech-stack-label">Python</span>
-                  </div>
-                </div>
-                <div className="tech-stack-column">
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/flask.png" alt="Flask" draggable={false} />
-                    <span className="tech-stack-label">Flask</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/django.png" alt="Django" draggable={false} />
-                    <span className="tech-stack-label">Django</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/php.png" alt="PHP" draggable={false} />
-                    <span className="tech-stack-label">PHP</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/codeigniter.png" alt="CodeIgniter" draggable={false} />
-                    <span className="tech-stack-label">CodeIgniter</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/logos/mysql.png" alt="MySQL" draggable={false} />
-                    <span className="tech-stack-label">MySQL</span>
-                  </div>
-                </div>
-                <div className="tech-stack-column workspace-column">
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/meta.png" alt="Meta" draggable={false} />
-                    <span className="tech-stack-label">Meta Suite</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/notion.png" alt="Notion" draggable={false} />
-                    <span className="tech-stack-label">Notion</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/google.png" alt="Google" draggable={false} />
-                    <span className="tech-stack-label">Google</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/trello.png" alt="Trello" draggable={false} />
-                    <span className="tech-stack-label">Trello</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/canva.png" alt="Canva" draggable={false} />
-                    <span className="tech-stack-label">Canva</span>
-                  </div>
-                </div>
-                <div className="tech-stack-column workspace-column">
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/figma.png" alt="Figma" draggable={false} />
-                    <span className="tech-stack-label">Figma</span>
-                  </div>
-                  <div className="tech-stack-item">
-                    <img src="/images/workspace/capcut.png" alt="CapCut" draggable={false} />
-                    <span className="tech-stack-label">CapCut</span>
-                  </div>
-            </div>
-          </div>
-        </Reveal>
+                ))}
+              </div>
+            </Reveal>
           </div>
 
+          {/* RIGHT COLUMN: Elevated Bento Grid */}
           <div className="what-i-can-do-right">
             {WHAT_I_CAN_DO.map((group, index) => (
               <Reveal key={group.group} delay={150 + index * 120}>
                 <div className={`bento-card ${group.size === "large" ? "bento-large" : "bento-medium"}`}>
                   <div className="bento-header">
-                    <div className="bento-number">{String(index + 1).padStart(2, "0")}</div>
+                    <div className="bento-badge-chip">Domain</div>
                     <div className="bento-category">{group.group}</div>
                   </div>
 
@@ -637,18 +669,18 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT SECTION */}
       <section id="about" className="section">
         <Reveal>
           <div className="section-label">ABOUT ME</div>
-          <TypewriterTitle text={isMobile ? "Problem Solver.\nDigital Generalist." : "Problem Solver. Digital Generalist."} />
+          <TypewriterTitle text={isMobile ? "Problem Solver.\nBackend Engineer." : "Problem Solver. Backend Engineer."} />
         </Reveal>
 
         <Reveal delay={100}>
           <div className="about-profile-card">
             <div className="about-profile-header">
               <div className="about-profile-image-wrapper">
-                <img src="/images/about/profile.png" alt="Profile" className="about-profile-image" draggable={false} />
+                <img src="/images/about/profile.png" alt="Candra Putra" className="about-profile-image" draggable={false} />
               </div>
               <div className="about-profile-info">
                 <div className="about-profile-name">
@@ -671,14 +703,20 @@ export default function Portfolio() {
                 </div>
                 <div className="about-description">
                   <p>
-                    I’m an Informatics Engineering student at Politeknik Elektronika Negeri Surabaya (PENS) with a 3.76 GPA, focused on Web and Backend Development. I specialize in building reliable, real-world software—from scalable backend APIs with ASP.NET Core & PostgreSQL (BudgEx 3-tier approval) to live multi-brand ordering platforms (Jasdor PWA connecting 3 major brands and 2,000+ outlets). Throughout my academic journey, I’ve gained hands-on experience in clean architecture, database modeling, RESTful APIs, and modern responsive frontend engineering.
+                    Saya adalah mahasiswa D4 Teknik Informatika Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus pada Web & Backend Development. Berpengalaman membangun software nyata: mulai dari backend API terukur dengan ASP.NET Core & PostgreSQL (BudgEx 3-tier approval) hingga platform satu pintu pemesanan multi-brand (Jasdor PWA terhubung ke 3 brand ternama dan 2.000+ outlet).
                   </p>
                   <p>
-                    Ingin mendiskusikan peluang magang atau melihat resume lengkap? <a href="mailto:candraputrap46@gmail.com" className="about-resume-link">Hubungi saya via Email</a>.
+                    Ingin mendiskusikan peluang magang atau kolaborasi teknis?{" "}
+                    <a href="mailto:candraputrap46@gmail.com" className="about-resume-link">Hubungi via Email</a>
+                    {" "}atau{" "}
+                    <button type="button" onClick={copyEmailToClipboard} className="about-copy-email-btn">
+                      {emailCopied ? "✓ Email Tersalin!" : "Salin Email"}
+                    </button>
                   </p>
                 </div>
               </div>
             </div>
+
             {/* CURRENTLY + CARD STACK */}
             <div className="about-bottom-row">
               <div className="currently-strip">
@@ -700,6 +738,7 @@ export default function Portfolio() {
                   })}
                 </div>
               </div>
+
               <div className="card-stack">
                 <div
                   className="card-stack-container"
@@ -707,47 +746,46 @@ export default function Portfolio() {
                   onMouseEnter={() => setCardPaused(true)}
                   onMouseLeave={() => setCardPaused(false)}
                 >
-                {CARDS.map((trait, i) => {
-                  const offset = (i - cardIndex + CARDS.length) % CARDS.length;
-                  const isExiting = offset === CARDS.length - 1;
-                  // Only the front 3 cards and the one that just got flicked away are rendered.
-                  if (offset > 2 && !isExiting) return null;
+                  {CARDS.map((trait, i) => {
+                    const offset = (i - cardIndex + CARDS.length) % CARDS.length;
+                    const isExiting = offset === CARDS.length - 1;
+                    if (offset > 2 && !isExiting) return null;
 
-                  const scatter = CARD_SCATTER[i];
-                  let style;
+                    const scatter = CARD_SCATTER[i];
+                    let style;
 
-                  if (isExiting) {
-                    style = {
-                      "--tx": `${scatter.x + 140}px`,
-                      "--ty": `${scatter.y - 60}px`,
-                      "--rot": `${scatter.rot + 40}deg`,
-                      "--sc": 0.85,
-                      "--op": 0,
-                      zIndex: 5,
-                    };
-                  } else {
-                    const depth = offset;
-                    style = {
-                      "--tx": `${scatter.x + depth * 10}px`,
-                      "--ty": `${scatter.y + depth * 8}px`,
-                      "--rot": `${scatter.rot + depth * (scatter.rot >= 0 ? 5 : -5)}deg`,
-                      "--sc": 1 - depth * 0.045,
-                      "--op": depth === 0 ? 1 : 0.55 + (2 - depth) * 0.15,
-                      zIndex: 30 - depth * 10,
-                    };
-                  }
+                    if (isExiting) {
+                      style = {
+                        "--tx": `${scatter.x + 140}px`,
+                        "--ty": `${scatter.y - 60}px`,
+                        "--rot": `${scatter.rot + 40}deg`,
+                        "--sc": 0.85,
+                        "--op": 0,
+                        zIndex: 5,
+                      };
+                    } else {
+                      const depth = offset;
+                      style = {
+                        "--tx": `${scatter.x + depth * 10}px`,
+                        "--ty": `${scatter.y + depth * 8}px`,
+                        "--rot": `${scatter.rot + depth * (scatter.rot >= 0 ? 5 : -5)}deg`,
+                        "--sc": 1 - depth * 0.045,
+                        "--op": depth === 0 ? 1 : 0.55 + (2 - depth) * 0.15,
+                        zIndex: 30 - depth * 10,
+                      };
+                    }
 
-                  return (
-                    <div
-                      key={trait}
-                      className={`card-stack-card${offset === 0 ? " card-stack-card-front" : ""}`}
-                      style={style}
-                    >
-                      <div className="card-stack-label">TRAIT</div>
-                      <div className="card-stack-value">{trait}</div>
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        key={trait}
+                        className={`card-stack-card${offset === 0 ? " card-stack-card-front" : ""}`}
+                        style={style}
+                      >
+                        <div className="card-stack-label">TRAIT</div>
+                        <div className="card-stack-value">{trait}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -755,13 +793,13 @@ export default function Portfolio() {
         </Reveal>
       </section>
 
-      {/* AWARDS */}
+      {/* AWARDS SECTION */}
       <section id="awards" className="section">
         <Reveal>
           <div className="section-label">Recognition</div>
-          <TypewriterTitle text="Awards and Achievements" />
+          <TypewriterTitle text="Awards & Achievements" />
           <div className="section-desc">
-            A collection of academic and professional recognitions that reflect my dedication to excellence.
+            Pengakuan akademik dan pencapaian pengembangan sistem yang mencerminkan dedikasi terhadap kualitas dan standar tinggi.
           </div>
         </Reveal>
 
@@ -772,28 +810,30 @@ export default function Portfolio() {
               <a href="#" className="award-item">
                 <div className="award-icon"><GraduationCap size={18} /></div>
                 <div className="award-title">PENS Dean's Honor (IPK 3.76 / 4.00)</div>
-                <ExternalLink size={12} style={{ marginLeft: 'auto', flexShrink: 0 }} />
+                <ExternalLink size={12} style={{ marginLeft: "auto", flexShrink: 0 }} />
               </a>
               <a href="https://jasdor.vercel.app" target="_blank" rel="noreferrer" className="award-item">
                 <div className="award-icon"><Trophy size={18} /></div>
                 <div className="award-title">Jasdor Production (2.000+ Outlet Terhubung)</div>
-                <ExternalLink size={12} style={{ marginLeft: 'auto', flexShrink: 0 }} />
+                <ExternalLink size={12} style={{ marginLeft: "auto", flexShrink: 0 }} />
               </a>
               <a href="https://github.com/CandraPutraPratama" target="_blank" rel="noreferrer" className="award-item">
                 <div className="award-icon"><Trophy size={18} /></div>
                 <div className="award-title">BudgEx Enterprise (3-Tier Approval Workflow)</div>
-                <ExternalLink size={12} style={{ marginLeft: 'auto', flexShrink: 0 }} />
+                <ExternalLink size={12} style={{ marginLeft: "auto", flexShrink: 0 }} />
               </a>
             </div>
           </div>
         </Reveal>
       </section>
+
+      {/* EXPERIENCE SECTION */}
       <section id="trainings" className="section">
         <Reveal>
           <div className="section-label">Growth & Experience</div>
-          <TypewriterTitle text="Trainings & Hackathons" />
+          <TypewriterTitle text="Milestones & Journey" />
           <div className="section-desc">
-            A collection of trainings, workshops, and hackathons that shaped my technical and collaborative skills.
+            Rangkaian perjalanan studi, pengembangan produk nyata, dan eksplorasi sistem yang membentuk keahlian rekayasa perangkat lunak saya.
           </div>
         </Reveal>
 
@@ -810,8 +850,8 @@ export default function Portfolio() {
                 </div>
                 <div className="experience-org">{exp.org}</div>
                 <div className="experience-desc">{exp.desc}</div>
-                {exp.certificates && exp.certificates.map((cert, i) => (
-                  <div key={i}>
+                {exp.certificates && exp.certificates.map((cert, certIdx) => (
+                  <div key={certIdx}>
                     <a href={cert.link} className="experience-certificate" target="_blank" rel="noopener noreferrer">
                       {cert.name}
                       <ExternalLink size={12} style={{ marginLeft: 6 }} />
@@ -827,7 +867,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* CONTACT SECTION */}
       <section id="contact" className="section">
         <div className="contact-grid">
           <div className="contact-left">
@@ -836,9 +876,8 @@ export default function Portfolio() {
             </Reveal>
             <Reveal delay={100}>
               <h2 className="contact-headline">
-                LET'S<br />
-                <span className="contact-headline-accent">WORK</span><br />
-                TOGETHER
+                LET'S WORK<br />
+                <span className="contact-headline-accent">TOGETHER</span>
               </h2>
             </Reveal>
             <Reveal delay={200}>
@@ -850,7 +889,14 @@ export default function Portfolio() {
               </p>
             </Reveal>
             <Reveal delay={400}>
-              <a href="mailto:candraputrap46@gmail.com?subject=Permintaan%20Resume%20-%20Candra%20Putra" className="contact-resume-btn" target="_blank" rel="noopener noreferrer">DOWNLOAD RESUME →</a>
+              <a
+                href="mailto:candraputrap46@gmail.com?subject=Permintaan%20Resume%20-%20Candra%20Putra"
+                className="contact-resume-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOWNLOAD RESUME →
+              </a>
             </Reveal>
           </div>
 
@@ -858,7 +904,7 @@ export default function Portfolio() {
             <div className="contact-cards">
               <Reveal delay={200}>
                 <a href="mailto:candraputrap46@gmail.com" className="contact-card" target="_blank" rel="noopener noreferrer">
-                  <span className="contact-card-number">01</span>
+                  <span className="contact-card-channel">Direct</span>
                   <div className="contact-card-icon">
                     <Mail size={20} />
                   </div>
@@ -870,7 +916,7 @@ export default function Portfolio() {
               </Reveal>
               <Reveal delay={280}>
                 <a href="https://github.com/CandraPutraPratama" className="contact-card" target="_blank" rel="noopener noreferrer">
-                  <span className="contact-card-number">02</span>
+                  <span className="contact-card-channel">Code</span>
                   <div className="contact-card-icon">
                     <Github size={20} />
                   </div>
@@ -883,7 +929,7 @@ export default function Portfolio() {
               </Reveal>
               <Reveal delay={360}>
                 <a href="https://linkedin.com/in/candra-putra" className="contact-card" target="_blank" rel="noopener noreferrer">
-                  <span className="contact-card-number">03</span>
+                  <span className="contact-card-channel">Network</span>
                   <div className="contact-card-icon">
                     <Linkedin size={20} />
                   </div>
@@ -896,7 +942,13 @@ export default function Portfolio() {
               </Reveal>
             </div>
             <Reveal delay={440}>
-              <button className="contact-cta" onClick={() => { setIsModalOpen(true); setIsModalMinimized(false); }}>
+              <button
+                className="contact-cta"
+                onClick={() => {
+                  setIsModalOpen(true);
+                  setIsModalMinimized(false);
+                }}
+              >
                 SEND ME A MESSAGE →
               </button>
             </Reveal>
@@ -904,6 +956,7 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* CONTACT MODAL */}
       {isModalOpen && (
         <div className={`contact-modal${isModalMinimized ? " contact-modal--minimized" : ""}`}>
           <div className="contact-modal-header" onClick={() => isModalMinimized && setIsModalMinimized(false)}>
@@ -913,7 +966,10 @@ export default function Portfolio() {
                 type="button"
                 className="contact-modal-icon-btn contact-modal-minimize-btn"
                 aria-label={isModalMinimized ? "Expand" : "Minimize"}
-                onClick={(e) => { e.stopPropagation(); setIsModalMinimized((v) => !v); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsModalMinimized((v) => !v);
+                }}
               >
                 <Minus size={16} />
               </button>
@@ -921,7 +977,10 @@ export default function Portfolio() {
                 type="button"
                 className="contact-modal-icon-btn"
                 aria-label="Close"
-                onClick={(e) => { e.stopPropagation(); setIsModalOpen(false); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsModalOpen(false);
+                }}
               >
                 <X size={16} />
               </button>
@@ -943,19 +1002,19 @@ export default function Portfolio() {
 
                   setFormStatus("submitting");
 
-                   try {
-                     await fetch('/api/contact', {
-                       method: 'POST',
-                       headers: { 'Content-Type': 'application/json' },
-                       body: JSON.stringify(data),
-                     });
-                     setFormStatus("success");
-                     form.reset();
-                     setIsModalOpen(false);
-                     setShowSuccessModal(true);
-                   } catch (error) {
-                     setFormStatus("error");
-                   }
+                  try {
+                    await fetch("/api/contact", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(data),
+                    });
+                    setFormStatus("success");
+                    form.reset();
+                    setIsModalOpen(false);
+                    setShowSuccessModal(true);
+                  } catch (error) {
+                    setFormStatus("error");
+                  }
                 }}
               >
                 <div className="contact-modal-field">

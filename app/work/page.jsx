@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import TechnicalArchive from "../../components/TechnicalArchive";
+import { PROJECTS } from "../../data/projects";
 
 export const metadata = {
   title: "Technical Archive — Candra Putra",
@@ -11,7 +12,7 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-bg text-text">
       <Header />
-      <TechnicalArchive />
+      <TechnicalArchive projects={PROJECTS} />
     </main>
   );
 }
