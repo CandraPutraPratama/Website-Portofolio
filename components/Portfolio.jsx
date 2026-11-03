@@ -108,104 +108,54 @@ const CURRENTLY = [
 
 const EXPERIENCE = [
   {
-    title: "On-the-job Training",
-    org: "Department of Information and Communications Technology",
-    date: "January to May 2026",
-    desc: "Completed 600 hours of OJT at DICT, gaining experience in technical support, field operations, event coordination, and system development. Assisted with Free Wi-Fi for All deployments, data cabinet assembly, internet speed testing, and launching event preparation. Helped develop DocuTrack and ResQR, including beneficiary data gathering, simulation, and project presentation.",
+    title: "Junior Web & Backend Developer",
+    subtitle: "Jasdor (Live Production PWA) & BudgEx (API Team)",
+    org: "Politeknik Elektronika Negeri Surabaya (PENS)",
+    date: "2026 — Present",
+    desc: "Membangun dan mengoperasikan platform satu pintu pemesanan kopi multi-brand Jasdor (analogi TIX ID untuk F&B: 3 brand kopi, 2.000+ outlet terintegrasi, antrean real-time, dan checkout WhatsApp). Bersamaan dengan itu, merancang arsitektur backend sistem anggaran korporat BudgEx dengan alur persetujuan 3 tingkat berbasis ASP.NET Core & PostgreSQL.",
     certificates: [
-      { name: "Certificate of Completion", link: "/certificates/On-the-job_Training.pdf" },
-      { name: "Certificate of Recognition", link: "/certificates/Digital_Innovation_Award.pdf" },
+      { name: "Live Production Application", link: "https://jasdor.vercel.app" },
+      { name: "Clean Architecture Backend", link: "https://github.com/CandraPutraPratama" },
     ],
     images: [
-      "/images/experience/ojt/1.jpg",
-      "/images/experience/ojt/2.jpg",
-      "/images/experience/ojt/3.jpg",
-      "/images/experience/ojt/4.jpg",
-      "/images/experience/ojt/5.jpeg",
+      "/images/journey/jf12026.jpg",
+      "/images/journey/jf22026.jpg",
+      "/images/journey/jf312026.png",
     ],
   },
   {
-    title: "General Virtual Assistance 2.0",
-    subtitle: "A Paradigm Shift in AI-Powered Interaction",
-    org: "Department of Information and Communications Technology",
-    date: "April to May 2026",
+    title: "Web Development & Relational Database",
+    subtitle: "Pengembangan 5 Sistem Web Bisnis & Enterprise",
+    org: "Politeknik Elektronika Negeri Surabaya (PENS)",
+    date: "2025",
     imageLeft: true,
-    desc: "Completed a 20-day intensive virtual assistance training focused on VA fundamentals, client communication, productivity, AI-powered workflows, and social media management. Gained hands-on experience in niche development, content creation, page management, post scheduling, client outreach, and improving workflows to deliver efficient virtual assistance services.",
+    desc: "Mendalami perancangan sistem web terstruktur, normalisasi basis data relasional, dan implementasi logika bisnis nyata lewat 5 proyek aplikasi mandiri: Sistem Data Pegawai, Manajemen Inventaris Gudang, Kasir POS, Manajemen Keuangan Pribadi, dan RoomBook.",
     certificates: [
-      { name: "Certificate of Completion", link: "/certificates/Virtual_Assistance.pdf" },
+      { name: "5 Independent Business Systems", link: "https://github.com/CandraPutraPratama" },
     ],
     images: [
-      "/images/experience/va/1.jpg",
-      "/images/experience/va/2.jpg",
+      "/images/journey/jf12025.jpg",
+      "/images/journey/jf22025.jpg",
+      "/images/journey/jf32025.jpg",
     ],
   },
   {
-    title: "Tech-Tuesdays",
-    org: "Department of Information and Communications Technology",
-    date: "March 31, 2026",
-    desc: "Participated in a team-based digital solution development activity focused on addressing the needs of local MSMEs and the tourism sector. Contributed to the development and presentation of an online platform designed to showcase and promote local MSME products. Gained experience in collaborative problem-solving, digital solution design, and pitching technology-based solutions.",
+    title: "D4 Teknik Informatika (Informatics Engineering)",
+    subtitle: "Fondasi Rekayasa Perangkat Lunak & Algoritma",
+    org: "Politeknik Elektronika Negeri Surabaya (PENS)",
+    date: "2024",
+    desc: "Memulai studi sarjana terapan di kampus vokasi teknologi terbaik Indonesia. Membangun fondasi kuat dalam rekayasa perangkat lunak, algoritma pemrograman, struktur data, analisis kebutuhan sistem, dan kolaborasi tim menggunakan Git. Meraih predikat Dean's Honor dengan IPK 3.76 / 4.00.",
     certificates: [
-      { name: "Certificate of Appreciation", link: "/certificates/Tech-Tuesdays.pdf" },
+      { name: "PENS Dean's Honor (IPK 3.76)", link: "mailto:candraputrap46@gmail.com" },
     ],
     images: [
-      "/images/experience/techtuesday/1.jpg",
-      "/images/experience/techtuesday/2.jpg",
-    ],
-  },
-  {
-    title: "HACK FOR GOV 4",
-    org: "Department of Information and Communications Technology",
-    date: "November 10, 2025",
-    imageLeft: true,
-    desc: "Participated in a 9-hour Capture the Flag (CTF) cybersecurity competition involving hands-on challenges in identifying vulnerabilities, analyzing systems, and finding hidden flags. Developed practical skills in cybersecurity, ethical hacking, logical reasoning, troubleshooting, and time-constrained problem-solving.",
-    certificates: [
-      { name: "Certificate of Participation", link: "/certificates/Hack_for_Gov.pdf" },
-    ],
-    images: [
-      "/images/experience/hackforgov/1.jpg",
-      "/images/experience/hackforgov/2.jpg",
-      "/images/experience/hackforgov/3.jpg",
-      "/images/experience/hackforgov/4.jpg",
-      "/images/experience/hackforgov/5.jpg",
-    ],
-  },
-  {
-    title: "AI Ideas for Impact",
-    org: "Department of Information and Communications Technology",
-    date: "September 23-24, 2025",
-    desc: "Participated in a digital innovation activity focused on applying artificial intelligence to improve existing systems and workflows. Collaborated with a team to develop and present an AI-powered solution designed to make processes more efficient, faster, and accessible. Awarded the Special Award for Most Promising Prototype for demonstrating strong potential, innovation, and practical impact.",
-    certificates: [
-      { name: "Certificate of Participation", link: "/certificates/AIdeas.pdf" },
-      { name: "Most Promising Prototype", link: "/certificates/Most_Promising_Prototype.pdf" },
-    ],
-    images: [
-      "/images/experience/aideas/1.jpg",
-      "/images/experience/aideas/2.jpg",
-      "/images/experience/aideas/3.jpg",
-      "/images/experience/aideas/4.jpg",
-      "/images/experience/aideas/5.jpg",
-    ],
-  },
-  {
-    title: "Reverse Pitching",
-    org: "Department of Information and Communications Technology",
-    date: "June 25-26, 2025",
-    imageLeft: true,
-    desc: "Participated in a reverse-pitching activity where participants selected real-world problems presented by organizations and developed technology-driven solutions to address them. Contributed to the development and presentation of a digital platform concept aimed at improving the efficiency of municipal and MSME operations.",
-    certificates: [
-      { name: "Certificate of Participation", link: "/certificates/Reverse_Pitching.pdf" },
-    ],
-    images: [
-      "/images/experience/reverse/1.jpg",
-      "/images/experience/reverse/2.jpg",
-      "/images/experience/reverse/3.jpg",
-      "/images/experience/reverse/4.jpg",
+      "/images/journey/jf12024.jpg",
+      "/images/journey/jf22024.jpg",
+      "/images/journey/jf32024.jpg",
     ],
   },
 ];
 
-// Same click-to-flick mechanic as the About-me trait cards: the front image
-// flies off and the next one in the pile takes its place.
 function ExperienceImageStack({ images, title }) {
   const [index, setIndex] = useState(0);
   const count = images.length;
@@ -721,7 +671,7 @@ export default function Portfolio() {
                 </div>
                 <div className="about-description">
                   <p>
-                    I’m a BSIT graduate focused on software testing, web development, and digital systems. I enjoy turning ideas and real-world problems into practical digital solutions, particularly through web applications, databases, and system testing. Throughout my studies, I gained hands-on experience building database-driven systems and working with technologies such as RFID and QR-based solutions. My work was recognized through awards including Dean’s List, and Best Capstone Paper and System. I’ve also completed training in virtual assistance and AI-powered workflows, giving me experience across both technical and digital operations.
+                    I’m an Informatics Engineering student at Politeknik Elektronika Negeri Surabaya (PENS) with a 3.76 GPA, focused on Web and Backend Development. I specialize in building reliable, real-world software—from scalable backend APIs with ASP.NET Core & PostgreSQL (BudgEx 3-tier approval) to live multi-brand ordering platforms (Jasdor PWA connecting 3 major brands and 2,000+ outlets). Throughout my academic journey, I’ve gained hands-on experience in clean architecture, database modeling, RESTful APIs, and modern responsive frontend engineering.
                   </p>
                   <p>
                     Ingin mendiskusikan peluang magang atau melihat resume lengkap? <a href="mailto:candraputrap46@gmail.com" className="about-resume-link">Hubungi saya via Email</a>.
@@ -896,11 +846,11 @@ export default function Portfolio() {
             </Reveal>
             <Reveal delay={300}>
               <p className="contact-secondary">
-                I'm open to opportunities where I can contribute to software testing, web development, IT operations, and digital workflows.
+                Terbuka untuk peluang magang (internship) Web Development & Backend Engineering, arsitektur software, serta kolaborasi rekayasa perangkat lunak.
               </p>
             </Reveal>
             <Reveal delay={400}>
-              <a href="/resume/Candra_Victor_Miculob_Resume.pdf" className="contact-resume-btn" target="_blank" rel="noopener noreferrer">DOWNLOAD RESUME →</a>
+              <a href="mailto:candraputrap46@gmail.com?subject=Permintaan%20Resume%20-%20Candra%20Putra" className="contact-resume-btn" target="_blank" rel="noopener noreferrer">DOWNLOAD RESUME →</a>
             </Reveal>
           </div>
 
@@ -994,9 +944,8 @@ export default function Portfolio() {
                   setFormStatus("submitting");
 
                    try {
-                     await fetch('https://script.google.com/macros/s/AKfycbz68sln0VIOOVOegEYiQLJwTdLonmPHMzq8jqzWCaqdgUAG2-LWxJVuRaEM5HQl6ABH/exec', {
+                     await fetch('/api/contact', {
                        method: 'POST',
-                       mode: 'no-cors',
                        headers: { 'Content-Type': 'application/json' },
                        body: JSON.stringify(data),
                      });
