@@ -44,24 +44,22 @@ export default function TechnicalArchive({ projects = [] }) {
       <Reveal>
         <div className="archive-header">
           <div className="archive-header-left">
-            <div className="section-label">Archive</div>
             <TypewriterTitle text="Technical Projects" />
-            <p className="archive-description">A complete collection of my technical work, systems, and digital projects.</p>
+            <p className="archive-description">Koleksi lengkap seluruh sistem, arsitektur backend, dan aplikasi digital yang pernah saya bangun.</p>
           </div>
         </div>
       </Reveal>
 
-      <Reveal delay={100}>
+      <Reveal delay={80}>
         <div className="archive-list">
           {projects.map((project) => (
             <Link
-              key={project.num}
+              key={project.title}
               href={project.link}
               className="archive-row"
-              target={project.link !== "#" ? "_blank" : undefined}
+              target={project.link !== "#" && !project.link.startsWith("/") ? "_blank" : undefined}
               rel="noopener noreferrer"
             >
-              <span className="archive-row-num">{project.num}</span>
               <div className="archive-row-main">
                 <div className="archive-row-title">{project.title}</div>
                 <div className="archive-row-desc">{project.desc}</div>
@@ -74,8 +72,8 @@ export default function TechnicalArchive({ projects = [] }) {
                   </div>
                 </div>
               </div>
-              <span className="archive-row-action">
-                <ExternalLink size={16} />
+              <span className="archive-row-action" aria-label="Buka proyek">
+                <ExternalLink size={15} />
               </span>
             </Link>
           ))}

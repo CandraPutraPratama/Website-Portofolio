@@ -2,7 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
-  title: "Candra Putra — Junior Web & Backend Developer",
+  title: "Candra Putra : Junior Web & Backend Developer",
   description:
     "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan: Jasdor (live production PWA multi-brand) dan BudgEx (enterprise 3-tier approval). Terbuka untuk magang.",
   keywords: [
@@ -16,7 +16,7 @@ export const metadata = {
   ],
   authors: [{ name: "Candra Putra" }],
   openGraph: {
-    title: "Candra Putra — Junior Web & Backend Developer",
+    title: "Candra Putra : Junior Web & Backend Developer",
     description:
       "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan. Terbuka untuk magang.",
     type: "website",
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Great+Vibes&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <script

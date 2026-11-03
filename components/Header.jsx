@@ -55,14 +55,14 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
 
   useEffect(() => {
     if (!coffeePop) return;
-    const id = setTimeout(() => setCoffeePop(false), 400);
+    const id = setTimeout(() => setCoffeePop(false), 350);
     return () => clearTimeout(id);
   }, [coffeePop]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      setShowBackToTop(alwaysShowBackToTop || window.scrollY > 400);
+      setScrolled(window.scrollY > 40);
+      setShowBackToTop(alwaysShowBackToTop || window.scrollY > 350);
       setShowCoffee(alwaysShowCoffee || window.scrollY > window.innerHeight * 0.5);
     };
     handleScroll();
@@ -96,7 +96,7 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
         <div className="nav-mobile-header">
           <a href="/" className="nav-left">
             <div className="nav-logo">C</div>
-            <div className="nav-brand">CANDRA</div>
+            <div className="nav-brand">Candra Putra</div>
           </a>
           <ThemeToggle
             className="md:hidden nav-theme-toggle"
@@ -159,7 +159,7 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
                 style={{ textAlign: "center" }}
                 onClick={() => setMenuOpen(false)}
               >
-                Hire Me
+                Hubungi Saya
               </a>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
             style={{ marginRight: 8 }}
           />
           <a href="/#contact" className="nav-cta hidden md:block">
-            Hire Me
+            Hubungi Saya
           </a>
         </div>
       </nav>
@@ -200,24 +200,9 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
           onClick={scrollToTop}
           aria-label="Back to top"
         >
-          <ArrowUp size={20} />
+          <ArrowUp size={18} />
         </button>
       )}
-
-      <a
-        href="#"
-        className={`coffee-btn${showCoffee ? " coffee-btn--visible" : ""}`}
-        aria-label="Get me a coffee"
-        onClick={handleCoffeeClick}
-      >
-        <span className="coffee-text">Get me a coffee</span>
-        <img
-          src="/images/gif/coffee.gif"
-          alt="Coffee"
-          className={`coffee-gif${coffeePop ? " coffee-gif--pop" : ""}`}
-        />
-        <span className="coffee-count">{coffeeLoading ? "..." : coffeeCount}</span>
-      </a>
     </>
   );
 }

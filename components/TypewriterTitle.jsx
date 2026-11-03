@@ -1,34 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-export default function TypewriterTitle({ text, className = "", as: Component = "h2", ...props }) {
-  const [visible, setVisible] = useState(false);
-  const ref = React.useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+export default function TypewriterTitle({
+  text,
+  className = "",
+  as: Component = "h2",
+  ...props
+}) {
   return (
     <Component
-      ref={ref}
-      className={`section-title fade-in-title ${visible ? "is-visible" : ""} ${className}`}
+      className={`section-title ${className}`}
       {...props}
     >
       <span style={{ whiteSpace: "pre-line" }}>{text}</span>
