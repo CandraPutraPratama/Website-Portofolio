@@ -57,11 +57,15 @@ const techStack = {
 };
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      delay: Math.min(i * 0.06, 0.3),
+      duration: 0.35,
+      ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+    },
   }),
 };
 
@@ -78,11 +82,11 @@ const BentoCard = ({
     variants={fadeUp}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: true, margin: "-50px" }}
+    viewport={{ once: true, amount: 0.1 }}
     custom={index}
     className={`relative border-2 border-black dark:border-neutral-700 rounded-2xl p-6 flex flex-col justify-between
       hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)]
-      transition-shadow duration-300 overflow-hidden ${className}`}
+      transition-shadow duration-300 overflow-hidden transform-gpu ${className}`}
   >
     {children}
   </motion.div>
@@ -146,9 +150,9 @@ const About = () => {
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.1 }}
             custom={1}
-            className="md:col-span-1 min-h-[340px] overflow-visible flex items-center justify-center"
+            className="md:col-span-1 min-h-[340px] overflow-visible flex items-center justify-center transform-gpu"
           >
             <ProfileCard
               name="Candra Putra"

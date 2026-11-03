@@ -99,9 +99,10 @@ const FallingText = ({
 
     wordBodies.forEach(({ elem, body }) => {
       elem.style.position = 'absolute';
-      elem.style.left = `${body.position.x - body.bounds.max.x + body.bounds.min.x / 2}px`;
-      elem.style.top = `${body.position.y - body.bounds.max.y + body.bounds.min.y / 2}px`;
-      elem.style.transform = 'none';
+      elem.style.left = '0px';
+      elem.style.top = '0px';
+      elem.style.willChange = 'transform';
+      elem.style.transform = `translate3d(${body.position.x}px, ${body.position.y}px, 0) translate(-50%, -50%) rotate(${body.angle}rad)`;
     });
 
     const mouse = Mouse.create(containerRef.current);
@@ -131,18 +132,47 @@ const FallingText = ({
     Render.run(render);
 
     let rafId = null;
+    let isRunning = true;
+
     const updateLoop = () => {
       wordBodies.forEach(({ body, elem }) => {
         const { x, y } = body.position;
-        elem.style.left = `${x}px`;
-        elem.style.top = `${y}px`;
-        elem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`;
+        elem.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${body.angle}rad)`;
       });
-      rafId = requestAnimationFrame(updateLoop);
+      if (isRunning) {
+        rafId = requestAnimationFrame(updateLoop);
+      }
     };
     rafId = requestAnimationFrame(updateLoop);
 
+    // Pause physics and RAF when Hero is scrolled out of viewport (frees 100% GPU/CPU for About section)
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!isRunning) {
+          isRunning = true;
+          Runner.start(runner, engine);
+          if (!rafId) {
+            rafId = requestAnimationFrame(updateLoop);
+          }
+        }
+      } else {
+        if (isRunning) {
+          isRunning = false;
+          Runner.stop(runner);
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        }
+      }
+    }, { threshold: 0.05 });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     return () => {
+      observer.disconnect();
       if (rafId) {
         cancelAnimationFrame(rafId);
       }

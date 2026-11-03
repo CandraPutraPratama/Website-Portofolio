@@ -39,7 +39,7 @@
 
 .pc-behind {
   position: absolute;
-  inset: 0;
+  inset: -10px;
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(
@@ -47,14 +47,20 @@
     var(--behind-glow-color) 0%,
     transparent var(--behind-glow-size)
   );
-  filter: blur(50px) saturate(1.1);
-  opacity: calc(0.8 * var(--card-opacity));
-  transition: opacity 200ms ease;
+  filter: blur(16px);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  will-change: opacity;
 }
 
 .pc-card-wrapper:hover,
 .pc-card-wrapper.active {
   --card-opacity: 1;
+}
+
+.pc-card-wrapper:hover .pc-behind,
+.pc-card-wrapper.active .pc-behind {
+  opacity: 0.6;
 }
 
 .pc-card {
@@ -64,21 +70,19 @@
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
   position: relative;
-  background-blend-mode: color-dodge, normal, normal, normal;
-  animation: glow-bg 12s linear infinite;
-  animation-play-state: paused;
-  box-shadow: rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px)
-    calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
-  transition: transform 1s ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
   transform: translateZ(0) rotateX(0deg) rotateY(0deg);
   background: rgba(0, 0, 0, 0.9);
   backface-visibility: hidden;
   overflow: hidden;
+  will-change: transform;
 }
 
 .pc-card:hover,
 .pc-card.active {
   transition: none;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
   transform: translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
 }
 
@@ -117,17 +121,14 @@
   mask-repeat: repeat;
   mask-size: 150%;
   mask-position: top calc(200% - (var(--background-y) * 5)) left calc(100% - var(--background-x));
-  transition: filter 0.8s ease, opacity 0.8s ease;
-  filter: brightness(0.6) contrast(1.1) saturate(0.2);
-  opacity: 0.25; /* Visible but soft */
-  animation: holo-bg 18s linear infinite;
-  animation-play-state: paused;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
   mix-blend-mode: color-dodge;
 }
 
 .pc-card-wrapper:hover .pc-shine,
 .pc-card-wrapper.active .pc-shine {
-  animation-play-state: running;
+  opacity: 0.3;
 }
 
 .pc-shine,

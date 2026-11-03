@@ -135,9 +135,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
       setVarsFromXY(currentX, currentY);
 
-      const stillFar = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05;
+      const stillFar = Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1;
 
-      if (stillFar || document.hasFocus()) {
+      if (stillFar) {
         rafId = requestAnimationFrame(step);
       } else {
         running = false;
