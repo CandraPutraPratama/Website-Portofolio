@@ -1,4 +1,5 @@
 import "./globals.css";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
   title: "Candra Putra — Junior Web & Backend Developer",
@@ -44,7 +45,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen bg-bg text-text antialiased">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
