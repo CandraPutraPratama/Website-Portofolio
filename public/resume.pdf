@@ -1,0 +1,77 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1307 >>
+stream
+BT
+/F1 20 Tf
+50 750 Td
+(CANDRA PUTRA PRATAMA) Tj
+/F1 12 Tf
+0 -25 Td
+(Junior Web & Backend Developer | Surabaya, Indonesia) Tj
+0 -18 Td
+(Email: candraputrap46@gmail.com | GitHub: github.com/CandraPutraPratama) Tj
+0 -30 Td
+/F1 14 Tf
+(PENDIDIKAN) Tj
+/F1 11 Tf
+0 -20 Td
+(D4 Teknik Informatika - Politeknik Elektronika Negeri Surabaya [PENS]) Tj
+0 -16 Td
+(IPK: 3.76 / 4.00 | Predikat: Dean\'s Honor) Tj
+0 -30 Td
+/F1 14 Tf
+(PENGALAMAN & PROYEK UTAMA) Tj
+/F1 11 Tf
+0 -20 Td
+(1. Jasdor - Multi-Brand F&B Unified Ordering Platform [PWA Live Production]) Tj
+0 -16 Td
+(   - Menghubungkan 3 brand kopi ternama dan 2.000+ outlet ke satu sistem PWA.) Tj
+0 -16 Td
+(   - Integrasi WhatsApp Business API dan antrean real-time.) Tj
+0 -22 Td
+(2. BudgEx - Corporate Budgeting & 3-Tier Approval Architecture) Tj
+0 -16 Td
+(   - Arsitektur backend ASP.NET Core & PostgreSQL dengan alur approval bertingkat.) Tj
+0 -22 Td
+(3. 5+ Sistem Web Terstruktur & Basis Data Relasional) Tj
+0 -16 Td
+(   - Sistem Data Pegawai, Manajemen Inventaris Gudang, Kasir POS, RoomBook.) Tj
+0 -30 Td
+/F1 14 Tf
+(KEAHLIAN TEKNIS) Tj
+/F1 11 Tf
+0 -20 Td
+(Backend: ASP.NET Core, C#, PHP, Laravel, PostgreSQL, MySQL, REST API) Tj
+0 -16 Td
+(Frontend: Next.js, React, TypeScript, Tailwind CSS, PWA) Tj
+0 -16 Td
+(Tools: Git, GitHub, Docker, Postman, Linux) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001600 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1670
+%%EOF
