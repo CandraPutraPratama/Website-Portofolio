@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUp } from "lucide-react";
+import { Menu, X, ArrowUp, ArrowUpRight } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
@@ -155,11 +155,11 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
               </a>
               <a
                 href="/#contact"
-                className="nav-cta"
-                style={{ textAlign: "center" }}
+                className="nav-cta nav-cta--mobile"
                 onClick={() => setMenuOpen(false)}
               >
-                Hubungi Saya
+                <span>Hubungi Saya</span>
+                <ArrowUpRight size={14} className="nav-cta-icon" />
               </a>
             </div>
           </div>
@@ -186,10 +186,11 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
         <div className="nav-right">
           <ThemeToggle
             className="nav-theme-toggle hidden md:inline-flex"
-            style={{ marginRight: 8 }}
+            style={{ marginRight: 10 }}
           />
-          <a href="/#contact" className="nav-cta hidden md:block">
-            Hubungi Saya
+          <a href="/#contact" className="nav-cta hidden md:inline-flex">
+            <span>Hubungi Saya</span>
+            <ArrowUpRight size={14} className="nav-cta-icon" />
           </a>
         </div>
       </nav>

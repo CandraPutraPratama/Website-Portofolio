@@ -18,7 +18,9 @@ import {
   ShieldCheck,
   Terminal,
   Database,
-  Server
+  Server,
+  ArrowDown,
+  ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS } from "../data/projects";
@@ -373,81 +375,86 @@ export default function Portfolio() {
 
       {/* HERO SECTION */}
       <section id="hero" className="hero-root" ref={heroRef}>
+        <h1 className="hero-sr-title">Candra Putra Pratama — Junior Web & Backend Engineer</h1>
+
+        {/* Ambient Subtle Glow */}
+        <div className="hero-ambient-spotlight" aria-hidden="true" />
+
+        {/* Dynamic Name Marquee (Stroke Outlined Signature) */}
+        <div className="bg-name-marquee">
+          <div className="bg-name-track" ref={marqueeTrackRef}>
+            <span className="bg-name-text">CANDRA PUTRA</span>
+            <span className="bg-name-text">CANDRA PUTRA</span>
+          </div>
+        </div>
+
+        {/* Mobile Extra Fill Rows */}
+        {["t1", "t2", "t3", "t4", "b1", "b2", "b3", "b4"].map((pos) => (
+          <div
+            key={pos}
+            className={`bg-name-marquee bg-name-marquee--mobile-extra bg-name-marquee--${pos}`}
+            aria-hidden="true"
+          >
+            <div className="bg-name-track">
+              <span className="bg-name-text">CANDRA PUTRA</span>
+              <span className="bg-name-text">CANDRA PUTRA</span>
+            </div>
+          </div>
+        ))}
+
+        {/* Concentric radar rings */}
+        <div className="concentric-circles">
+          <div className="circle circle-1" />
+          <div className="circle circle-2" />
+          <div className="circle circle-3" />
+        </div>
+
         {/* Profile Silhouette Cutout */}
         <div className="profile-wrap">
-          <img src="/images/profile.png" alt="Candra Putra" className="profile-image" draggable={false} />
+          <img src="/images/profile.png" alt="CANDRA PUTRA" className="profile-image" draggable={false} />
           <div className="profile-overlay" aria-hidden="true" />
         </div>
 
-        {/* Calm Status Badge */}
-        <div className="hero-status-badge">
-          <span className="hero-status-dot" aria-hidden="true" />
-          <span className="hero-status-text">
-            Terbuka untuk Peluang Magang & Junior Backend Engineer • Surabaya & Remote
-          </span>
+        {/* Floating Quick Action Bar */}
+        <div className="hero-floating-actions">
+          <a href="#work" className="hero-action-pill hero-action-pill--primary">
+            <span>Lihat Proyek</span>
+            <ArrowDown size={14} className="hero-action-icon" />
+          </a>
+
+          <button
+            type="button"
+            onClick={copyEmailToClipboard}
+            className="hero-action-pill hero-action-pill--secondary"
+            title="Salin Email Candra"
+          >
+            {emailCopied ? (
+              <>
+                <Check size={14} className="hero-action-icon text-emerald-400" />
+                <span className="text-emerald-400 font-semibold">Email Tersalin!</span>
+              </>
+            ) : (
+              <>
+                <Mail size={14} className="hero-action-icon" />
+                <span>Salin Email</span>
+              </>
+            )}
+          </button>
+
+          <a
+            href="#contact"
+            className="hero-action-pill hero-action-pill--secondary hero-action-pill--contact"
+            title="Hubungi Candra"
+          >
+            <span>Hubungi Saya</span>
+            <ArrowUpRight size={14} className="hero-action-icon" />
+          </a>
         </div>
 
-        {/* Hero Content Overlay (Visible semantic h1, lead, actions) */}
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="hero-name-lead">Candra Putra Pratama</span>
-            <span className="hero-subheadline">Junior Web & Backend Engineer</span>
-          </h1>
-          <p className="hero-lead">
-            D4 Teknik Informatika PENS (IPK 3.76). Merancang arsitektur backend andal, basis data relasional terstruktur, dan platform digital yang dipakai pengguna nyata.
-          </p>
-
-          <div className="hero-actions">
-            <a href="#work" className="hero-btn hero-btn--primary">
-              Lihat Proyek
-            </a>
-
-            <button
-              type="button"
-              onClick={copyEmailToClipboard}
-              className="hero-btn hero-btn--secondary"
-              title="Salin Email Candra"
-            >
-              {emailCopied ? (
-                <>
-                  <Check size={16} className="hero-btn-icon text-emerald-400" />
-                  <span>Email Tersalin</span>
-                </>
-              ) : (
-                <>
-                  <Mail size={16} className="hero-btn-icon" />
-                  <span>Salin Email</span>
-                </>
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setIsModalOpen(true);
-                setIsModalMinimized(false);
-              }}
-              className="hero-btn hero-btn--ghost"
-            >
-              Hubungi Saya
-            </button>
-          </div>
-        </div>
-
-        {/* Grounded Hero Credentials Strip (Adds authentic proof & density) */}
-        <div className="hero-credentials-bar">
-          <div className="hero-cred-item">
-            <span className="hero-cred-label">Pendidikan</span>
-            <span className="hero-cred-val">D4 Teknik Informatika PENS • IPK 3.76</span>
-          </div>
-          <div className="hero-cred-item">
-            <span className="hero-cred-label">Platform Nyata</span>
-            <span className="hero-cred-val">Jasdor PWA • 3 Brand & 2.000+ Outlet</span>
-          </div>
-          <div className="hero-cred-item">
-            <span className="hero-cred-label">Arsitektur Backend</span>
-            <span className="hero-cred-val">BudgEx • 3-Tier Approval Matrix (ASP.NET Core)</span>
-          </div>
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator">
+          <div className="scroll-line" />
+          <span className="scroll-text">Scroll Down</span>
         </div>
       </section>
 

@@ -34,3 +34,8 @@ next-env.d.ts
 
 # superpowers
 .superpowers/
+
+# scratch & analysis
+.cany/
+.taste-skill/
+docs/
