@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUp, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUp, ArrowUpRight, FileDown } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
@@ -154,6 +154,16 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
                 Experience
               </a>
               <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link nav-link--resume"
+                onClick={() => setMenuOpen(false)}
+              >
+                <FileDown size={14} style={{ display: "inline-block", marginRight: 6, verticalAlign: "middle" }} />
+                <span>Resume (PDF)</span>
+              </a>
+              <a
                 href="/#contact"
                 className="nav-cta nav-cta--mobile"
                 onClick={() => setMenuOpen(false)}
@@ -184,6 +194,16 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
         </div>
 
         <div className="nav-right">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-resume-btn hidden md:inline-flex"
+            title="Download CV / Resume (PDF)"
+          >
+            <FileDown size={13} className="nav-resume-icon" />
+            <span>Resume</span>
+          </a>
           <ThemeToggle
             className="nav-theme-toggle hidden md:inline-flex"
             style={{ marginRight: 10 }}

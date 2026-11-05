@@ -5529,3 +5529,47 @@ textarea.contact-modal-input {
     display: none;
   }
 }
+
+/* Navbar Resume Action Button */
+.nav-resume-btn {
+  height: 38px;
+  padding: 0 14px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  background: transparent;
+  color: var(--muted) !important;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-right: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-resume-btn:hover {
+  color: var(--text) !important;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(var(--surface-rgb, 25, 25, 27), 0.6);
+  transform: translateY(-1px);
+}
+
+.nav-resume-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.nav-resume-btn:hover .nav-resume-icon {
+  transform: translateY(-1px);
+}
+
+.nav-link--resume {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
