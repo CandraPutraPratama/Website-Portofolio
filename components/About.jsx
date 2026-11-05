@@ -89,18 +89,10 @@ export default function About() {
                 Membangun Solusi Berorientasi Pengguna & Keandalan Backend
               </h3>
               <p className="text-sm sm:text-base text-muted leading-relaxed mb-4">
-                Saya adalah mahasiswa D4 Teknik Informatika di Politeknik
-                Elektronika Negeri Surabaya (PENS). Di lingkungan perkuliahan,
-                saya terbiasa merancang arsitektur perangkat lunak dengan pola
-                bersih dan basis data relasional kuat—seperti pengerjaan sistem
-                anggaran korporat <strong>BudgEx</strong> dengan alur approval 3
-                tingkat menggunakan ASP.NET Core dan PostgreSQL.
+                Saya adalah mahasiswa D4 Teknik Informatika Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus pada Web & Backend Development. Selain aktif dalam kepanitiaan kampus serta meraih prestasi akademik Dean's Honor, saya telah merancang dan membangun 5+ sistem web terstruktur berbasis basis data relasional: mulai dari arsitektur backend korporat BudgEx (alur approval 3 tingkat dengan ASP.NET Core & PostgreSQL) hingga platform produksi Jasdor (PWA multi-brand terhubung ke 3 brand dan 2.000+ outlet).
               </p>
               <p className="text-sm sm:text-base text-muted leading-relaxed">
-                Di luar kampus, saya membangun dan mengoperasikan produk web{" "}
-                <strong>Jasdor</strong>, sebuah platform satu pintu pemesanan
-                kopi multi-brand (PWA) yang telah menghubungkan 3 brand besar
-                dengan 2.000+ outlet ke alur pemesanan WhatsApp otomatis.
+                Saya memiliki antusiasme tinggi untuk terus belajar, memperdalam praktik rekayasa perangkat lunak industri, dan siap berkontribusi langsung lewat program magang di tim engineering profesional.
               </p>
             </div>
           </Reveal>

@@ -124,6 +124,7 @@ const CARDS = [
   "Clean code advocate",
   "PENS D4 IT (IPK 3.76)",
   "Relational database design",
+  "Kepanitiaan & Kolaborasi Tim",
   "Fast learner",
   "Reliable team player",
   "Product-minded",
@@ -142,6 +143,7 @@ const CARD_SCATTER = [
   { rot: 6, x: -3, y: 6 },
   { rot: -5, x: 6, y: 2 },
   { rot: 3, x: -5, y: -5 },
+  { rot: -4, x: 5, y: 3 },
 ];
 
 const CURRENTLY = [
@@ -185,10 +187,10 @@ const EXPERIENCE = [
   },
   {
     title: "D4 Teknik Informatika (Informatics Engineering)",
-    subtitle: "Fondasi Rekayasa Perangkat Lunak & Algoritma",
+    subtitle: "Fondasi Rekayasa Perangkat Lunak & Prestasi Akademik",
     org: "Politeknik Elektronika Negeri Surabaya (PENS)",
     date: "2024",
-    desc: "Memulai studi sarjana terapan di kampus vokasi teknologi terbaik Indonesia. Membangun fondasi kuat dalam rekayasa perangkat lunak, algoritma pemrograman, struktur data, analisis kebutuhan sistem, dan kolaborasi tim menggunakan Git. Meraih predikat Dean's Honor dengan IPK 3.76 / 4.00.",
+    desc: "Memulai studi sarjana terapan di kampus vokasi teknologi terbaik Indonesia. Aktif dalam kepanitiaan kampus dan kolaborasi proyek mahasiswa sembari memperkuat fondasi rekayasa perangkat lunak, algoritma pemrograman, struktur data, dan analisis sistem. Meraih predikat Dean's Honor dengan IPK 3.76 / 4.00.",
     certificates: [
       { name: "PENS Dean's Honor (IPK 3.76)", link: "mailto:candraputrap46@gmail.com" },
     ],
@@ -679,12 +681,16 @@ export default function Portfolio() {
                 </div>
                 <div className="about-profile-stats">
                   <div className="about-stat-item">
-                    <span className="about-stat-label">Projects</span>
-                    <span className="about-stat-value">8</span>
+                    <span className="about-stat-label">Sistem Web</span>
+                    <span className="about-stat-value">5+</span>
                   </div>
                   <div className="about-stat-item">
                     <span className="about-stat-label">IPK</span>
                     <span className="about-stat-value">3.76</span>
+                  </div>
+                  <div className="about-stat-item">
+                    <span className="about-stat-label">Prestasi</span>
+                    <span className="about-stat-value">Dean's Honor</span>
                   </div>
                   <div className="about-stat-item">
                     <span className="about-stat-label">PENS D4 IT</span>
@@ -693,7 +699,10 @@ export default function Portfolio() {
                 </div>
                 <div className="about-description">
                   <p>
-                    Saya adalah mahasiswa D4 Teknik Informatika Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus pada Web & Backend Development. Berpengalaman membangun software nyata: mulai dari backend API terukur dengan ASP.NET Core & PostgreSQL (BudgEx 3-tier approval) hingga platform satu pintu pemesanan multi-brand (Jasdor PWA terhubung ke 3 brand ternama dan 2.000+ outlet).
+                    Saya adalah mahasiswa D4 Teknik Informatika Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus pada Web & Backend Development. Selain aktif dalam kepanitiaan kampus serta meraih prestasi akademik Dean's Honor, saya telah merancang dan membangun 5+ sistem web terstruktur berbasis basis data relasional: mulai dari arsitektur backend korporat BudgEx (alur approval 3 tingkat dengan ASP.NET Core & PostgreSQL) hingga platform produksi Jasdor (PWA multi-brand terhubung ke 3 brand dan 2.000+ outlet).
+                  </p>
+                  <p>
+                    Saya memiliki antusiasme tinggi untuk terus belajar, memperdalam praktik rekayasa perangkat lunak industri, dan siap berkontribusi langsung lewat program magang di tim engineering profesional.
                   </p>
                   <p>
                     Ingin mendiskusikan peluang magang atau kolaborasi teknis?{" "}
@@ -742,7 +751,7 @@ export default function Portfolio() {
                     const isExiting = offset === CARDS.length - 1;
                     if (offset > 2 && !isExiting) return null;
 
-                    const scatter = CARD_SCATTER[i];
+                    const scatter = CARD_SCATTER[i % CARD_SCATTER.length];
                     let style;
 
                     if (isExiting) {
@@ -798,7 +807,7 @@ export default function Portfolio() {
             <a href="mailto:candraputrap46@gmail.com" className="recognition-row">
               <div className="recognition-main">
                 <div className="recognition-title">PENS Dean's Honor (IPK 3.76 / 4.00)</div>
-                <div className="recognition-desc">Peringkat kehormatan akademik program studi D4 Teknik Informatika</div>
+                <div className="recognition-desc">Peringkat kehormatan akademik & prestasi studi program D4 Teknik Informatika PENS</div>
               </div>
               <div className="recognition-meta">
                 <span className="recognition-scope">PENS Surabaya</span>

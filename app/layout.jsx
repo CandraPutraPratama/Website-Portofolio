@@ -4,7 +4,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 export const metadata = {
   title: "Candra Putra : Junior Web & Backend Developer",
   description:
-    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan: Jasdor (live production PWA multi-brand) dan BudgEx (enterprise 3-tier approval). Terbuka untuk magang.",
+    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Aktif dalam kepanitiaan dan berpengalaman membangun 5+ sistem web terstruktur. Antusias untuk belajar dan magang di tim engineering profesional.",
   keywords: [
     "Candra Putra",
     "Web Developer Intern",
@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: "Candra Putra : Junior Web & Backend Developer",
     description:
-      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun software yang dipakai orang betulan. Terbuka untuk magang.",
+      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Aktif kepanitiaan dan berpengalaman membangun 5+ sistem web terstruktur. Antusias magang di tim engineering profesional.",
     type: "website",
     locale: "id_ID",
   },

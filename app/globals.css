@@ -931,7 +931,8 @@ body::before {
 .about-profile-stats {
   display: flex;
   flex-direction: row;
-  gap: 32px;
+  flex-wrap: wrap;
+  gap: 16px 28px;
   margin-top: 4px;
 }
 
