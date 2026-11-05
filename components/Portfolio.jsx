@@ -328,7 +328,17 @@ export default function Portfolio() {
   const [emailCopied, setEmailCopied] = useState(false);
   const [heroCoffeeCount, setHeroCoffeeCount] = useState(42);
   const [heroCoffeePop, setHeroCoffeePop] = useState(false);
-  const activeProject = PROJECTS[activeIndex];
+  const [projectFilter, setProjectFilter] = useState("Semua");
+
+  const filteredProjects = PROJECTS.filter((p) => {
+    if (projectFilter === "Semua") return true;
+    if (projectFilter === "Fullstack") return p.categoryFilter === "Fullstack";
+    if (projectFilter === "Backend & Database") return p.categoryFilter === "Backend & Database";
+    if (projectFilter === "Frontend") return p.categoryFilter === "Frontend";
+    return true;
+  });
+
+  const activeProject = filteredProjects[Math.min(activeIndex, Math.max(0, filteredProjects.length - 1))] || filteredProjects[0];
 
   useEffect(() => {
     let cancelled = false;
@@ -379,7 +389,9 @@ export default function Portfolio() {
   }, []);
 
   const goTo = (index) => {
-    const normalized = ((index % PROJECTS.length) + PROJECTS.length) % PROJECTS.length;
+    const total = filteredProjects.length;
+    if (total === 0) return;
+    const normalized = ((index % total) + total) % total;
     setActiveIndex(normalized);
   };
 
@@ -597,7 +609,7 @@ export default function Portfolio() {
             <div>
               <h2 className="section-title">Work Gallery</h2>
               <p className="section-desc">
-                Koleksi platform produksi, arsitektur backend, dan sistem korporat yang saya bangun.
+                Koleksi platform produksi nyata, arsitektur backend, dan sistem korporat yang saya bangun.
               </p>
             </div>
             <Link href="/work" className="work-album-btn-top">
@@ -606,11 +618,30 @@ export default function Portfolio() {
           </div>
         </Reveal>
 
+        {/* Category Filter Tabs */}
+        <Reveal delay={40}>
+          <div className="work-filter-tabs">
+            {["Semua", "Fullstack", "Frontend", "Backend & Database"].map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`work-filter-pill ${projectFilter === cat ? "active" : ""}`}
+                onClick={() => {
+                  setProjectFilter(cat);
+                  setActiveIndex(0);
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
         <Reveal delay={80}>
           <div className="work-album">
             <div className="work-album-inner">
-              {PROJECTS.map((project, index) => {
-                const total = PROJECTS.length;
+              {filteredProjects.map((project, index) => {
+                const total = filteredProjects.length;
                 let diff = (index - activeIndex + total) % total;
                 if (diff > total / 2) diff -= total;
 
@@ -651,7 +682,7 @@ export default function Portfolio() {
         <Reveal delay={120}>
           <div className="work-mobile-stack-wrap">
             <WorkAlbumStack
-              projects={PROJECTS}
+              projects={filteredProjects}
               activeIndex={activeIndex}
               onAdvance={() => goTo(activeIndex + 1)}
             />
@@ -660,19 +691,35 @@ export default function Portfolio() {
 
         <Reveal delay={160}>
           <div className="work-info" key={activeProject.title}>
-            <h3 className="work-info-title">{activeProject.title}</h3>
-
-            <div className="work-info-meta-chips">
-              <span className="work-meta-tag">{activeProject.category}</span>
-              {activeProject.year && <span className="work-meta-tag">{activeProject.year}</span>}
-              {activeProject.awards?.[0] && (
-                <span className="work-meta-tag work-meta-tag--highlight">
-                  {activeProject.awards[0]}
-                </span>
-              )}
+            <div className="work-info-header">
+              <h3 className="work-info-title">{activeProject.title}</h3>
+              <div className="work-info-meta-chips">
+                <span className="work-meta-tag">{activeProject.category}</span>
+                {activeProject.year && <span className="work-meta-tag">{activeProject.year}</span>}
+                {activeProject.awards?.[0] && (
+                  <span className="work-meta-tag work-meta-tag--highlight">
+                    {activeProject.awards[0]}
+                  </span>
+                )}
+              </div>
             </div>
 
             <p className="work-info-desc">{activeProject.desc}</p>
+
+            {/* Recruiter Impact Bullets */}
+            {activeProject.impact && activeProject.impact.length > 0 && (
+              <div className="work-impact-card">
+                <div className="work-impact-heading">Impact Teknis &amp; Arsitektur:</div>
+                <ul className="work-impact-list">
+                  {activeProject.impact.map((point, idx) => (
+                    <li key={idx} className="work-impact-item">
+                      <span className="work-impact-bullet">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="work-tech-tags">
               {activeProject.tech?.map((tech) => (
@@ -681,16 +728,30 @@ export default function Portfolio() {
             </div>
 
             <div className="work-info-actions">
-              <a
-                href={activeProject.link}
-                className="work-info-link"
-                target={activeProject.link !== "#" && !activeProject.link.startsWith("/") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-              >
-                {activeProject.linkText}
-              </a>
+              {activeProject.liveUrl && (
+                <a
+                  href={activeProject.liveUrl}
+                  className="work-info-link work-info-link--live"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Live Demo</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              )}
+              {activeProject.githubUrl && (
+                <a
+                  href={activeProject.githubUrl}
+                  className="work-info-link work-info-link--github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={14} />
+                  <span>Source Code</span>
+                </a>
+              )}
               <Link href="/work" className="work-info-sublink">
-                Lihat di Arsip Teknis
+                Lihat di Arsip Teknis →
               </Link>
             </div>
           </div>

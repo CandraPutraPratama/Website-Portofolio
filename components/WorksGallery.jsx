@@ -1,40 +1,43 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import Reveal from "./Reveal";
 
 const CATEGORIES = [
-  "All",
-  "Live Production & PWA",
-  "Backend Architecture",
-  "Full-Stack Web",
+  "Semua",
+  "Fullstack",
+  "Frontend",
+  "Backend & Database",
 ];
 
 export default function WorksGallery({ projects = [] }) {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("Semua");
 
   const filteredProjects = projects.filter((project) => {
-    if (activeCategory === "All") return true;
-    if (activeCategory === "Live Production & PWA") {
+    if (activeCategory === "Semua") return true;
+    if (activeCategory === "Fullstack") {
       return (
-        project.category.includes("Live Production") ||
-        project.category.includes("PWA") ||
-        project.title.includes("Jasdor") ||
-        project.title.includes("Portfolio")
+        project.categoryFilter === "Fullstack" ||
+        project.category?.includes("Full-Stack") ||
+        project.title?.includes("Jasdor")
       );
     }
-    if (activeCategory === "Backend Architecture") {
+    if (activeCategory === "Backend & Database") {
       return (
-        project.category.includes("Backend") ||
-        project.title.includes("BudgEx")
+        project.categoryFilter === "Backend & Database" ||
+        project.category?.includes("Backend") ||
+        project.title?.includes("BudgEx") ||
+        project.title?.includes("Inventaris")
       );
     }
-    if (activeCategory === "Full-Stack Web") {
+    if (activeCategory === "Frontend") {
       return (
-        project.category.includes("Full-Stack") ||
-        (!project.title.includes("Jasdor") && !project.title.includes("BudgEx") && !project.title.includes("Portfolio"))
+        project.categoryFilter === "Frontend" ||
+        project.category?.includes("Frontend") ||
+        project.title?.includes("Portfolio") ||
+        project.title?.includes("Keuangan")
       );
     }
     return project.category === activeCategory;
@@ -46,9 +49,9 @@ export default function WorksGallery({ projects = [] }) {
         {/* Section Header */}
         <Reveal>
           <div className="works-header">
-            <h1 className="works-title">Works & Projects</h1>
+            <h1 className="works-title">Works &amp; Projects</h1>
             <p className="works-subtitle">
-              Koleksi proyek rekayasa perangkat lunak, sistem produksi nyata, dan arsitektur backend yang dirancang dengan dedikasi serta standar kualitas tinggi.
+              Koleksi sistem produksi nyata, arsitektur backend, dan aplikasi web terstruktur yang dirancang untuk keandalan dan skalabilitas.
             </p>
           </div>
         </Reveal>
@@ -74,12 +77,7 @@ export default function WorksGallery({ projects = [] }) {
         <div className="works-grid">
           {filteredProjects.map((project, idx) => (
             <Reveal key={project.title} delay={80 + (idx % 3) * 60}>
-              <a
-                href={project.link}
-                target={project.link !== "#" && !project.link.startsWith("/") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="works-card group"
-              >
+              <div className="works-card group">
                 {/* Image Wrap */}
                 <div className="works-card-image-wrap">
                   <img
@@ -89,30 +87,91 @@ export default function WorksGallery({ projects = [] }) {
                     loading="lazy"
                   />
                   <div className="works-card-overlay">
-                    <div className="works-card-details-btn" title="Buka Detail Proyek">
-                      <ArrowUpRight size={22} />
-                    </div>
+                    {project.liveUrl ? (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="works-card-details-btn"
+                        title="Buka Live Demo"
+                      >
+                        <ArrowUpRight size={22} />
+                      </a>
+                    ) : project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="works-card-details-btn"
+                        title="Buka Repositori GitHub"
+                      >
+                        <Github size={20} />
+                      </a>
+                    ) : null}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="works-card-content">
-                  <div className="works-card-category">{project.category}</div>
+                  <div className="works-card-header-meta">
+                    <span className="works-card-category">{project.category}</span>
+                    {project.year && <span className="works-card-year">{project.year}</span>}
+                  </div>
+
                   <h3 className="works-card-title">{project.title}</h3>
                   <p className="works-card-desc">{project.desc}</p>
-                  
+
+                  {/* Impact Bullets for Recruiter */}
+                  {project.impact && project.impact.length > 0 && (
+                    <div className="works-card-impact">
+                      <div className="works-impact-title">Key Impact &amp; Architecture:</div>
+                      <ul className="works-impact-items">
+                        {project.impact.slice(0, 2).map((pt, i) => (
+                          <li key={i} className="works-impact-bullet-line">
+                            <span className="works-bullet">•</span>
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Tech Badges */}
                   <div className="works-card-tech">
-                    {project.tech.slice(0, 4).map((t) => (
+                    {project.tech?.slice(0, 5).map((t) => (
                       <span key={t} className="works-card-chip">
                         {t}
                       </span>
                     ))}
-                    {project.tech.length > 4 && (
-                      <span className="works-card-chip">+{project.tech.length - 4}</span>
+                  </div>
+
+                  {/* Action Buttons: Live Demo & Source Code */}
+                  <div className="works-card-actions">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="works-card-action-btn works-card-action-btn--primary"
+                      >
+                        <span>Live Demo</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="works-card-action-btn works-card-action-btn--secondary"
+                      >
+                        <Github size={13} />
+                        <span>Source Code</span>
+                      </a>
                     )}
                   </div>
                 </div>
-              </a>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -124,7 +183,7 @@ export default function WorksGallery({ projects = [] }) {
               Tertarik untuk memulai proyek atau berkolaborasi?
             </h2>
             <p className="works-cta-desc">
-              Terbuka untuk peluang magang Web Development & Backend Engineering, arsitektur software, serta kolaborasi rekayasa perangkat lunak.
+              Terbuka untuk peluang magang Web Development &amp; Backend Engineering, arsitektur software, serta kolaborasi rekayasa perangkat lunak.
             </p>
             <Link href="/#contact" className="works-cta-btn">
               <span>Hubungi Saya</span>
