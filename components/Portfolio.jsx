@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS } from "../data/projects";
+import { TECH_STACK_SHOWCASE } from "../data/skills";
 import Header from "./Header";
 import TypewriterTitle from "./TypewriterTitle";
 import Reveal from "./Reveal";
@@ -768,6 +769,34 @@ export default function Portfolio() {
               <p className="what-i-can-do-desc">
                 Kombinasi kemampuan rekayasa backend, perancangan basis data relasional terstruktur, dan frontend modern untuk membangun sistem digital yang andal dan teruji di lingkungan produksi.
               </p>
+
+              {/* 4. Interactive SVG Tech Stack Grid with Tooltips */}
+              <div className="tech-matrix-container">
+                <div className="tech-matrix-header">
+                  <span className="tech-matrix-title">Mastered Technologies &amp; Tools</span>
+                  <span className="tech-matrix-sub">Hover ikon untuk detail kemahiran &amp; spesialisasi</span>
+                </div>
+                <div className="tech-matrix-grid">
+                  {TECH_STACK_SHOWCASE.map((item) => (
+                    <div key={item.name} className="tech-matrix-item group">
+                      <div className="tech-matrix-icon-box">
+                        <img src={item.logo} alt={item.name} className="tech-matrix-logo" draggable={false} />
+                      </div>
+                      <span className="tech-matrix-label">{item.name}</span>
+                      
+                      {/* Interactive Floating Tooltip */}
+                      <div className="tech-matrix-tooltip">
+                        <div className="tech-tooltip-header">
+                          <span className="tech-tooltip-name">{item.name}</span>
+                          <span className="tech-tooltip-badge">{item.badge}</span>
+                        </div>
+                        <div className="tech-tooltip-cat">{item.category}</div>
+                        <div className="tech-tooltip-prof">{item.proficiency}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* Categorized Tech Showcase */}
               <div className="tech-stack-container">
