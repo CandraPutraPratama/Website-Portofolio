@@ -15,6 +15,7 @@
   --accent-soft: rgba(37, 99, 235, 0.08);
   --brand: #2563eb;
   --border-glow: rgba(0, 0, 0, 0.06);
+  --watermark-stroke: rgba(0, 0, 0, 0.15);
 }
 
 .dark {
@@ -30,6 +31,7 @@
   --accent-soft: rgba(59, 130, 246, 0.12);
   --brand: #3b82f6;
   --border-glow: rgba(255, 255, 255, 0.08);
+  --watermark-stroke: rgba(255, 255, 255, 0.4);
 }
 
 html {
@@ -149,7 +151,7 @@ body::before {
   font-size: clamp(120px, 22vw, 350px);
   color: transparent !important;
   -webkit-text-stroke-width: 1.5px !important;
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.45) !important;
+  -webkit-text-stroke-color: var(--watermark-stroke) !important;
   opacity: 1 !important;
   white-space: nowrap;
   letter-spacing: -3px;
@@ -4680,7 +4682,7 @@ textarea.contact-modal-input {
   font-size: clamp(120px, 22vw, 350px);
   color: transparent !important;
   -webkit-text-stroke-width: 1.5px !important;
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.45) !important;
+  -webkit-text-stroke-color: var(--watermark-stroke) !important;
   opacity: 1 !important;
   white-space: nowrap;
   letter-spacing: -3px;
@@ -5216,4 +5218,314 @@ textarea.contact-modal-input {
 .works-cta-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+}
+
+
+/* ==========================================================================
+   Hero Upgrades: Availability Badge, Headline, Social, Floating Widget
+   ========================================================================== */
+
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, #000 60%, transparent 100%);
+  z-index: 0;
+}
+:root:not(.dark) .hero-grid-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+}
+
+.hero-availability-container {
+  position: absolute;
+  top: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 105;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  max-width: 600px;
+  pointer-events: auto;
+}
+
+.hero-availability-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(var(--surface-rgb, 25, 25, 27), 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.hero-availability-pill:hover {
+  border-color: rgba(16, 185, 129, 0.55);
+  transform: translateY(-1px);
+}
+
+.availability-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+
+.availability-dot-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: #10b981;
+  opacity: 0.75;
+  animation: availabilityPing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.availability-dot-core {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: #10b981;
+}
+
+@keyframes availabilityPing {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.availability-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.hero-content-meta {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 104;
+  text-align: center;
+  width: 90%;
+  max-width: 680px;
+  pointer-events: none;
+}
+
+.hero-headline-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20px, 3.5vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.hero-headline-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(12.5px, 1.8vw, 14.5px);
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hero-headline-sep {
+  opacity: 0.4;
+  margin: 0 6px;
+}
+
+.hero-action-pill--cv {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  font-weight: 600 !important;
+  border-color: transparent !important;
+}
+
+.hero-action-pill--cv:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.hero-social-bar {
+  position: absolute;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 105;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-social-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(var(--surface-rgb, 25, 25, 27), 0.6);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-social-btn:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.hero-social-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(15, 17, 21, 0.9);
+  color: #ededed;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.18s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-social-btn:hover .hero-social-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hero-floating-widget {
+  position: absolute;
+  left: 36px;
+  bottom: 36px;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-widget-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(var(--surface-rgb, 25, 25, 27), 0.75);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 500;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.hero-widget-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.hero-widget-pill--pop {
+  animation: widgetPop 0.35s ease;
+}
+
+@keyframes widgetPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.hero-widget-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+.hero-widget-plus {
+  font-size: 10px;
+  font-weight: 700;
+  color: #f59e0b;
+  opacity: 0.8;
+}
+
+.hero-widget-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(var(--surface-rgb, 25, 25, 27), 0.5);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+
+.scroll-arrow-slide {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--text);
+  animation: scrollSlide 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes scrollSlide {
+  0% { top: -60%; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: 120%; opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .hero-availability-container {
+    top: 76px;
+    width: 94%;
+  }
+  .hero-availability-pill {
+    padding: 5px 12px;
+  }
+  .availability-label {
+    font-size: 11px;
+  }
+  .hero-content-meta {
+    top: 114px;
+    width: 94%;
+  }
+  .hero-social-bar {
+    bottom: 84px;
+    gap: 10px;
+  }
+  .hero-floating-widget {
+    display: none;
+  }
 }

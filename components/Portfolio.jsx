@@ -20,7 +20,11 @@ import {
   Database,
   Server,
   ArrowDown,
-  ArrowUpRight
+  ArrowUpRight,
+  FileDown,
+  Instagram,
+  Coffee,
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS } from "../data/projects";
@@ -322,7 +326,40 @@ export default function Portfolio() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [heroCoffeeCount, setHeroCoffeeCount] = useState(42);
+  const [heroCoffeePop, setHeroCoffeePop] = useState(false);
   const activeProject = PROJECTS[activeIndex];
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/coffee-count")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && typeof data.count === "number") {
+          setHeroCoffeeCount(data.count);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const handleHeroCoffeeClick = async () => {
+    setHeroCoffeePop(true);
+    const prev = heroCoffeeCount;
+    setHeroCoffeeCount(prev + 1);
+    try {
+      const res = await fetch("/api/coffee-count", { method: "POST" });
+      const data = await res.json();
+      if (typeof data.count === "number") {
+        setHeroCoffeeCount(data.count);
+      }
+    } catch {
+      setHeroCoffeeCount(prev);
+    }
+    setTimeout(() => setHeroCoffeePop(false), 350);
+  };
 
   const copyEmailToClipboard = async () => {
     try {
@@ -377,10 +414,30 @@ export default function Portfolio() {
 
       {/* HERO SECTION */}
       <section id="hero" className="hero-root" ref={heroRef}>
-        <h1 className="hero-sr-title">Candra Putra Pratama — Junior Web & Backend Engineer</h1>
+        <h1 className="hero-sr-title">Candra Putra Pratama — Pengembang Perangkat Lunak & Sistem Web</h1>
 
-        {/* Ambient Subtle Glow */}
+        {/* Subtle Geometric Grid & Ambient Glow */}
+        <div className="hero-grid-pattern" aria-hidden="true" />
         <div className="hero-ambient-spotlight" aria-hidden="true" />
+
+        {/* 1. Availability Badge (Green Pulsing Dot) */}
+        <div className="hero-availability-container">
+          <div className="hero-availability-pill">
+            <span className="availability-dot">
+              <span className="availability-dot-ping" />
+              <span className="availability-dot-core" />
+            </span>
+            <span className="availability-label">Available for Internship (Full-time / Remote / Hybrid)</span>
+          </div>
+        </div>
+
+        {/* 5. Internship Headline & Subheadline */}
+        <div className="hero-content-meta">
+          <h2 className="hero-headline-role">Pengembang Perangkat Lunak &amp; Sistem Web</h2>
+          <p className="hero-headline-desc">
+            Mahasiswa D4 Teknik Informatika PENS (IPK 3.76) <span className="hero-headline-sep">•</span> Siap berkontribusi pada pengembangan sistem web yang scalable, reliable, dan rapi.
+          </p>
+        </div>
 
         {/* Dynamic Name Marquee (Stroke Outlined Signature) */}
         <div className="bg-name-marquee">
@@ -419,6 +476,16 @@ export default function Portfolio() {
 
         {/* Floating Quick Action Bar */}
         <div className="hero-floating-actions">
+          <a
+            href="/resume.pdf"
+            download="Resume_Candra_Putra.pdf"
+            className="hero-action-pill hero-action-pill--cv"
+            title="Download CV / Resume Candra Putra"
+          >
+            <FileDown size={14} className="hero-action-icon" />
+            <span>Download CV</span>
+          </a>
+
           <a href="#work" className="hero-action-pill hero-action-pill--primary">
             <span>Lihat Proyek</span>
             <ArrowDown size={14} className="hero-action-icon" />
@@ -453,10 +520,73 @@ export default function Portfolio() {
           </a>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* 3. Hero Social Media Shortcuts Bar */}
+        <div className="hero-social-bar">
+          <a
+            href="https://github.com/CandraPutraPratama"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social-btn"
+            aria-label="GitHub Profile"
+          >
+            <Github size={15} />
+            <span className="hero-social-tooltip">GitHub</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/candra-putra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social-btn"
+            aria-label="LinkedIn Profile"
+          >
+            <Linkedin size={15} />
+            <span className="hero-social-tooltip">LinkedIn</span>
+          </a>
+          <a
+            href="mailto:candraputrap46@gmail.com"
+            className="hero-social-btn"
+            aria-label="Email Candra"
+          >
+            <Mail size={15} />
+            <span className="hero-social-tooltip">Email</span>
+          </a>
+          <a
+            href="https://instagram.com/candraputrapratama"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-social-btn"
+            aria-label="Instagram Profile"
+          >
+            <Instagram size={15} />
+            <span className="hero-social-tooltip">Instagram</span>
+          </a>
+        </div>
+
+        {/* 6. Floating Personal Widget (Left side of screen) */}
+        <div className="hero-floating-widget">
+          <button
+            type="button"
+            onClick={handleHeroCoffeeClick}
+            className={`hero-widget-pill ${heroCoffeePop ? "hero-widget-pill--pop" : ""}`}
+            title="Traktir secangkir kopi virtual untuk Candra"
+          >
+            <Coffee size={14} className="hero-widget-icon text-amber-500" />
+            <span className="hero-widget-label">Coffee:</span>
+            <span className="hero-widget-counter">{heroCoffeeCount}</span>
+            <span className="hero-widget-plus">+1</span>
+          </button>
+          <div className="hero-widget-badge">
+            <GraduationCap size={13} className="text-emerald-400" />
+            <span>D4 TI PENS • GPA 3.76</span>
+          </div>
+        </div>
+
+        {/* 4. Vertical Scroll Down Indicator (Right side of screen) */}
         <div className="scroll-indicator">
-          <div className="scroll-line" />
-          <span className="scroll-text">Scroll Down</span>
+          <div className="scroll-line">
+            <span className="scroll-arrow-slide" />
+          </div>
+          <span className="scroll-text">SCROLL DOWN</span>
         </div>
       </section>
 
