@@ -1435,19 +1435,22 @@ body::before {
   max-width: 1100px;
 }
 
-.experience-card {
+.experience-card,
+.experience-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: start;
+  align-items: center;
 }
 
 /* Tech-Tuesdays layout flip: image on the left, text on the right */
-.experience-card-reverse .experience-text {
+.experience-card-reverse .experience-text,
+.experience-row-reverse .experience-text {
   order: 2;
 }
 
-.experience-card-reverse .experience-image-stack {
+.experience-card-reverse .experience-image-stack,
+.experience-row-reverse .experience-image-stack {
   order: 1;
 }
 
@@ -1521,7 +1524,10 @@ body::before {
 .experience-image-stack {
   position: relative;
   width: 100%;
-  height: 320px;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  min-height: 250px;
+  max-height: 340px;
   perspective: 800px;
   cursor: pointer;
   user-select: none;
@@ -1533,7 +1539,9 @@ body::before {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover !important;
+  object-position: center 20% !important;
+  aspect-ratio: 16 / 10;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: none;
@@ -1552,14 +1560,15 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  .experience-card {
+  .experience-card,
+  .experience-row {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
   .experience-header {
     flex-direction: column;
-  gap: 2px;
+    gap: 2px;
   }
 
   .experience-date {
@@ -1567,14 +1576,17 @@ body::before {
   }
 
   .experience-image-stack {
-    height: 240px;
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
 
-  .experience-card-reverse .experience-text {
+  .experience-card-reverse .experience-text,
+  .experience-row-reverse .experience-text {
     order: 0;
   }
 
-  .experience-card-reverse .experience-image-stack {
+  .experience-card-reverse .experience-image-stack,
+  .experience-row-reverse .experience-image-stack {
     order: 0;
   }
 
@@ -1828,19 +1840,24 @@ body::before {
   position: fixed;
   bottom: 0;
   right: 28px;
-  z-index: 1000;
+  z-index: 2500 !important;
+  isolation: isolate;
   width: 100%;
   max-width: 440px;
   height: min(600px, 82vh);
-  background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
   border-radius: 16px 16px 0 0;
-  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+body:has(.contact-modal) .back-to-top {
+  display: none !important;
 }
 
 .contact-modal--minimized {
@@ -2142,9 +2159,12 @@ textarea.contact-modal-input {
 @media (max-width: 768px) {
   .contact-modal {
     right: 0;
+    left: 0;
+    width: 100%;
     max-width: 100%;
     border-radius: 16px 16px 0 0;
     height: min(560px, 88vh);
+    z-index: 2500 !important;
   }
 
   .contact-modal-inner {
@@ -2302,33 +2322,29 @@ textarea.contact-modal-input {
     padding: 100px 20px 60px;
   }
 
-  .nav-center {
-    display: none;
-  }
-
-  .nav-right .nav-cta {
-    display: none;
-  }
-
-  .nav-right .nav-theme-toggle {
-    display: none;
+  .nav-center,
+  .nav-right {
+    display: none !important;
   }
 
   .nav-bar {
     z-index: 200;
     height: auto;
-    left: 20px;
-    right: 20px;
+    left: 16px;
+    right: 16px;
     transform: none;
     width: auto;
-    padding: 18px 16px;
-    transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 8px 16px;
+    border-radius: 16px;
+    transition: padding 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
     flex-direction: column;
     align-items: stretch;
   }
 
   .nav-bar--expanded {
-    padding: 18px 16px 16px;
+    padding: 12px 16px 20px;
+    background: rgba(var(--surface-rgb), 0.98);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   }
 
   .nav-mobile-header {
@@ -3644,23 +3660,28 @@ textarea.contact-modal-input {
 .nav-bar {
   position: fixed;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 200;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 1140px;
-  height: 58px;
-  padding: 0 20px;
   background: rgba(var(--surface-rgb), 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
   box-shadow: none;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+@media (min-width: 769px) {
+  .nav-bar {
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1140px;
+    height: 58px;
+    padding: 0 20px;
+    border-radius: 12px;
+  }
 }
 
 .nav-bar.scrolled {
@@ -3692,10 +3713,12 @@ textarea.contact-modal-input {
   text-transform: none;
 }
 
-.nav-center {
-  display: flex;
-  align-items: center;
-  gap: 28px;
+@media (min-width: 769px) {
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
 }
 
 .nav-link {
@@ -3720,9 +3743,9 @@ textarea.contact-modal-input {
 .nav-cta {
   height: 38px;
   padding: 0 18px;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
   border-radius: 999px;
   font-family: 'Inter', sans-serif;
@@ -4728,7 +4751,7 @@ textarea.contact-modal-input {
   opacity: 0.22;
 }
 
-/* Profile Silhouette with bottom fade */
+/* Profile Silhouette with refined dark-mode mask and zero white artifacts */
 .profile-wrap {
   position: absolute;
   inset: 0;
@@ -4738,6 +4761,11 @@ textarea.contact-modal-input {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 98%), radial-gradient(ellipse 70% 82% at 50% 50%, black 50%, transparent 95%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 98%), radial-gradient(ellipse 70% 82% at 50% 50%, black 50%, transparent 95%);
+  mask-composite: intersect;
 }
 
 .profile-image {
@@ -4746,14 +4774,42 @@ textarea.contact-modal-input {
   object-fit: cover;
   object-position: center;
   pointer-events: none;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .profile-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 60%, rgba(20, 20, 21, 0.85) 90%, var(--bg) 100%);
+  background: linear-gradient(to bottom, transparent 55%, rgba(20, 20, 21, 0.75) 85%, var(--bg) 100%);
   z-index: 2;
   pointer-events: none;
+}
+
+:root:not(.dark) .profile-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 250, 250, 0.15) 0%,
+    rgba(250, 250, 250, 0.03) 45%,
+    rgba(250, 250, 250, 0.65) 75%,
+    var(--bg) 100%
+  );
+}
+
+.dark .profile-wrap {
+  background: transparent !important;
+}
+
+.dark .profile-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(20, 20, 21, 0.75) 80%,
+    var(--bg) 100%
+  );
 }
 
 /* Floating Quick Action Bar */
@@ -4943,6 +4999,46 @@ textarea.contact-modal-input {
 .currently-desc-clean {
   color: var(--muted);
   font-size: 13px;
+}
+
+/* Contact Links Clean Vertical Layout */
+.contact-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  gap: 16px;
+}
+
+.contact-link-main {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px;
+  min-width: 0;
+}
+
+.contact-link-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  display: block;
+}
+
+.contact-link-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-all;
+  display: block;
 }
 
 /* ==========================================================================
@@ -5534,9 +5630,9 @@ textarea.contact-modal-input {
 .nav-resume-btn {
   height: 38px;
   padding: 0 14px;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
   border-radius: 999px;
   font-family: 'Inter', sans-serif;
@@ -5960,3 +6056,65 @@ textarea.contact-modal-input {
   line-height: 1.35;
   color: #d1d5db;
 }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   PORTFOLIO UPGRADE: MODALS, COMMAND PALETTE & DIALOG ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.z-500 {
+  z-index: 500 !important;
+}
+
+/* Custom subtle scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+

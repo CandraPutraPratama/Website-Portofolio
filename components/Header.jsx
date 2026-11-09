@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUp, ArrowUpRight, FileDown } from "lucide-react";
+import { Menu, X, ArrowUp, ArrowUpRight, FileDown, Search, Calendar } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import CommandPalette from "./CommandPalette";
+import BookCallModal from "./BookCallModal";
 
 export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
   const [scrolled, setScrolled] = useState(false);
@@ -12,7 +14,21 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
   const [coffeeCount, setCoffeeCount] = useState(42);
   const [coffeePop, setCoffeePop] = useState(false);
   const [coffeeLoading, setCoffeeLoading] = useState(true);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [bookCallOpen, setBookCallOpen] = useState(false);
   const navRef = useRef(null);
+
+  // Global Ctrl+K / Cmd+K listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -98,6 +114,14 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
             <div className="nav-logo">C</div>
             <div className="nav-brand">Candra Putra</div>
           </a>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="md:hidden p-2 rounded-full border border-line bg-surface-2 text-muted hover:text-text transition-colors"
+            aria-label="Cari Cepat (Ctrl+K)"
+            style={{ position: "relative", zIndex: 210, marginRight: 4 }}
+          >
+            <Search size={15} />
+          </button>
           <ThemeToggle
             className="md:hidden nav-theme-toggle"
             style={{ position: "relative", zIndex: 210 }}
@@ -122,6 +146,31 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
         {menuOpen && (
           <div className="nav-mobile-menu">
             <div className="nav-mobile-menu-inner">
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setSearchOpen(true);
+                }}
+                className="nav-link flex items-center justify-between text-left"
+              >
+                <span className="flex items-center gap-2">
+                  <Search size={14} />
+                  <span>Pencarian Cepat</span>
+                </span>
+                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface-2 border border-line rounded">⌘K</kbd>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setBookCallOpen(true);
+                }}
+                className="nav-link flex items-center gap-2 text-left text-emerald-400 font-medium"
+              >
+                <Calendar size={14} />
+                <span>Book a 15-Min Call ↗</span>
+              </button>
               <a href="/#work" className="nav-link" onClick={() => setMenuOpen(false)}>
                 Work
               </a>
@@ -193,7 +242,31 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
           </a>
         </div>
 
-        <div className="nav-right">
+        <div className="nav-right hidden md:flex">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="nav-search-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-line bg-surface-2/60 text-muted hover:text-text hover:border-text/30 transition-all text-xs font-mono"
+            title="Cari proyek, stack, prestasi... (Ctrl+K)"
+            aria-label="Buka pencarian cepat"
+            style={{ marginRight: 8 }}
+          >
+            <Search size={13} />
+            <span className="hidden lg:inline text-[11px]">Cari</span>
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface border border-line rounded text-muted">
+              ⌘K
+            </kbd>
+          </button>
+          <button
+            type="button"
+            onClick={() => setBookCallOpen(true)}
+            className="nav-book-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all text-xs font-medium"
+            title="Jadwalkan Intro Call 15 Menit"
+            style={{ marginRight: 8 }}
+          >
+            <Calendar size={13} />
+            <span>Book Call</span>
+          </button>
           <a
             href="/resume.pdf"
             target="_blank"
@@ -214,6 +287,17 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
           </a>
         </div>
       </nav>
+
+      <CommandPalette
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        onOpenBookCall={() => setBookCallOpen(true)}
+      />
+
+      <BookCallModal
+        isOpen={bookCallOpen}
+        onClose={() => setBookCallOpen(false)}
+      />
 
       {showBackToTop && !menuOpen && (
         <button

@@ -38,6 +38,8 @@ next-env.d.ts
 # scratch & analysis
 .cany/
 .taste-skill/
+.codex/
+.impeccable/
 docs/
 
 .vercel

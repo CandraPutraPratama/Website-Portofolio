@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github, Share2 } from "lucide-react";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import ProjectShareModal from "./ProjectShareModal";
 
 const CATEGORIES = [
   "Semua",
@@ -14,6 +15,7 @@ const CATEGORIES = [
 
 export default function WorksGallery({ projects = [] }) {
   const [activeCategory, setActiveCategory] = useState("Semua");
+  const [sharingProject, setSharingProject] = useState(null);
 
   const filteredProjects = projects.filter((project) => {
     if (activeCategory === "Semua") return true;
@@ -169,6 +171,15 @@ export default function WorksGallery({ projects = [] }) {
                         <span>Source Code</span>
                       </a>
                     )}
+                    <button
+                      type="button"
+                      onClick={() => setSharingProject(project)}
+                      className="works-card-action-btn works-card-action-btn--secondary"
+                      title="Bagikan Proyek"
+                    >
+                      <Share2 size={13} />
+                      <span>Bagikan</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -192,6 +203,14 @@ export default function WorksGallery({ projects = [] }) {
           </div>
         </Reveal>
       </div>
+
+      {sharingProject && (
+        <ProjectShareModal
+          project={sharingProject}
+          isOpen={Boolean(sharingProject)}
+          onClose={() => setSharingProject(null)}
+        />
+      )}
     </div>
   );
 }

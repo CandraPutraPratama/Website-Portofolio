@@ -2,9 +2,12 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
-  title: "Candra Putra : Junior Web & Backend Developer",
+  metadataBase: new URL(
+    "https://website-portofolio-candraputrapratamas-projects.vercel.app",
+  ),
+  title: "Candra Putra : Fullstack Web Developer",
   description:
-    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Aktif dalam kepanitiaan dan berpengalaman membangun 5+ sistem web terstruktur. Antusias untuk belajar dan magang di tim engineering profesional.",
+    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun sistem web dengan Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027, WFO Surabaya/Sidoarjo.",
   keywords: [
     "Candra Putra",
     "Web Developer Intern",
@@ -16,11 +19,17 @@ export const metadata = {
   ],
   authors: [{ name: "Candra Putra" }],
   openGraph: {
-    title: "Candra Putra : Junior Web & Backend Developer",
+    title: "Candra Putra : Fullstack Web Developer",
     description:
-      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Aktif kepanitiaan dan berpengalaman membangun 5+ sistem web terstruktur. Antusias magang di tim engineering profesional.",
+      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027.",
     type: "website",
     locale: "id_ID",
+    images: [{ url: "/images/profile.png", alt: "Candra Putra Pratama" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Candra Putra : Fullstack Web Developer",
+    images: ["/images/profile.png"],
   },
 };
 
@@ -35,7 +44,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&family=Great+Vibes&display=swap"
           rel="stylesheet"
         />
         <script

@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { 
-  Github, 
-  Mail, 
-  ExternalLink, 
-  X, 
-  Code2, 
-  FlaskConical, 
-  Rocket, 
-  Trophy, 
-  GraduationCap, 
-  Linkedin, 
+import {
+  Github,
+  Mail,
+  ExternalLink,
+  X,
+  Code2,
+  FlaskConical,
+  Rocket,
+  Trophy,
+  GraduationCap,
+  Linkedin,
   Minus,
   Check,
   Layers,
@@ -22,9 +22,10 @@ import {
   ArrowDown,
   ArrowUpRight,
   FileDown,
-  Instagram,
   Coffee,
-  Sparkles
+  Sparkles,
+  Calendar,
+  Share2,
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS } from "../data/projects";
@@ -32,6 +33,13 @@ import { TECH_STACK_SHOWCASE } from "../data/skills";
 import Header from "./Header";
 import TypewriterTitle from "./TypewriterTitle";
 import Reveal from "./Reveal";
+import LocalTime from "./LocalTime";
+import ImpactMetrics from "./ImpactMetrics";
+import CollaborationsMarquee from "./CollaborationsMarquee";
+import Publications from "./Publications";
+import Testimonials from "./Testimonials";
+import ProjectShareModal from "./ProjectShareModal";
+import BookCallModal from "./BookCallModal";
 
 const TECH_CATEGORIES = [
   {
@@ -57,14 +65,12 @@ const TECH_CATEGORIES = [
     ],
   },
   {
-    title: "Architecture & DevOps",
+    title: "Tools & Workflow",
     skills: [
-      { name: "Clean Architecture", icon: Layers },
-      { name: "3-Tier Approval", icon: ShieldCheck },
       { name: "Git & GitHub", logo: "/images/logos/git.svg" },
       { name: "Postman", logo: "/images/logos/postman.svg" },
-      { name: "Database Design", icon: Database },
-      { name: "Production Deploy", icon: Server },
+      { name: "Docker", logo: "/images/logos/docker.svg" },
+      { name: "Vercel Deploy", icon: Server },
     ],
   },
 ];
@@ -88,19 +94,19 @@ const WHAT_I_CAN_DO = [
       "RESTful APIs",
       "Tailwind CSS",
       "PWA",
-      "Clean Architecture",
+      "Relational DB Design",
     ],
   },
   {
     group: "Production Systems & Multi-Brand Aggregation",
     description:
-      "Berpengalaman meluncurkan produk yang dipakai pengguna betulan (Jasdor live production: 3 brand kopi & 2.000+ outlet) serta sistem korporat dengan alur persetujuan 3 tingkat.",
+      "Meluncurkan produk yang dipakai pengguna betulan (Jasdor: katalog promo 3 brand kopi, 1.600+ pesanan diproses) serta merancang backend sistem anggaran dengan alur persetujuan bertingkat.",
     visual: "assistant",
     size: "medium",
     items: [
       "Multi-Brand Aggregator",
-      "2.000+ Outlet Terhubung",
-      "3-Tier Approval Matrix",
+      "1.600+ Pesanan Diproses",
+      "Multi-Level Approval Flow",
       "Real-Time Queue",
       "WhatsApp API Checkout",
       "Session & Role Auth",
@@ -125,12 +131,10 @@ const WHAT_I_CAN_DO = [
 
 const CARDS = [
   "Problem solver",
-  "Backend & API specialist",
+  "Fokus Backend & REST API",
   "Clean code advocate",
   "PENS D4 IT (IPK 3.76)",
   "Relational database design",
-  "Kepanitiaan & Kolaborasi Tim",
-  "Fast learner",
   "Reliable team player",
   "Product-minded",
   "System architecture",
@@ -152,21 +156,54 @@ const CARD_SCATTER = [
 ];
 
 const CURRENTLY = [
-  { icon: Code2, label: "Building", detail: "Jasdor F&B unified ordering platform" },
-  { icon: FlaskConical, label: "Exploring", detail: "Enterprise backend & 3-tier approvals" },
-  { icon: GraduationCap, label: "Studying", detail: "D4 Teknik Informatika PENS (IPK 3.76)" },
+  {
+    icon: Code2,
+    label: "Building",
+    detail: "Jasdor F&B unified ordering platform",
+  },
+  {
+    icon: FlaskConical,
+    label: "Exploring",
+    detail: "Enterprise backend & 3-tier approvals",
+  },
+  {
+    icon: GraduationCap,
+    label: "Studying",
+    detail: "D4 Teknik Informatika PENS (IPK 3.76)",
+  },
+];
+
+// Tambahkan `href` (mis. "/certificates/pkl-angkasa-pura.pdf") setelah file sertifikat ada di public/certificates/.
+const CERTIFICATIONS = [
+  {
+    title: "Sertifikat PKL Stakeholder Relation — PT Angkasa Pura I",
+    desc: "Magang 6 bulan di Stakeholder Relation Section, Bandara Internasional Juanda. Nilai akhir 87,86.",
+    scope: "PT Angkasa Pura I Juanda",
+  },
+  {
+    title: "Sertifikat Penghargaan Latihan PKD ke-108",
+    desc: "Peserta aktif Operasional Simulasi Penanggulangan Keadaan Darurat, Bandara Internasional Juanda (Mei 2023).",
+    scope: "Bandara Juanda",
+  },
+  {
+    title: "D4 Teknik Informatika — IPK 3.76 / 4.00",
+    desc: "IPK kumulatif program D4 Teknik Informatika, semester 5.",
+    scope: "PENS Surabaya",
+  },
 ];
 
 const EXPERIENCE = [
   {
-    title: "Junior Web & Backend Developer",
-    subtitle: "Jasdor (Live Production PWA) & BudgEx (API Team)",
-    org: "Politeknik Elektronika Negeri Surabaya (PENS)",
-    date: "2026 : Present",
-    desc: "Membangun dan mengoperasikan platform satu pintu pemesanan kopi multi-brand Jasdor (analogi TIX ID untuk F&B: 3 brand kopi, 2.000+ outlet terintegrasi, antrean real-time, dan checkout WhatsApp). Bersamaan dengan itu, merancang arsitektur backend sistem anggaran korporat BudgEx dengan alur persetujuan 3 tingkat berbasis ASP.NET Core dan PostgreSQL.",
+    title: "Lead Developer & Creator",
+    subtitle: "Jasdor Kopi Cima (proyek mandiri) & BudgEx (tim PBL PENS)",
+    org: "Proyek Mandiri & PBL Politeknik Elektronika Negeri Surabaya",
+    date: "2026 : Sekarang",
+    desc: "Merancang dan mengelola Jasdor Kopi Cima, platform pemesanan F&B hemat untuk mahasiswa dan komunitas (katalog promo Kopi Kenangan, Fore Coffee, dan TOMORO Coffee; 1.600+ pesanan diproses). Di sisi lain, sebagai Backend & Database Developer di tim PBL BudgEx, membangun alur persetujuan anggaran berjenjang dengan validasi plafon tahunan dan pelacakan audit.",
     certificates: [
-      { name: "Live Production Application", link: "https://jasdor.vercel.app" },
-      { name: "Clean Architecture Backend", link: "https://github.com/CandraPutraPratama" },
+      {
+        name: "Jasdor Kopi Cima (Live)",
+        link: "https://jasdor.cimagroup.my.id",
+      },
     ],
     images: [
       "/images/journey/jf12026.jpg",
@@ -182,7 +219,10 @@ const EXPERIENCE = [
     imageLeft: true,
     desc: "Mendalami perancangan sistem web terstruktur, normalisasi basis data relasional, dan implementasi logika bisnis nyata lewat 5 proyek aplikasi mandiri: Sistem Data Pegawai, Manajemen Inventaris Gudang, Kasir POS, Manajemen Keuangan Pribadi, dan RoomBook.",
     certificates: [
-      { name: "5 Independent Business Systems", link: "https://github.com/CandraPutraPratama" },
+      {
+        name: "5 Independent Business Systems",
+        link: "https://github.com/CandraPutraPratama/sistem-manajemen-data-pegawai",
+      },
     ],
     images: [
       "/images/journey/jf12025.jpg",
@@ -195,15 +235,19 @@ const EXPERIENCE = [
     subtitle: "Fondasi Rekayasa Perangkat Lunak & Prestasi Akademik",
     org: "Politeknik Elektronika Negeri Surabaya (PENS)",
     date: "2024",
-    desc: "Memulai studi sarjana terapan di kampus vokasi teknologi terbaik Indonesia. Aktif dalam kepanitiaan kampus dan kolaborasi proyek mahasiswa sembari memperkuat fondasi rekayasa perangkat lunak, algoritma pemrograman, struktur data, dan analisis sistem. Meraih predikat Dean's Honor dengan IPK 3.76 / 4.00.",
-    certificates: [
-      { name: "PENS Dean's Honor (IPK 3.76)", link: "mailto:candraputrap46@gmail.com" },
-    ],
+    desc: "Memulai studi sarjana terapan di PENS dan memperkuat fondasi rekayasa perangkat lunak, algoritma pemrograman, struktur data, dan analisis sistem melalui berbagai proyek akademik. IPK kumulatif 3.76 / 4.00.",
     images: [
       "/images/journey/jf12024.jpg",
       "/images/journey/jf22024.jpg",
       "/images/journey/jf32024.jpg",
     ],
+  },
+  {
+    title: "Magang — Stakeholder Relation Section",
+    subtitle: "Peserta Simulasi PKD ke-108 (Mei 2023)",
+    org: "PT Angkasa Pura I, Bandara Internasional Juanda",
+    date: "6 Bulan",
+    desc: "Magang enam bulan di divisi Stakeholder Relation Section dengan nilai akhir 87,86. Terlibat sebagai peserta aktif Operasional Simulasi Penanggulangan Keadaan Darurat (PKD) ke-108 di Bandara Internasional Juanda pada Mei 2023.",
   },
 ];
 
@@ -241,7 +285,9 @@ function ExperienceImageStack({ images, title }) {
           style = {
             "--tx": isFront ? "0px" : `${scatter.x * calm + depth * 8}px`,
             "--ty": isFront ? "0px" : `${scatter.y * calm + dir * depth * 8}px`,
-            "--rot": isFront ? "0deg" : `${scatter.rot * calm + depth * (scatter.rot >= 0 ? 1.5 : -1.5)}deg`,
+            "--rot": isFront
+              ? "0deg"
+              : `${scatter.rot * calm + depth * (scatter.rot >= 0 ? 1.5 : -1.5)}deg`,
             "--sc": isFront ? 1 : 1 - depth * 0.05,
             "--op": isFront ? 1 : 0.8 - (depth - 1) * 0.2,
             zIndex: 30 - depth * 10,
@@ -292,7 +338,9 @@ function WorkAlbumStack({ projects, activeIndex, onAdvance }) {
           style = {
             "--tx": isFront ? "0px" : `${scatter.x * calm + depth * 8}px`,
             "--ty": isFront ? "0px" : `${scatter.y * calm + dir * depth * 8}px`,
-            "--rot": isFront ? "0deg" : `${scatter.rot * calm + depth * (scatter.rot >= 0 ? 1.5 : -1.5)}deg`,
+            "--rot": isFront
+              ? "0deg"
+              : `${scatter.rot * calm + depth * (scatter.rot >= 0 ? 1.5 : -1.5)}deg`,
             "--sc": isFront ? 1 : 1 - depth * 0.05,
             "--op": isFront ? 1 : 0.8 - (depth - 1) * 0.2,
             zIndex: 30 - depth * 10,
@@ -330,16 +378,22 @@ export default function Portfolio() {
   const [heroCoffeeCount, setHeroCoffeeCount] = useState(42);
   const [heroCoffeePop, setHeroCoffeePop] = useState(false);
   const [projectFilter, setProjectFilter] = useState("Semua");
+  const [sharingProject, setSharingProject] = useState(null);
+  const [bookCallOpen, setBookCallOpen] = useState(false);
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (projectFilter === "Semua") return true;
     if (projectFilter === "Fullstack") return p.categoryFilter === "Fullstack";
-    if (projectFilter === "Backend & Database") return p.categoryFilter === "Backend & Database";
+    if (projectFilter === "Backend & Database")
+      return p.categoryFilter === "Backend & Database";
     if (projectFilter === "Frontend") return p.categoryFilter === "Frontend";
     return true;
   });
 
-  const activeProject = filteredProjects[Math.min(activeIndex, Math.max(0, filteredProjects.length - 1))] || filteredProjects[0];
+  const activeProject =
+    filteredProjects[
+      Math.min(activeIndex, Math.max(0, filteredProjects.length - 1))
+    ] || filteredProjects[0];
 
   useEffect(() => {
     let cancelled = false;
@@ -405,7 +459,10 @@ export default function Portfolio() {
       const pxPerSecond = window.innerWidth / enterSeconds;
       const loopDistance = track.scrollWidth / 2;
       const loopSeconds = Math.max(16, loopDistance / Math.max(pxPerSecond, 1));
-      heroRef.current?.style.setProperty("--marquee-loop-duration", `${loopSeconds}s`);
+      heroRef.current?.style.setProperty(
+        "--marquee-loop-duration",
+        `${loopSeconds}s`,
+      );
     };
 
     syncMarqueeSpeed();
@@ -427,28 +484,37 @@ export default function Portfolio() {
 
       {/* HERO SECTION */}
       <section id="hero" className="hero-root" ref={heroRef}>
-        <h1 className="hero-sr-title">Candra Putra Pratama — Pengembang Perangkat Lunak & Sistem Web</h1>
+        <h1 className="hero-sr-title">
+          Candra Putra Pratama — Fullstack Web Developer
+        </h1>
 
         {/* Subtle Geometric Grid & Ambient Glow */}
         <div className="hero-grid-pattern" aria-hidden="true" />
         <div className="hero-ambient-spotlight" aria-hidden="true" />
 
-        {/* 1. Availability Badge (Green Pulsing Dot) */}
+        {/* 1. Availability Badge (Green Pulsing Dot) & Live Local Time Display */}
         <div className="hero-availability-container">
-          <div className="hero-availability-pill">
-            <span className="availability-dot">
-              <span className="availability-dot-ping" />
-              <span className="availability-dot-core" />
-            </span>
-            <span className="availability-label">Available for Internship (Full-time / Remote / Hybrid)</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+            <div className="hero-availability-pill">
+              <span className="availability-dot">
+                <span className="availability-dot-ping" />
+                <span className="availability-dot-core" />
+              </span>
+              <span className="availability-label">
+                Tersedia magang mulai 6 Jan 2027 • WFO Surabaya / Sidoarjo
+              </span>
+            </div>
+            <LocalTime />
           </div>
         </div>
 
         {/* 5. Internship Headline & Subheadline */}
         <div className="hero-content-meta">
-          <h2 className="hero-headline-role">Pengembang Perangkat Lunak &amp; Sistem Web</h2>
+          <h2 className="hero-headline-role">Fullstack Web Developer</h2>
           <p className="hero-headline-desc">
-            Mahasiswa D4 Teknik Informatika PENS (IPK 3.76) <span className="hero-headline-sep">•</span> Siap berkontribusi pada pengembangan sistem web yang scalable, reliable, dan rapi.
+            Mahasiswa D4 Teknik Informatika PENS (IPK 3.76){" "}
+            <span className="hero-headline-sep">•</span> Next.js, REST API, dan
+            basis data relasional. Magang penuh waktu Senin–Jumat.
           </p>
         </div>
 
@@ -483,12 +549,27 @@ export default function Portfolio() {
 
         {/* Profile Silhouette Cutout */}
         <div className="profile-wrap">
-          <img src="/images/profile.png" alt="CANDRA PUTRA" className="profile-image" draggable={false} />
+          <img
+            src="/images/profile.png"
+            alt="CANDRA PUTRA"
+            className="profile-image"
+            draggable={false}
+          />
           <div className="profile-overlay" aria-hidden="true" />
         </div>
 
         {/* Floating Quick Action Bar */}
         <div className="hero-floating-actions">
+          <button
+            type="button"
+            onClick={() => setBookCallOpen(true)}
+            className="hero-action-pill hero-action-pill--secondary text-emerald-400 border-emerald-500/30"
+            title="Book a 15-Min Intro Call"
+          >
+            <Calendar size={14} className="hero-action-icon text-emerald-400" />
+            <span>Book Call ↗</span>
+          </button>
+
           <a
             href="/resume.pdf"
             download="Resume_Candra_Putra.pdf"
@@ -499,7 +580,10 @@ export default function Portfolio() {
             <span>Download CV</span>
           </a>
 
-          <a href="#work" className="hero-action-pill hero-action-pill--primary">
+          <a
+            href="#work"
+            className="hero-action-pill hero-action-pill--primary"
+          >
             <span>Lihat Proyek</span>
             <ArrowDown size={14} className="hero-action-icon" />
           </a>
@@ -512,8 +596,13 @@ export default function Portfolio() {
           >
             {emailCopied ? (
               <>
-                <Check size={14} className="hero-action-icon text-emerald-400" />
-                <span className="text-emerald-400 font-semibold">Email Tersalin!</span>
+                <Check
+                  size={14}
+                  className="hero-action-icon text-emerald-400"
+                />
+                <span className="text-emerald-400 font-semibold">
+                  Email Tersalin!
+                </span>
               </>
             ) : (
               <>
@@ -546,7 +635,7 @@ export default function Portfolio() {
             <span className="hero-social-tooltip">GitHub</span>
           </a>
           <a
-            href="https://linkedin.com/in/candra-putra"
+            href="https://linkedin.com/in/candra-putra-pratama"
             target="_blank"
             rel="noopener noreferrer"
             className="hero-social-btn"
@@ -562,16 +651,6 @@ export default function Portfolio() {
           >
             <Mail size={15} />
             <span className="hero-social-tooltip">Email</span>
-          </a>
-          <a
-            href="https://instagram.com/candraputrapratama"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-social-btn"
-            aria-label="Instagram Profile"
-          >
-            <Instagram size={15} />
-            <span className="hero-social-tooltip">Instagram</span>
           </a>
         </div>
 
@@ -603,6 +682,12 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* SOCIAL PROOF & COLLABORATIONS */}
+      <CollaborationsMarquee />
+
+      {/* QUANTIFIABLE IMPACT & METRICS SECTION */}
+      <ImpactMetrics />
+
       {/* WORK GALLERY SECTION */}
       <section id="work" className="section">
         <Reveal>
@@ -610,7 +695,8 @@ export default function Portfolio() {
             <div>
               <h2 className="section-title">Work Gallery</h2>
               <p className="section-desc">
-                Koleksi platform produksi nyata, arsitektur backend, dan sistem korporat yang saya bangun.
+                Koleksi platform produksi nyata, arsitektur backend, dan sistem
+                korporat yang saya bangun.
               </p>
             </div>
             <Link href="/work" className="work-album-btn-top">
@@ -622,19 +708,21 @@ export default function Portfolio() {
         {/* Category Filter Tabs */}
         <Reveal delay={40}>
           <div className="work-filter-tabs">
-            {["Semua", "Fullstack", "Frontend", "Backend & Database"].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                className={`work-filter-pill ${projectFilter === cat ? "active" : ""}`}
-                onClick={() => {
-                  setProjectFilter(cat);
-                  setActiveIndex(0);
-                }}
-              >
-                {cat}
-              </button>
-            ))}
+            {["Semua", "Fullstack", "Frontend", "Backend & Database"].map(
+              (cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`work-filter-pill ${projectFilter === cat ? "active" : ""}`}
+                  onClick={() => {
+                    setProjectFilter(cat);
+                    setActiveIndex(0);
+                  }}
+                >
+                  {cat}
+                </button>
+              ),
+            )}
           </div>
         </Reveal>
 
@@ -661,7 +749,10 @@ export default function Portfolio() {
                         dir * (200 + (distance - 1) * 130)
                       }px), -50%) scale(${Math.max(0.55, 1 - distance * 0.28)})`,
                       zIndex: 5 - distance,
-                      opacity: distance <= 2 ? Math.max(0, 0.85 - (distance - 1) * 0.55) : 0,
+                      opacity:
+                        distance <= 2
+                          ? Math.max(0, 0.85 - (distance - 1) * 0.55)
+                          : 0,
                       pointerEvents: distance <= 2 ? "auto" : "none",
                     };
 
@@ -672,7 +763,12 @@ export default function Portfolio() {
                     style={style}
                     onClick={() => !isCenter && goTo(index)}
                   >
-                    <img src={project.image} alt={project.title} className="work-album-img" draggable={false} />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="work-album-img"
+                      draggable={false}
+                    />
                   </div>
                 );
               })}
@@ -696,7 +792,9 @@ export default function Portfolio() {
               <h3 className="work-info-title">{activeProject.title}</h3>
               <div className="work-info-meta-chips">
                 <span className="work-meta-tag">{activeProject.category}</span>
-                {activeProject.year && <span className="work-meta-tag">{activeProject.year}</span>}
+                {activeProject.year && (
+                  <span className="work-meta-tag">{activeProject.year}</span>
+                )}
                 {activeProject.awards?.[0] && (
                   <span className="work-meta-tag work-meta-tag--highlight">
                     {activeProject.awards[0]}
@@ -710,7 +808,9 @@ export default function Portfolio() {
             {/* Recruiter Impact Bullets */}
             {activeProject.impact && activeProject.impact.length > 0 && (
               <div className="work-impact-card">
-                <div className="work-impact-heading">Impact Teknis &amp; Arsitektur:</div>
+                <div className="work-impact-heading">
+                  Impact Teknis &amp; Arsitektur:
+                </div>
                 <ul className="work-impact-list">
                   {activeProject.impact.map((point, idx) => (
                     <li key={idx} className="work-impact-item">
@@ -724,7 +824,9 @@ export default function Portfolio() {
 
             <div className="work-tech-tags">
               {activeProject.tech?.map((tech) => (
-                <span key={tech} className="work-tech-tag">{tech}</span>
+                <span key={tech} className="work-tech-tag">
+                  {tech}
+                </span>
               ))}
             </div>
 
@@ -751,6 +853,15 @@ export default function Portfolio() {
                   <span>Source Code</span>
                 </a>
               )}
+              <button
+                type="button"
+                onClick={() => setSharingProject(activeProject)}
+                className="work-info-link work-info-link--share flex items-center gap-1.5"
+                title="Bagikan Proyek Ini"
+              >
+                <Share2 size={14} />
+                <span>Bagikan</span>
+              </button>
               <Link href="/work" className="work-info-sublink">
                 Lihat di Arsip Teknis →
               </Link>
@@ -767,31 +878,45 @@ export default function Portfolio() {
             <Reveal>
               <h2 className="section-title">What I Can Do</h2>
               <p className="what-i-can-do-desc">
-                Kombinasi kemampuan rekayasa backend, perancangan basis data relasional terstruktur, dan frontend modern untuk membangun sistem digital yang andal dan teruji di lingkungan produksi.
+                Kombinasi kemampuan rekayasa backend, perancangan basis data
+                relasional terstruktur, dan frontend modern untuk membangun
+                sistem digital yang andal dan teruji di lingkungan produksi.
               </p>
 
               {/* 4. Interactive SVG Tech Stack Grid with Tooltips */}
               <div className="tech-matrix-container">
                 <div className="tech-matrix-header">
-                  <span className="tech-matrix-title">Mastered Technologies &amp; Tools</span>
-                  <span className="tech-matrix-sub">Hover ikon untuk detail kemahiran &amp; spesialisasi</span>
+                  <span className="tech-matrix-title">
+                    Mastered Technologies &amp; Tools
+                  </span>
+                  <span className="tech-matrix-sub">
+                    Hover ikon untuk detail kemahiran &amp; spesialisasi
+                  </span>
                 </div>
                 <div className="tech-matrix-grid">
                   {TECH_STACK_SHOWCASE.map((item) => (
                     <div key={item.name} className="tech-matrix-item group">
                       <div className="tech-matrix-icon-box">
-                        <img src={item.logo} alt={item.name} className="tech-matrix-logo" draggable={false} />
+                        <img
+                          src={item.logo}
+                          alt={item.name}
+                          className="tech-matrix-logo"
+                          draggable={false}
+                        />
                       </div>
                       <span className="tech-matrix-label">{item.name}</span>
-                      
+
                       {/* Interactive Floating Tooltip */}
                       <div className="tech-matrix-tooltip">
                         <div className="tech-tooltip-header">
                           <span className="tech-tooltip-name">{item.name}</span>
-                          <span className="tech-tooltip-badge">{item.badge}</span>
                         </div>
                         <div className="tech-tooltip-cat">{item.category}</div>
-                        <div className="tech-tooltip-prof">{item.proficiency}</div>
+                        {item.usedIn && (
+                          <div className="tech-tooltip-prof">
+                            Dipakai di: {item.usedIn}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -809,7 +934,12 @@ export default function Portfolio() {
                         return (
                           <div key={skill.name} className="tech-chip">
                             {skill.logo ? (
-                              <img src={skill.logo} alt={skill.name} className="tech-chip-img" draggable={false} />
+                              <img
+                                src={skill.logo}
+                                alt={skill.name}
+                                className="tech-chip-img"
+                                draggable={false}
+                              />
                             ) : Icon ? (
                               <Icon size={14} className="tech-chip-icon" />
                             ) : null}
@@ -831,22 +961,44 @@ export default function Portfolio() {
                 <div className="arch-card">
                   <div className="arch-card-header">
                     <div>
-                      <h3 className="arch-card-title">Jasdor Unified Ordering Platform</h3>
-                      <div className="arch-card-tag">Production Multi-Brand Engine</div>
+                      <h3 className="arch-card-title">Jasdor Kopi Cima</h3>
+                      <div className="arch-card-tag">
+                        Production Multi-Brand Engine
+                      </div>
                     </div>
                   </div>
                   <p className="arch-card-desc">
-                    Arsitektur platform pemesanan satu pintu analogi TIX ID untuk F&B. Menyatukan 3 brand ternama ke satu ekosistem PWA ringan dengan antrean pesanan tersinkronisasi dan alur pembayaran WhatsApp.
+                    Arsitektur platform pemesanan satu pintu analogi TIX ID
+                    untuk F&B. Katalog promo Kopi Kenangan, Fore Coffee, dan
+                    TOMORO Coffee dalam satu PWA ringan dengan antrean pesanan
+                    dan checkout via WhatsApp.
                   </p>
                   <div className="arch-card-points">
-                    <div className="arch-point-item"><span className="arch-point-dot" /> Multi-Brand Aggregator</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> 2.000+ Outlet Terhubung</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> Real-Time Order Queue</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> WhatsApp API Checkout</div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Multi-Brand Aggregator
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> 1.600+ Pesanan
+                      Diproses
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Real-Time Order Queue
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> WhatsApp API Checkout
+                    </div>
                   </div>
                   <div className="arch-card-tech">
-                    {["Next.js 14", "TypeScript", "PWA", "Tailwind CSS", "REST API"].map((t) => (
-                      <span key={t} className="arch-tech-pill">{t}</span>
+                    {[
+                      "Next.js 14",
+                      "TypeScript",
+                      "PWA",
+                      "Tailwind CSS",
+                      "REST API",
+                    ].map((t) => (
+                      <span key={t} className="arch-tech-pill">
+                        {t}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -856,22 +1008,47 @@ export default function Portfolio() {
                 <div className="arch-card">
                   <div className="arch-card-header">
                     <div>
-                      <h3 className="arch-card-title">BudgEx Enterprise Budgeting System</h3>
-                      <div className="arch-card-tag">Corporate Workflow & Database</div>
+                      <h3 className="arch-card-title">
+                        BudgEx Budget Approval Flow
+                      </h3>
+                      <div className="arch-card-tag">
+                        Tim PBL PENS • Backend & Database
+                      </div>
                     </div>
                   </div>
                   <p className="arch-card-desc">
-                    Sistem backend pengelolaan anggaran korporat berkeandalan tinggi dengan alur persetujuan 3 tingkat, kontrol hak akses berbasis peran (RBAC), audit trail komprehensif, dan skema basis data PostgreSQL.
+                    Backend alur persetujuan anggaran berjenjang dengan review
+                    antar departemen, validasi plafon tahunan, dan pelacakan
+                    audit. Peran saya: skema relasional dan integrasi flow
+                    persetujuan multi-role.
                   </p>
                   <div className="arch-card-points">
-                    <div className="arch-point-item"><span className="arch-point-dot" /> 3-Tier Approval Matrix</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> Relational Normalization</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> Audit Trail Logging</div>
-                    <div className="arch-point-item"><span className="arch-point-dot" /> Role-Based Access Control</div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Multi-Level Approval
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Ceiling Logic (Plafon
+                      Tahunan)
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Audit Trail Logging
+                    </div>
+                    <div className="arch-point-item">
+                      <span className="arch-point-dot" /> Race-Condition Safe
+                      Review
+                    </div>
                   </div>
                   <div className="arch-card-tech">
-                    {["ASP.NET Core", "C#", "PostgreSQL", "Clean Architecture", "PENS D4 IT"].map((t) => (
-                      <span key={t} className="arch-tech-pill">{t}</span>
+                    {[
+                      "ASP.NET Core",
+                      "C#",
+                      "PostgreSQL",
+                      "State Machine",
+                      "PBL PENS",
+                    ].map((t) => (
+                      <span key={t} className="arch-tech-pill">
+                        {t}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -885,7 +1062,9 @@ export default function Portfolio() {
       <section id="about" className="section">
         <Reveal>
           <h2 className="section-title">
-            {isMobile ? "Problem Solver.\nBackend Engineer." : "Problem Solver. Backend Engineer."}
+            {isMobile
+              ? "Problem Solver.\nFullstack Developer."
+              : "Problem Solver. Fullstack Developer."}
           </h2>
         </Reveal>
 
@@ -893,12 +1072,15 @@ export default function Portfolio() {
           <div className="about-profile-card">
             <div className="about-profile-header">
               <div className="about-profile-image-wrapper">
-                <img src="/images/about/profile.png" alt="Candra Putra" className="about-profile-image" draggable={false} />
+                <img
+                  src="/images/about/profile.png"
+                  alt="Candra Putra"
+                  className="about-profile-image"
+                  draggable={false}
+                />
               </div>
               <div className="about-profile-info">
-                <div className="about-profile-name">
-                  Candra Putra Pratama
-                </div>
+                <div className="about-profile-name">Candra Putra Pratama</div>
                 <div className="about-profile-stats">
                   <div className="about-stat-item">
                     <span className="about-stat-label">Sistem Web</span>
@@ -909,26 +1091,46 @@ export default function Portfolio() {
                     <span className="about-stat-value">3.76</span>
                   </div>
                   <div className="about-stat-item">
-                    <span className="about-stat-label">Prestasi</span>
-                    <span className="about-stat-value">Dean's Honor</span>
+                    <span className="about-stat-label">Magang Industri</span>
+                    <span className="about-stat-value">6 Bulan</span>
                   </div>
                   <div className="about-stat-item">
                     <span className="about-stat-label">PENS D4 IT</span>
-                    <span className="about-stat-value">2026</span>
+                    <span className="about-stat-value">Smt 5</span>
                   </div>
                 </div>
                 <div className="about-description">
                   <p>
-                    Saya adalah mahasiswa D4 Teknik Informatika Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus pada Web & Backend Development. Selain aktif dalam kepanitiaan kampus serta meraih prestasi akademik Dean's Honor, saya telah merancang dan membangun 5+ sistem web terstruktur berbasis basis data relasional: mulai dari arsitektur backend korporat BudgEx (alur approval 3 tingkat dengan ASP.NET Core & PostgreSQL) hingga platform produksi Jasdor (PWA multi-brand terhubung ke 3 brand dan 2.000+ outlet).
+                    Saya adalah mahasiswa D4 Teknik Informatika Politeknik
+                    Elektronika Negeri Surabaya (PENS) dengan IPK 3.76, berfokus
+                    pada Fullstack Web Development. Saya pernah magang enam
+                    bulan di PT Angkasa Pura I Juanda (Stakeholder Relation
+                    Section, nilai 87,86) dan telah membangun 5+ sistem web
+                    berbasis basis data relasional, termasuk backend BudgEx
+                    (alur persetujuan anggaran berjenjang, tim PBL PENS) dan
+                    Jasdor Kopi Cima (PWA pemesanan F&B dengan 1.600+ pesanan
+                    diproses).
                   </p>
                   <p>
-                    Saya memiliki antusiasme tinggi untuk terus belajar, memperdalam praktik rekayasa perangkat lunak industri, dan siap berkontribusi langsung lewat program magang di tim engineering profesional.
+                    Saya memiliki antusiasme tinggi untuk terus belajar,
+                    memperdalam praktik rekayasa perangkat lunak industri, dan
+                    siap berkontribusi langsung lewat program magang di tim
+                    engineering profesional.
                   </p>
                   <p>
                     Ingin mendiskusikan peluang magang atau kolaborasi teknis?{" "}
-                    <a href="mailto:candraputrap46@gmail.com" className="about-resume-link">Hubungi via Email</a>
-                    {" "}atau{" "}
-                    <button type="button" onClick={copyEmailToClipboard} className="about-copy-email-btn">
+                    <a
+                      href="mailto:candraputrap46@gmail.com"
+                      className="about-resume-link"
+                    >
+                      Hubungi via Email
+                    </a>{" "}
+                    atau{" "}
+                    <button
+                      type="button"
+                      onClick={copyEmailToClipboard}
+                      className="about-copy-email-btn"
+                    >
                       {emailCopied ? "✓ Email Tersalin" : "Salin Email"}
                     </button>
                   </p>
@@ -939,22 +1141,37 @@ export default function Portfolio() {
             {/* CURRENTLY + CARD STACK */}
             <div className="about-bottom-row">
               <div className="currently-strip">
-                <div className="currently-strip-label">Fokus & Eksplorasi Saat Ini</div>
+                <div className="currently-strip-label">
+                  Fokus & Eksplorasi Saat Ini
+                </div>
                 <div className="currently-list-clean">
                   <div className="currently-item-clean">
                     <span className="currently-tag-clean">Membangun</span>
-                    <span className="currently-text-clean">Jasdor Unified Ordering</span>
-                    <span className="currently-desc-clean">• PWA multi-brand live production (Next.js & WhatsApp API)</span>
+                    <span className="currently-text-clean">
+                      Jasdor Kopi Cima
+                    </span>
+                    <span className="currently-desc-clean">
+                      • PWA pemesanan F&B, live (Next.js & WhatsApp API)
+                    </span>
                   </div>
                   <div className="currently-item-clean">
                     <span className="currently-tag-clean">Mengeksplorasi</span>
-                    <span className="currently-text-clean">BudgEx 3-Tier Workflow</span>
-                    <span className="currently-desc-clean">• Sistem persetujuan anggaran korporat (ASP.NET Core & PostgreSQL)</span>
+                    <span className="currently-text-clean">
+                      BudgEx Approval Flow
+                    </span>
+                    <span className="currently-desc-clean">
+                      • Backend persetujuan anggaran berjenjang (ASP.NET Core &
+                      PostgreSQL)
+                    </span>
                   </div>
                   <div className="currently-item-clean">
                     <span className="currently-tag-clean">Studi</span>
-                    <span className="currently-text-clean">D4 Teknik Informatika PENS</span>
-                    <span className="currently-desc-clean">• Kampus vokasi teknologi terbaik Indonesia (IPK 3.76)</span>
+                    <span className="currently-text-clean">
+                      D4 Teknik Informatika PENS
+                    </span>
+                    <span className="currently-desc-clean">
+                      • Semester 5, IPK 3.76 / 4.00
+                    </span>
                   </div>
                 </div>
               </div>
@@ -962,12 +1179,15 @@ export default function Portfolio() {
               <div className="card-stack">
                 <div
                   className="card-stack-container"
-                  onClick={() => setCardIndex((prev) => (prev + 1) % CARDS.length)}
+                  onClick={() =>
+                    setCardIndex((prev) => (prev + 1) % CARDS.length)
+                  }
                   onMouseEnter={() => setCardPaused(true)}
                   onMouseLeave={() => setCardPaused(false)}
                 >
                   {CARDS.map((trait, i) => {
-                    const offset = (i - cardIndex + CARDS.length) % CARDS.length;
+                    const offset =
+                      (i - cardIndex + CARDS.length) % CARDS.length;
                     const isExiting = offset === CARDS.length - 1;
                     if (offset > 2 && !isExiting) return null;
 
@@ -1016,80 +1236,94 @@ export default function Portfolio() {
       {/* RECOGNITION & ACHIEVEMENTS SECTION */}
       <section id="awards" className="section">
         <Reveal>
-          <h2 className="section-title">Recognition & Academic Honors</h2>
+          <h2 className="section-title">Sertifikasi & Pengalaman Industri</h2>
           <p className="section-desc">
-            Pencapaian akademik resmi dan validasi sistem digital yang merefleksikan dedikasi terhadap standar rekayasa perangkat lunak tinggi.
+            Pengalaman industri di PT Angkasa Pura I Juanda dan capaian akademik
+            di PENS.
           </p>
         </Reveal>
 
         <Reveal delay={80}>
           <div className="recognition-table">
-            <a href="mailto:candraputrap46@gmail.com" className="recognition-row">
-              <div className="recognition-main">
-                <div className="recognition-title">PENS Dean's Honor (IPK 3.76 / 4.00)</div>
-                <div className="recognition-desc">Peringkat kehormatan akademik & prestasi studi program D4 Teknik Informatika PENS</div>
-              </div>
-              <div className="recognition-meta">
-                <span className="recognition-scope">PENS Surabaya</span>
-                <ExternalLink size={15} className="recognition-link-icon" />
-              </div>
-            </a>
-
-            <a href="https://jasdor.vercel.app" target="_blank" rel="noreferrer" className="recognition-row">
-              <div className="recognition-main">
-                <div className="recognition-title">Jasdor Unified Ordering Platform (Live Production)</div>
-                <div className="recognition-desc">Menghubungkan 3 brand kopi ternama dan 2.000+ outlet ke satu sistem PWA</div>
-              </div>
-              <div className="recognition-meta">
-                <span className="recognition-scope">2.000+ Outlets</span>
-                <ExternalLink size={15} className="recognition-link-icon" />
-              </div>
-            </a>
-
-            <a href="https://github.com/CandraPutraPratama" target="_blank" rel="noreferrer" className="recognition-row">
-              <div className="recognition-main">
-                <div className="recognition-title">BudgEx Enterprise Budgeting Architecture</div>
-                <div className="recognition-desc">Sistem alur persetujuan bertingkat (3-Tier Matrix) berbasis ASP.NET Core & PostgreSQL</div>
-              </div>
-              <div className="recognition-meta">
-                <span className="recognition-scope">Clean Architecture</span>
-                <ExternalLink size={15} className="recognition-link-icon" />
-              </div>
-            </a>
+            {CERTIFICATIONS.map((c) => {
+              const Wrapper = c.href ? "a" : "div";
+              const props = c.href
+                ? { href: c.href, target: "_blank", rel: "noreferrer" }
+                : {};
+              return (
+                <Wrapper key={c.title} {...props} className="recognition-row">
+                  <div className="recognition-main">
+                    <div className="recognition-title">{c.title}</div>
+                    <div className="recognition-desc">{c.desc}</div>
+                  </div>
+                  <div className="recognition-meta">
+                    <span className="recognition-scope">{c.scope}</span>
+                    {c.href && (
+                      <ExternalLink
+                        size={15}
+                        className="recognition-link-icon"
+                      />
+                    )}
+                  </div>
+                </Wrapper>
+              );
+            })}
           </div>
         </Reveal>
       </section>
+
+      {/* PUBLICATIONS & RESEARCH */}
+      <Publications />
 
       {/* EXPERIENCE SECTION */}
       <section id="trainings" className="section">
         <Reveal>
           <h2 className="section-title">Milestones & Journey</h2>
           <p className="section-desc">
-            Rangkaian perjalanan studi, pengembangan produk nyata, dan eksplorasi sistem yang membentuk keahlian rekayasa perangkat lunak saya.
+            Rangkaian perjalanan studi, pengembangan produk nyata, dan
+            eksplorasi sistem yang membentuk keahlian rekayasa perangkat lunak
+            saya.
           </p>
         </Reveal>
 
         <div className="experience-list">
           {EXPERIENCE.map((exp, i) => (
-            <div key={exp.title} className={`experience-row${exp.imageLeft ? " experience-row-reverse" : ""}`}>
+            <div
+              key={exp.title}
+              className={`experience-row experience-card${exp.imageLeft ? " experience-row-reverse experience-card-reverse" : ""}`}
+            >
               <div className="experience-text">
                 <div className="experience-header">
                   <div className="experience-title">
                     {exp.title}
-                    {exp.subtitle && <div className="experience-subtitle">{exp.subtitle}</div>}
+                    {exp.subtitle && (
+                      <div className="experience-subtitle">{exp.subtitle}</div>
+                    )}
                   </div>
                   <div className="experience-date">{exp.date}</div>
                 </div>
                 <div className="experience-org">{exp.org}</div>
                 <div className="experience-desc">{exp.desc}</div>
-                {exp.certificates && exp.certificates.map((cert) => (
-                  <div key={cert.name}>
-                    <a href={cert.link} className="experience-certificate" target="_blank" rel="noopener noreferrer">
-                      <span>{cert.name}</span>
-                      <span className="experience-cert-arrow" aria-hidden="true"> ↗</span>
-                    </a>
-                  </div>
-                ))}
+                {exp.certificates &&
+                  exp.certificates.map((cert) => (
+                    <div key={cert.name}>
+                      <a
+                        href={cert.link}
+                        className="experience-certificate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>{cert.name}</span>
+                        <span
+                          className="experience-cert-arrow"
+                          aria-hidden="true"
+                        >
+                          {" "}
+                          ↗
+                        </span>
+                      </a>
+                    </div>
+                  ))}
               </div>
               {exp.images && exp.images.length > 0 && (
                 <ExperienceImageStack images={exp.images} title={exp.title} />
@@ -1099,6 +1333,9 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* RECOMMENDATIONS & TESTIMONIALS */}
+      <Testimonials />
+
       {/* CONTACT SECTION */}
       <section id="contact" className="section">
         <div className="contact-grid">
@@ -1107,50 +1344,92 @@ export default function Portfolio() {
               <h2 className="contact-headline">Let's work together</h2>
             </Reveal>
             <Reveal delay={60}>
-              <p className="contact-description">Mencari tantangan rekayasa berikutnya yang layak diselesaikan.</p>
+              <p className="contact-description">
+                Mencari tantangan rekayasa berikutnya yang layak diselesaikan.
+              </p>
             </Reveal>
             <Reveal delay={120}>
               <p className="contact-secondary">
-                Terbuka untuk peluang magang Web Development & Backend Engineering, arsitektur software, serta kolaborasi rekayasa perangkat lunak.
+                Terbuka untuk peluang magang Web Development & Backend
+                Engineering, arsitektur software, serta kolaborasi rekayasa
+                perangkat lunak.
               </p>
             </Reveal>
             <Reveal delay={180}>
-              <a
-                href="mailto:candraputrap46@gmail.com?subject=Permintaan%20Resume%20-%20Candra%20Putra"
-                className="contact-resume-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Unduh Resume
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setBookCallOpen(true)}
+                  className="contact-resume-btn flex items-center gap-2 bg-text text-surface font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+                >
+                  <Calendar size={14} />
+                  <span>Book a 15-Min Call ↗</span>
+                </button>
+                <a
+                  href="/resume.pdf"
+                  download="Resume_Candra_Putra.pdf"
+                  className="contact-resume-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Unduh Resume
+                </a>
+              </div>
             </Reveal>
           </div>
 
           <div className="contact-right">
             <div className="contact-links-list">
               <Reveal delay={100}>
-                <a href="mailto:candraputrap46@gmail.com" className="contact-link-row" target="_blank" rel="noopener noreferrer">
-                  <div className="contact-link-main">
-                    <span className="contact-link-role">Direct Communication</span>
-                    <span className="contact-link-val">candraputrap46@gmail.com</span>
+                <a
+                  href="mailto:candraputrap46@gmail.com"
+                  className="contact-link-row"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="contact-link-main flex flex-col gap-1">
+                    <span className="contact-link-role">
+                      Direct Communication
+                    </span>
+                    <span className="contact-link-val">
+                      candraputrap46@gmail.com
+                    </span>
                   </div>
                   <ExternalLink size={15} className="contact-link-arrow" />
                 </a>
               </Reveal>
               <Reveal delay={160}>
-                <a href="https://github.com/CandraPutraPratama" className="contact-link-row" target="_blank" rel="noopener noreferrer">
-                  <div className="contact-link-main">
-                    <span className="contact-link-role">Source Code & Architecture</span>
-                    <span className="contact-link-val">github.com/CandraPutraPratama</span>
+                <a
+                  href="https://github.com/CandraPutraPratama"
+                  className="contact-link-row"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="contact-link-main flex flex-col gap-1">
+                    <span className="contact-link-role">
+                      Source Code & Architecture
+                    </span>
+                    <span className="contact-link-val">
+                      github.com/CandraPutraPratama
+                    </span>
                   </div>
                   <ExternalLink size={15} className="contact-link-arrow" />
                 </a>
               </Reveal>
               <Reveal delay={220}>
-                <a href="https://linkedin.com/in/candra-putra" className="contact-link-row" target="_blank" rel="noopener noreferrer">
-                  <div className="contact-link-main">
-                    <span className="contact-link-role">Professional Network</span>
-                    <span className="contact-link-val">linkedin.com/in/candra-putra</span>
+                <a
+                  href="https://linkedin.com/in/candra-putra-pratama"
+                  className="contact-link-row"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="contact-link-main flex flex-col gap-1">
+                    <span className="contact-link-role">
+                      Professional Network
+                    </span>
+                    <span className="contact-link-val">
+                      linkedin.com/in/candra-putra-pratama
+                    </span>
                   </div>
                   <ExternalLink size={15} className="contact-link-arrow" />
                 </a>
@@ -1173,8 +1452,13 @@ export default function Portfolio() {
 
       {/* CONTACT MODAL */}
       {isModalOpen && (
-        <div className={`contact-modal${isModalMinimized ? " contact-modal--minimized" : ""}`}>
-          <div className="contact-modal-header" onClick={() => isModalMinimized && setIsModalMinimized(false)}>
+        <div
+          className={`contact-modal${isModalMinimized ? " contact-modal--minimized" : ""}`}
+        >
+          <div
+            className="contact-modal-header"
+            onClick={() => isModalMinimized && setIsModalMinimized(false)}
+          >
             <h3 className="contact-modal-title">Kirim Pesan</h3>
             <div className="contact-modal-controls">
               <button
@@ -1209,20 +1493,22 @@ export default function Portfolio() {
                 onSubmit={async (e) => {
                   e.preventDefault();
                   const form = e.target;
+                  const fd = new FormData(form);
                   const data = {
-                    name: form.name.value.trim(),
-                    email: form.email.value.trim(),
-                    message: form.message.value.trim(),
+                    name: String(fd.get("name") || "").trim(),
+                    email: String(fd.get("email") || "").trim(),
+                    message: String(fd.get("message") || "").trim(),
                   };
 
                   setFormStatus("submitting");
 
                   try {
-                    await fetch("/api/contact", {
+                    const res = await fetch("/api/contact", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify(data),
                     });
+                    if (!res.ok) throw new Error("Request failed");
                     setFormStatus("success");
                     form.reset();
                     setIsModalOpen(false);
@@ -1234,26 +1520,53 @@ export default function Portfolio() {
               >
                 <div className="contact-modal-field">
                   <label className="contact-modal-label">Nama Lengkap</label>
-                  <input type="text" name="name" className="contact-modal-input" placeholder="Nama Anda" required />
+                  <input
+                    type="text"
+                    name="name"
+                    className="contact-modal-input"
+                    placeholder="Nama Anda"
+                    required
+                  />
                 </div>
 
                 <div className="contact-modal-field">
                   <label className="contact-modal-label">Alamat Email</label>
-                  <input type="email" name="email" className="contact-modal-input" placeholder="nama@perusahaan.com" required />
+                  <input
+                    type="email"
+                    name="email"
+                    className="contact-modal-input"
+                    placeholder="nama@perusahaan.com"
+                    required
+                  />
                 </div>
 
                 <div className="contact-modal-field contact-modal-field--grow">
                   <label className="contact-modal-label">Pesan</label>
-                  <textarea rows="6" name="message" className="contact-modal-input" placeholder="Tuliskan pesan atau detail peluang kerjasama..." required />
+                  <textarea
+                    rows="6"
+                    name="message"
+                    className="contact-modal-input"
+                    placeholder="Tuliskan pesan atau detail peluang kerjasama..."
+                    required
+                  />
                 </div>
 
-                <button type="submit" className="contact-modal-submit" disabled={formStatus === "submitting"}>
-                  {formStatus === "submitting" ? "Mengirim..." : formStatus === "success" ? "Pesan Terkirim" : "Kirim Pesan"}
+                <button
+                  type="submit"
+                  className="contact-modal-submit"
+                  disabled={formStatus === "submitting"}
+                >
+                  {formStatus === "submitting"
+                    ? "Mengirim..."
+                    : formStatus === "success"
+                      ? "Pesan Terkirim"
+                      : "Kirim Pesan"}
                 </button>
 
                 {formStatus === "error" && (
                   <div className="contact-modal-error">
-                    Gagal mengirim pesan. Silakan coba lagi atau hubungi via email langsung.
+                    Gagal mengirim pesan. Silakan hubungi langsung via
+                    candraputrap46@gmail.com.
                   </div>
                 )}
               </form>
@@ -1263,20 +1576,46 @@ export default function Portfolio() {
       )}
 
       {showSuccessModal && (
-        <div className="success-modal-overlay" onClick={() => setShowSuccessModal(false)}>
+        <div
+          className="success-modal-overlay"
+          onClick={() => setShowSuccessModal(false)}
+        >
           <div className="success-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="success-modal-close" onClick={() => setShowSuccessModal(false)} aria-label="Close">
+            <button
+              className="success-modal-close"
+              onClick={() => setShowSuccessModal(false)}
+              aria-label="Close"
+            >
               <X size={18} />
             </button>
             <div className="success-modal-icon">✓</div>
             <h3 className="success-modal-title">Pesan Berhasil Terkirim</h3>
-            <p className="success-modal-text">Terima kasih telah menghubungi. Saya akan membalas secepat mungkin.</p>
-            <button className="success-modal-btn" onClick={() => setShowSuccessModal(false)}>
+            <p className="success-modal-text">
+              Terima kasih telah menghubungi. Saya akan membalas secepat
+              mungkin.
+            </p>
+            <button
+              className="success-modal-btn"
+              onClick={() => setShowSuccessModal(false)}
+            >
               Tutup
             </button>
           </div>
         </div>
       )}
+
+      {sharingProject && (
+        <ProjectShareModal
+          project={sharingProject}
+          isOpen={Boolean(sharingProject)}
+          onClose={() => setSharingProject(null)}
+        />
+      )}
+
+      <BookCallModal
+        isOpen={bookCallOpen}
+        onClose={() => setBookCallOpen(false)}
+      />
     </div>
   );
 }

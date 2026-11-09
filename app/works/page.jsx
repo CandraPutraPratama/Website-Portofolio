@@ -1,4 +1,5 @@
-import WorkPage, { metadata } from "../work/page";
+import { redirect } from "next/navigation";
 
-export { metadata };
-export default WorkPage;
+export default function WorksRedirect() {
+  redirect("/work");
+}
