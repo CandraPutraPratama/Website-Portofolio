@@ -1,21 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUp, ArrowUpRight, FileDown, Search, Calendar } from "lucide-react";
+import { Menu, X, ArrowUp, ArrowUpRight, FileDown, Search } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import CommandPalette from "./CommandPalette";
-import BookCallModal from "./BookCallModal";
 
-export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
+export default function Header({ alwaysShowBackToTop = false }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [showCoffee, setShowCoffee] = useState(false);
-  const [coffeeCount, setCoffeeCount] = useState(42);
-  const [coffeePop, setCoffeePop] = useState(false);
-  const [coffeeLoading, setCoffeeLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [bookCallOpen, setBookCallOpen] = useState(false);
   const navRef = useRef(null);
 
   // Global Ctrl+K / Cmd+K listener
@@ -30,61 +24,19 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/coffee-count")
-      .then((res) => res.json())
-      .then((data) => {
-        if (!cancelled && typeof data.count === "number") {
-          setCoffeeCount(data.count);
-        }
-        setCoffeeLoading(false);
-      })
-      .catch(() => setCoffeeLoading(false));
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const handleCoffeeClick = async (e) => {
-    e.preventDefault();
-    setCoffeePop(true);
-    const previousCount = coffeeCount;
-    const optimisticCount = previousCount + 1;
-    setCoffeeCount(optimisticCount);
-    try {
-      const res = await fetch("/api/coffee-count", { method: "POST" });
-      const data = await res.json();
-      if (typeof data.count === "number") {
-        setCoffeeCount(data.count);
-      } else {
-        setCoffeeCount(previousCount);
-      }
-    } catch {
-      setCoffeeCount(previousCount);
-    }
-  };
-
-  useEffect(() => {
-    if (!coffeePop) return;
-    const id = setTimeout(() => setCoffeePop(false), 350);
-    return () => clearTimeout(id);
-  }, [coffeePop]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
       setShowBackToTop(alwaysShowBackToTop || window.scrollY > 350);
-      setShowCoffee(alwaysShowCoffee || window.scrollY > window.innerHeight * 0.5);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [alwaysShowCoffee, alwaysShowBackToTop]);
+  }, [alwaysShowBackToTop]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -110,7 +62,7 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
         }`}
       >
         <div className="nav-mobile-header">
-          <a href="/" className="nav-left">
+          <a href="/" className="nav-left flex items-center gap-2.5">
             <div className="nav-logo">C</div>
             <div className="nav-brand">Candra Putra</div>
           </a>
@@ -160,47 +112,32 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
                 </span>
                 <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface-2 border border-line rounded">⌘K</kbd>
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  setBookCallOpen(true);
-                }}
-                className="nav-link flex items-center gap-2 text-left text-emerald-400 font-medium"
-              >
-                <Calendar size={14} />
-                <span>Book a 15-Min Call ↗</span>
-              </button>
+              <a href="/#evidence" className="nav-link" onClick={() => setMenuOpen(false)}>
+                Bukti & Dampak
+              </a>
               <a href="/#work" className="nav-link" onClick={() => setMenuOpen(false)}>
-                Work
+                Proyek Pilihan
               </a>
               <a
-                href="/#what-i-can-do"
+                href="/#skills"
                 className="nav-link"
                 onClick={() => setMenuOpen(false)}
               >
-                What I Can Do
+                Skill Inti
               </a>
               <a
-                href="/#about"
+                href="/#experience"
                 className="nav-link"
                 onClick={() => setMenuOpen(false)}
               >
-                About
+                Pengalaman & Sertifikasi
               </a>
               <a
-                href="/#awards"
+                href="/work"
                 className="nav-link"
                 onClick={() => setMenuOpen(false)}
               >
-                Awards
-              </a>
-              <a
-                href="/#trainings"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                Experience
+                Arsip Proyek Lengkap (5+)
               </a>
               <a
                 href="/resume.pdf"
@@ -224,48 +161,34 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
           </div>
         )}
 
-        <div className="nav-center hidden md:flex">
+        <div className="nav-center hidden md:flex items-center gap-6">
+          <a href="/#evidence" className="nav-link">
+            Bukti
+          </a>
           <a href="/#work" className="nav-link">
-            Work
+            Proyek
           </a>
-          <a href="/#what-i-can-do" className="nav-link">
-            What I Can Do
+          <a href="/#skills" className="nav-link">
+            Skill
           </a>
-          <a href="/#about" className="nav-link">
-            About
-          </a>
-          <a href="/#awards" className="nav-link">
-            Awards
-          </a>
-          <a href="/#trainings" className="nav-link">
-            Experience
+          <a href="/#experience" className="nav-link">
+            Pengalaman
           </a>
         </div>
 
-        <div className="nav-right hidden md:flex">
+        <div className="nav-right hidden md:flex items-center gap-2">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="nav-search-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-line bg-surface-2/60 text-muted hover:text-text hover:border-text/30 transition-all text-xs font-mono"
+            className="nav-search-btn inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-line bg-surface-2/60 text-muted hover:text-text hover:border-text/30 transition-all text-xs font-mono"
             title="Cari proyek, stack, prestasi... (Ctrl+K)"
             aria-label="Buka pencarian cepat"
-            style={{ marginRight: 8 }}
           >
             <Search size={13} />
-            <span className="hidden lg:inline text-[11px]">Cari</span>
+            <span className="hidden xl:inline text-[11px]">Cari</span>
             <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface border border-line rounded text-muted">
               ⌘K
             </kbd>
-          </button>
-          <button
-            type="button"
-            onClick={() => setBookCallOpen(true)}
-            className="nav-book-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all text-xs font-medium"
-            title="Jadwalkan Intro Call 15 Menit"
-            style={{ marginRight: 8 }}
-          >
-            <Calendar size={13} />
-            <span>Book Call</span>
           </button>
           <a
             href="/resume.pdf"
@@ -279,7 +202,6 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
           </a>
           <ThemeToggle
             className="nav-theme-toggle hidden md:inline-flex"
-            style={{ marginRight: 10 }}
           />
           <a href="/#contact" className="nav-cta hidden md:inline-flex">
             <span>Hubungi Saya</span>
@@ -291,12 +213,6 @@ export default function Header({ alwaysShowCoffee, alwaysShowBackToTop }) {
       <CommandPalette
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
-        onOpenBookCall={() => setBookCallOpen(true)}
-      />
-
-      <BookCallModal
-        isOpen={bookCallOpen}
-        onClose={() => setBookCallOpen(false)}
       />
 
       {showBackToTop && !menuOpen && (

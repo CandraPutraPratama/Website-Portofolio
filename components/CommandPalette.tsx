@@ -9,15 +9,13 @@ import {
   GraduationCap,
   Briefcase,
   FileText,
-  Calendar,
   ExternalLink,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
 import { PROJECTS } from "../data/projects";
-import { TECH_STACK_SHOWCASE } from "../data/skills";
+import { CORE_SKILLS } from "../data/skills";
 import { PUBLICATIONS_DATA } from "../data/publications";
-import { siteConfig } from "../data/config";
 
 interface SearchItem {
   id: string;
@@ -33,10 +31,9 @@ interface SearchItem {
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
-  onOpenBookCall?: () => void;
 }
 
-export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: CommandPaletteProps) {
+export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -71,228 +68,174 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
     const items: SearchItem[] = [
       // Quick Navigation
       {
-        id: "nav-work",
-        title: "Work Gallery",
+        id: "nav-evidence",
+        title: "Bukti Rekayasa & Dampak",
         category: "Navigasi",
-        description: "Lihat karya pilihan, sistem enterprise, dan platform live",
+        description: "Metrik terukur, performa sistem nyata, dan kolaborasi",
+        tags: ["bukti", "metrik", "angka", "impact", "uptime", "latency", "orders"],
+        icon: <Sparkles className="w-4 h-4 text-amber-400" />,
+        action: () => navigateTo("/#evidence"),
+      },
+      {
+        id: "nav-work",
+        title: "Proyek Pilihan (Jasdor & BudgEx)",
+        category: "Navigasi",
+        description: "Platform live PWA dan arsitektur enterprise backend",
         tags: ["proyek", "portfolio", "showcase", "jasdor", "budgex"],
         icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
         action: () => navigateTo("/#work"),
       },
       {
         id: "nav-skills",
-        title: "What I Can Do",
+        title: "Skill & Penguasaan Teknologi",
         category: "Navigasi",
         description: "Keahlian rekayasa backend, database relasional, dan frontend",
         tags: ["skills", "keahlian", "stack", "tools", "backend", "database"],
         icon: <Code2 className="w-4 h-4 text-blue-400" />,
-        action: () => navigateTo("/#what-i-can-do"),
-      },
-      {
-        id: "nav-metrics",
-        title: "Quantifiable Impact & Metrics",
-        category: "Navigasi",
-        description: "Metrik terukur dari performa dan sistem produksi nyata",
-        tags: ["angka", "impact", "metrik", "performa", "uptime", "latency"],
-        icon: <Sparkles className="w-4 h-4 text-amber-400" />,
-        action: () => navigateTo("/#metrics"),
-      },
-      {
-        id: "nav-publications",
-        title: "Publications & Research",
-        category: "Navigasi",
-        description: "Karya ilmiah, riset PBL PENS, dan analisis rekayasa sistem",
-        tags: ["paper", "publikasi", "riset", "pbl", "jurnal", "pens"],
-        icon: <FileText className="w-4 h-4 text-violet-400" />,
-        action: () => navigateTo("/#publications"),
-      },
-      {
-        id: "nav-about",
-        title: "About Me",
-        category: "Navigasi",
-        description: "Profil mahasiswa D4 TI PENS dan latar belakang rekayasa",
-        tags: ["tentang", "profil", "biodata", "pens", "candra"],
-        icon: <GraduationCap className="w-4 h-4 text-teal-400" />,
-        action: () => navigateTo("/#about"),
-      },
-      {
-        id: "nav-awards",
-        title: "Awards & Recognition",
-        category: "Navigasi",
-        description: "Sertifikasi industri PT Angkasa Pura I dan prestasi akademik",
-        tags: ["penghargaan", "sertifikat", "angkasa pura", "juanda", "ipk"],
-        icon: <Briefcase className="w-4 h-4 text-amber-400" />,
-        action: () => navigateTo("/#awards"),
+        action: () => navigateTo("/#skills"),
       },
       {
         id: "nav-experience",
-        title: "Milestones & Journey",
+        title: "Pengalaman & Sertifikasi",
         category: "Navigasi",
-        description: "Garis waktu perjalanan studi dan pengembangan sistem",
-        tags: ["pengalaman", "timeline", "riwayat", "magang"],
+        description: "Magang industri PT Angkasa Pura I Juanda & capaian akademik PENS",
+        tags: ["pengalaman", "sertifikat", "magang", "angkasa pura", "juanda", "pens"],
         icon: <Briefcase className="w-4 h-4 text-sky-400" />,
-        action: () => navigateTo("/#trainings"),
+        action: () => navigateTo("/#experience"),
+      },
+      {
+        id: "nav-archive",
+        title: "Arsip Semua Proyek (Halaman /work)",
+        category: "Navigasi",
+        description: "Koleksi lengkap 5+ sistem web relasional & aplikasi mandiri",
+        tags: ["arsip", "work", "proyek lengkap", "database"],
+        icon: <FolderGit2 className="w-4 h-4 text-violet-400" />,
+        action: () => navigateTo("/work"),
       },
       {
         id: "nav-contact",
-        title: "Contact & Direct Communication",
+        title: "Kontak & Diskusi Kerjasama",
         category: "Navigasi",
-        description: "Kirim pesan langsung atau jadwalkan diskusi kerja sama",
+        description: "Kirim pesan langsung via form atau email",
         tags: ["kontak", "email", "hubungi", "pesan"],
-        icon: <ArrowRight className="w-4 h-4 text-indigo-400" />,
+        icon: <GraduationCap className="w-4 h-4 text-teal-400" />,
         action: () => navigateTo("/#contact"),
       },
 
       // Quick Actions
       {
-        id: "action-resume",
-        title: "Download Resume (PDF)",
+        id: "act-cv",
+        title: "Download CV / Resume (PDF)",
         category: "Aksi Cepat",
-        description: "Unduh CV / resume terbaru Candra Putra Pratama",
-        tags: ["cv", "resume", "pdf", "unduh", "curriculum vitae"],
-        icon: <FileText className="w-4 h-4 text-rose-400" />,
-        action: () => navigateTo(siteConfig.resumeUrl),
+        description: "Unduh resume terbaru Candra Putra Pratama format PDF",
+        tags: ["cv", "resume", "pdf", "unduh", "download"],
+        icon: <FileText className="w-4 h-4 text-emerald-400" />,
+        action: () => navigateTo("/resume.pdf"),
         external: true,
       },
       {
-        id: "action-book-call",
-        title: "Book a 15-Min Intro Call ↗",
+        id: "act-github",
+        title: "Kunjungi GitHub Candra",
         category: "Aksi Cepat",
-        description: "Jadwalkan panggilan diskusi magang atau kolaborasi teknis",
-        tags: ["jadwal", "meeting", "call", "cal.com", "calendly", "diskusi"],
-        icon: <Calendar className="w-4 h-4 text-emerald-400" />,
-        action: () => {
-          onClose();
-          if (onOpenBookCall) {
-            onOpenBookCall();
-          } else {
-            window.open(siteConfig.bookingUrl, "_blank", "noopener,noreferrer");
-          }
-        },
+        description: "github.com/CandraPutraPratama — repositori publik dan kontribusi",
+        tags: ["github", "source", "repo", "kode"],
+        icon: <ExternalLink className="w-4 h-4 text-muted" />,
+        action: () => navigateTo("https://github.com/CandraPutraPratama"),
+        external: true,
+      },
+      {
+        id: "act-linkedin",
+        title: "Profil LinkedIn",
+        category: "Aksi Cepat",
+        description: "linkedin.com/in/candra-putra-pratama",
+        tags: ["linkedin", "sosial", "koneksi", "profesional"],
+        icon: <ExternalLink className="w-4 h-4 text-muted" />,
+        action: () => navigateTo("https://linkedin.com/in/candra-putra-pratama"),
         external: true,
       },
     ];
 
-    // Add Projects
+    // Projects index
     PROJECTS.forEach((p) => {
       items.push({
-        id: `project-${p.num}`,
+        id: `proj-${p.title.toLowerCase().replace(/\s+/g, "-")}`,
         title: p.title,
         category: "Proyek",
-        description: `${p.category} • ${p.tech.slice(0, 3).join(", ")}`,
-        tags: [p.title, p.category, ...p.tech, ...(p.awards || []), ...(p.impact || [])],
-        icon: <FolderGit2 className="w-4 h-4 text-cyan-400" />,
+        description: p.desc,
+        tags: [p.title.toLowerCase(), p.category.toLowerCase(), ...(p.tech || [])],
+        icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
         action: () => {
           if (p.liveUrl) {
             navigateTo(p.liveUrl);
-          } else if (p.githubUrl) {
-            navigateTo(p.githubUrl);
           } else {
-            navigateTo("/#work");
+            navigateTo("/work");
           }
         },
-        external: Boolean(p.liveUrl || p.githubUrl),
+        external: Boolean(p.liveUrl),
       });
     });
 
-    // Add Tech Stack
-    TECH_STACK_SHOWCASE.forEach((s) => {
+    // Tech Skills index
+    CORE_SKILLS.forEach((s) => {
       items.push({
-        id: `tech-${s.name.toLowerCase().replace(/\s+/g, "-")}`,
-        title: `${s.name} (${s.category})`,
+        id: `tech-${s.name.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
+        title: s.name,
         category: "Teknologi",
-        description: s.usedIn ? `Digunakan pada: ${s.usedIn}` : "Keahlian rekayasa teknologi",
-        tags: [s.name, s.category, s.usedIn || ""],
+        description: `${s.category} • Dipakai di: ${s.usedIn}`,
+        tags: [s.name.toLowerCase(), s.category.toLowerCase(), "skill", "tech"],
         icon: <Code2 className="w-4 h-4 text-blue-400" />,
-        action: () => navigateTo("/#what-i-can-do"),
+        action: () => navigateTo("/#skills"),
       });
     });
 
-    // Add Publications
+    // Publications
     PUBLICATIONS_DATA.forEach((pub) => {
       items.push({
         id: pub.id,
         title: pub.title,
         category: "Publikasi & Riset",
         description: `${pub.year} • ${pub.venue}`,
-        tags: [pub.title, pub.venue, ...pub.tags, pub.abstract],
+        tags: ["paper", "riset", "publikasi", ...(pub.tags || [])],
         icon: <FileText className="w-4 h-4 text-violet-400" />,
-        action: () => {
-          if (pub.paperUrl) navigateTo(pub.paperUrl);
-          else navigateTo("/#publications");
-        },
-        external: Boolean(pub.paperUrl),
+        action: () => navigateTo("/work"),
       });
     });
 
-    // Add Achievements & Certifications
-    items.push(
-      {
-        id: "award-ap1",
-        title: "Sertifikat PKL Stakeholder Relation — PT Angkasa Pura I",
-        category: "Pengalaman & Prestasi",
-        description: "Magang 6 bulan Bandara Internasional Juanda • Nilai 87,86",
-        tags: ["angkasa pura", "bandara juanda", "pkl", "magang", "sertifikat"],
-        icon: <Briefcase className="w-4 h-4 text-amber-400" />,
-        action: () => navigateTo("/#awards"),
-      },
-      {
-        id: "award-pkd",
-        title: "Sertifikat Penghargaan Latihan PKD ke-108",
-        category: "Pengalaman & Prestasi",
-        description: "Simulasi Penanggulangan Keadaan Darurat Bandara Juanda",
-        tags: ["pkd", "darurat", "simulasi", "bandara", "juanda"],
-        icon: <Briefcase className="w-4 h-4 text-amber-400" />,
-        action: () => navigateTo("/#awards"),
-      },
-      {
-        id: "award-gpa",
-        title: "D4 Teknik Informatika PENS — IPK 3.76 / 4.00",
-        category: "Pengalaman & Prestasi",
-        description: "Semester 5 Politeknik Elektronika Negeri Surabaya",
-        tags: ["pens", "ipk", "kuliah", "prestasi", "akademik"],
-        icon: <GraduationCap className="w-4 h-4 text-emerald-400" />,
-        action: () => navigateTo("/#awards"),
-      }
-    );
-
     return items;
-  }, [onClose, onOpenBookCall]);
+  }, []);
 
   // Filter items based on query
   const filteredItems = useMemo(() => {
-    if (!query.trim()) return allItems;
+    if (!query.trim()) {
+      return allItems.slice(0, 8);
+    }
+
     const q = query.toLowerCase().trim();
-    return allItems.filter((item) => {
-      const matchTitle = item.title.toLowerCase().includes(q);
-      const matchDesc = item.description?.toLowerCase().includes(q) ?? false;
-      const matchCategory = item.category.toLowerCase().includes(q);
-      const matchTags = item.tags?.some((t) => t.toLowerCase().includes(q)) ?? false;
-      return matchTitle || matchDesc || matchCategory || matchTags;
-    });
+    return allItems
+      .filter((item) => {
+        const titleMatch = item.title.toLowerCase().includes(q);
+        const descMatch = item.description?.toLowerCase().includes(q);
+        const tagMatch = item.tags?.some((t) => t.toLowerCase().includes(q));
+        const catMatch = item.category.toLowerCase().includes(q);
+        return titleMatch || descMatch || tagMatch || catMatch;
+      })
+      .slice(0, 10);
   }, [query, allItems]);
 
-  // Reset selectedIndex when filter changes
+  // Handle keyboard navigation
   useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
-
-  // Handle keyboard events (Arrows, Enter, Escape)
-  useEffect(() => {
-    if (!isOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+
       if (e.key === "Escape") {
         e.preventDefault();
         onClose();
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedIndex((prev) => (filteredItems.length > 0 ? (prev + 1) % filteredItems.length : 0));
+        setSelectedIndex((prev) => (prev + 1) % (filteredItems.length || 1));
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex((prev) =>
-          filteredItems.length > 0 ? (prev - 1 + filteredItems.length) % filteredItems.length : 0
-        );
+        setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % (filteredItems.length || 1));
       } else if (e.key === "Enter") {
         e.preventDefault();
         if (filteredItems[selectedIndex]) {
@@ -305,7 +248,12 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, filteredItems, selectedIndex, onClose]);
 
-  // Scroll active item into view
+  // Keep selected index in bounds when results change
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
+  // Scroll active element into view
   useEffect(() => {
     if (!listRef.current) return;
     const activeElement = listRef.current.querySelector(`[data-index="${selectedIndex}"]`) as HTMLElement;
@@ -339,7 +287,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Ketik untuk mencari proyek, stack, publikasi, prestasi... (Esc untuk tutup)"
+            placeholder="Cari proyek, stack, prestasi... (Esc)"
             className="w-full bg-transparent text-sm sm:text-base text-text placeholder:text-muted focus:outline-none"
           />
           {query ? (
@@ -368,7 +316,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
               <p className="text-xs text-muted max-w-sm mx-auto">
                 Coba cari kata kunci lain seperti <span className="text-text font-mono">Next.js</span>,{" "}
                 <span className="text-text font-mono">Jasdor</span>,{" "}
-                <span className="text-text font-mono">BudgeEx</span>, atau{" "}
+                <span className="text-text font-mono">BudgEx</span>, atau{" "}
                 <span className="text-text font-mono">Resume</span>.
               </p>
             </div>
@@ -417,11 +365,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
                       {item.external ? (
                         <ExternalLink className="w-3.5 h-3.5 opacity-60" />
                       ) : (
-                        <ArrowRight
-                          className={`w-4 h-4 transition-transform ${
-                            isSelected ? "translate-x-1 opacity-100 text-text" : "opacity-0"
-                          }`}
-                        />
+                        <ArrowRight className="w-3.5 h-3.5 opacity-60" />
                       )}
                     </div>
                   </div>
@@ -432,28 +376,21 @@ export default function CommandPalette({ isOpen, onClose, onOpenBookCall }: Comm
         </div>
 
         {/* Footer shortcuts */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-t border-line bg-surface/80 text-[11px] text-muted font-mono">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-surface-2/60 border-t border-line text-[11px] text-muted font-mono">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-surface-2 border border-line rounded">↑</kbd>
-              <kbd className="px-1.5 py-0.5 bg-surface-2 border border-line rounded">↓</kbd>
-              <span>Navigasi</span>
+            <span>
+              <kbd className="px-1.5 py-0.5 rounded bg-surface border border-line mr-1">↑</kbd>
+              <kbd className="px-1.5 py-0.5 rounded bg-surface border border-line mr-1">↓</kbd>
+              navigasi
             </span>
-            <span className="inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-surface-2 border border-line rounded">↵</kbd>
-              <span>Pilih</span>
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-surface-2 border border-line rounded">ESC</kbd>
-              <span>Tutup</span>
+            <span>
+              <kbd className="px-1.5 py-0.5 rounded bg-surface border border-line mr-1">↵</kbd>
+              pilih
             </span>
           </div>
-          <div className="hidden sm:block text-muted/80">
-            {filteredItems.length} hasil ditemukan
-          </div>
+          <span>Pencarian Cepat</span>
         </div>
       </div>
     </div>
   );
 }
-

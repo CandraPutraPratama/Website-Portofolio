@@ -6,18 +6,19 @@ export interface MetricItem {
   sublabel: string;
   description: string;
   tag: string;
+  methodology: string;
   trend?: string;
 }
 
 export const METRICS_DATA: MetricItem[] = [
   {
-    id: "systems-built",
-    value: "5+",
-    label: "Production Web Systems",
-    sublabel: "Enterprise & High-Availability PWA",
-    description: "Merancang dan mendeploy 5+ sistem web berbasis relasional terstruktur dengan performa teruji.",
-    tag: "Software Engineering",
-    trend: "+2 Proyek Berjalan",
+    id: "orders-processed",
+    value: "1.600+",
+    label: "Pesanan F&B Terproses",
+    sublabel: "Platform Live Jasdor Kopi Cima",
+    description: "Pesanan pelanggan terproses langsung pada PWA aggregator multi-brand aktif dengan antrean real-time dan checkout WhatsApp.",
+    tag: "High Traffic PWA",
+    methodology: "Data transaksi pesanan F&B terproses di platform live Jasdor",
   },
   {
     id: "gpa-score",
@@ -25,46 +26,35 @@ export const METRICS_DATA: MetricItem[] = [
     suffix: "/ 4.00",
     label: "IPK Kumulatif PENS",
     sublabel: "D4 Teknik Informatika (Semester 5)",
-    description: "Konsistensi capaian akademik tinggi dengan fokus pada arsitektur sistem dan rekayasa perangkat lunak.",
+    description: "Capaian akademik tinggi dengan predikat Dean's Honor, berfokus pada rekayasa perangkat lunak dan arsitektur sistem.",
     tag: "Academic Excellence",
-    trend: "Dean's List",
-  },
-  {
-    id: "orders-processed",
-    value: "1.600+",
-    label: "Pesanan F&B Terproses",
-    sublabel: "Platform Live Jasdor Kopi Cima",
-    description: "PWA aggregator multi-brand aktif dengan integrasi pemesanan WhatsApp otomatis dan antrean pesanan real-time.",
-    tag: "High Traffic PWA",
-    trend: "Live Production",
+    methodology: "Transkrip akademik resmi PENS D4 Teknik Informatika semester 5",
   },
   {
     id: "query-latency",
     value: "30%",
     label: "Reduksi Latensi Query",
     sublabel: "Optimasi Skema & Indeks Relasional",
-    description: "Perancangan indeks komposit, normalisasi 3NF, dan eliminasi N+1 query pada PostgreSQL & MySQL.",
+    description: "Peningkatan efisiensi query lewat indeks komposit, normalisasi 3NF, dan eliminasi query berulang.",
     tag: "Database Performance",
-    trend: "Benchmark Verified",
-  },
-  {
-    id: "internship-duration",
-    value: "6",
-    suffix: "Bulan",
-    label: "Pengalaman Industri Nyata",
-    sublabel: "PT Angkasa Pura I Bandara Juanda",
-    description: "Magang di Stakeholder Relation Section dengan nilai akhir 87,86 dan penghargaan operasional simulasi PKD ke-108.",
-    tag: "Industry Certified",
-    trend: "Nilai 87.86",
+    methodology: "Hasil pengujian benchmark indeks skema relasional PostgreSQL & MySQL",
   },
   {
     id: "system-uptime",
-    value: "99.8%",
-    label: "Keandalan Sistem PWA",
-    sublabel: "Vercel Edge & Cloudflare DNS",
-    description: "SLA ketersediaan platform mandiri dengan pemantauan otomatis, caching aset statis, dan fallback offline.",
-    tag: "Infrastructure",
-    trend: "Zero Major Outage",
+    value: "99,8%",
+    label: "Keandalan Sistem (Uptime)",
+    sublabel: "Infrastruktur Live PWA & Cloud Edge",
+    description: "Tingkat ketersediaan layanan live platform mandiri dengan pemantauan otomatis dan arsitektur edge terdistribusi.",
+    tag: "System Reliability",
+    methodology: "Monitoring ketersediaan 99,8% uptime platform mandiri & Vercel edge",
+  },
+  {
+    id: "systems-built",
+    value: "5+",
+    label: "Sistem Web Produksi",
+    sublabel: "Enterprise & Relational Databases",
+    description: "Merancang dan membangun 5+ sistem web bisnis berbasis basis data relasional terstruktur dengan performa teruji.",
+    tag: "Software Engineering",
+    methodology: "Koleksi implementasi sistem web operasional, PWA, dan backend API",
   },
 ];
-

@@ -9,7 +9,6 @@ export interface SiteConfig {
   country: string;
   email: string;
   resumeUrl: string;
-  bookingUrl: string;
   socials: {
     github: string;
     linkedin: string;
@@ -27,17 +26,16 @@ export const siteConfig: SiteConfig = {
   name: "Candra Putra Pratama",
   shortName: "Candra Putra",
   role: "Fullstack Web Developer",
-  tagline: "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76) • Next.js, REST API, dan basis data relasional.",
+  tagline: "Mahasiswa D4 Teknik Informatika PENS • Next.js, REST API, dan basis data relasional.",
   location: "Surabaya / Sidoarjo, Indonesia",
   timezone: "Asia/Jakarta",
   city: "Surabaya",
   country: "ID",
   email: "candraputrap46@gmail.com",
   resumeUrl: "/resume.pdf",
-  bookingUrl: "https://cal.com/candraputra/15min", // Configurable direct booking link
   socials: {
-    github: "https://github.com/candra-putra",
-    linkedin: "https://www.linkedin.com/in/candra-putra-pratama-8260b422a/",
+    github: "https://github.com/CandraPutraPratama",
+    linkedin: "https://linkedin.com/in/candra-putra-pratama",
     email: "mailto:candraputrap46@gmail.com",
   },
   availability: {
@@ -47,4 +45,3 @@ export const siteConfig: SiteConfig = {
     hours: "Magang penuh waktu Senin–Jumat",
   },
 };
-

@@ -7,7 +7,7 @@ export const metadata = {
   ),
   title: "Candra Putra : Fullstack Web Developer",
   description:
-    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Membangun sistem web dengan Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027, WFO Surabaya/Sidoarjo.",
+    "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS. Membangun sistem web dengan Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027, WFO Surabaya/Sidoarjo.",
   keywords: [
     "Candra Putra",
     "Web Developer Intern",
@@ -21,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Candra Putra : Fullstack Web Developer",
     description:
-      "Mahasiswa D4 Teknik Informatika PENS (IPK 3.76). Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027.",
+      "Mahasiswa D4 Teknik Informatika PENS. Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027.",
     type: "website",
     locale: "id_ID",
     images: [{ url: "/images/profile.png", alt: "Candra Putra Pratama" }],

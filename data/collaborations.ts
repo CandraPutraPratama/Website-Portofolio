@@ -14,23 +14,23 @@ export const COLLABORATIONS_DATA: CollaborationItem[] = [
     role: "Pendidikan Tinggi Vokasi IT No. 1",
     category: "Institution",
     description: "Politeknik Elektronika Negeri Surabaya • D4 Teknik Informatika",
-    badge: "Almamater / IPK 3.76",
+    badge: "Almamater Kampus",
   },
   {
     id: "angkasa-pura",
     name: "PT Angkasa Pura I",
     role: "Bandara Internasional Juanda",
     category: "Industry Partner",
-    description: "Praktik Kerja Lapangan 6 Bulan • Stakeholder Relation Section",
-    badge: "Magang Industri 6 Bulan",
+    description: "Praktik Kerja Lapangan • Stakeholder Relation Section",
+    badge: "Mitra Industri PKL",
   },
   {
     id: "cima-group",
     name: "Jasdor Kopi Cima",
     role: "F&B Order Aggregator Platform",
     category: "Product Ecosystem",
-    description: "Ekosistem pemesanan hemat mahasiswa • 1.600+ Pesanan Sukses",
-    badge: "1.600+ Transaksi Riil",
+    description: "Ekosistem pemesanan hemat mahasiswa dan komunitas",
+    badge: "Platform Mandiri",
   },
   {
     id: "himit",
@@ -45,8 +45,7 @@ export const COLLABORATIONS_DATA: CollaborationItem[] = [
     name: "PBL Enterprise Lab",
     role: "Project-Based Learning PENS",
     category: "Institution",
-    description: "Pengembangan sistem korporat BudgeEx Budgeting System",
+    description: "Pengembangan sistem korporat BudgEx Budgeting System",
     badge: "Arsitektur Enterprise",
   },
 ];
-
