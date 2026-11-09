@@ -4593,6 +4593,8 @@ textarea.contact-modal-input {
   align-items: center;
   justify-content: center;
   background: transparent !important;
+  transform: translateY(64px) scale(0.92);
+  transform-origin: center bottom;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 98%), radial-gradient(ellipse 70% 82% at 50% 50%, black 50%, transparent 95%);
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 98%), radial-gradient(ellipse 70% 82% at 50% 50%, black 50%, transparent 95%);
@@ -4900,7 +4902,7 @@ textarea.contact-modal-input {
   font-size: clamp(34px, 4.5vw, 50px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #FFFFFF;
+  color: var(--text);
   margin-bottom: 16px;
 }
 
@@ -4930,7 +4932,7 @@ textarea.contact-modal-input {
   font-family: 'Inter', sans-serif;
   font-size: 14.5px;
   font-weight: 500;
-  color: #77777D;
+  color: var(--muted);
   cursor: pointer;
   position: relative;
   padding-bottom: 12px;
@@ -4938,11 +4940,11 @@ textarea.contact-modal-input {
 }
 
 .works-filter-btn:hover {
-  color: #FFFFFF;
+  color: var(--text);
 }
 
 .works-filter-btn.active {
-  color: #FFFFFF;
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -4953,7 +4955,7 @@ textarea.contact-modal-input {
   bottom: 0;
   width: 100%;
   height: 2.5px;
-  background: #FFFFFF;
+  background: var(--text);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -5004,7 +5006,7 @@ textarea.contact-modal-input {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: #111113;
+  background: var(--surface-2);
 }
 
 .works-card-img {
@@ -5243,14 +5245,21 @@ textarea.contact-modal-input {
 
 .hero-content-meta {
   position: absolute;
-  top: 140px;
+  top: 124px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 104;
+  z-index: 105;
   text-align: center;
-  width: 90%;
-  max-width: 680px;
-  pointer-events: none;
+  width: auto;
+  max-width: min(720px, 92vw);
+  padding: 16px 28px;
+  border-radius: 20px;
+  background: rgba(var(--surface-rgb), 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
 }
 
 .hero-headline-role {
@@ -5495,11 +5504,13 @@ textarea.contact-modal-input {
     font-size: 11px;
   }
   .hero-content-meta {
-    top: 114px;
-    width: 94%;
+    top: 110px;
+    width: 92%;
+    padding: 12px 16px;
+    border-radius: 16px;
   }
   .profile-wrap {
-    transform: translateY(35px);
+    transform: translateY(48px) scale(0.95);
   }
   .hero-cta-group {
     bottom: 96px;

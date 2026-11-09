@@ -57,9 +57,9 @@ export default function CoreSkills() {
 
               {/* Proven in Project Note */}
               <div className="pt-3 border-t border-line/60">
-                <div className="text-[10px] font-mono text-muted/90 flex items-center gap-1.5">
-                  <span className="text-text font-semibold">Dipakai di:</span>
-                  <span className="truncate">{skill.usedIn}</span>
+                <div className="text-[11px] font-mono text-muted/90 leading-normal">
+                  <span className="text-text font-semibold mr-1.5">Dipakai di:</span>
+                  <span className="break-words">{skill.usedIn}</span>
                 </div>
               </div>
             </div>
@@ -69,3 +69,4 @@ export default function CoreSkills() {
     </section>
   );
 }
+

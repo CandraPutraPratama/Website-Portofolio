@@ -120,9 +120,9 @@ export default function EvidenceSection() {
 
               {/* Verified Source / Methodology Note */}
               <div className="mt-5 pt-3 border-t border-line/60">
-                <div className="flex items-center gap-1.5 text-[10px] text-muted/80 font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span className="line-clamp-1">{metric.methodology}</span>
+                <div className="flex items-start gap-1.5 text-[11px] text-muted/80 font-mono leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1" />
+                  <span className="break-words">{metric.methodology}</span>
                 </div>
               </div>
             </div>
@@ -132,3 +132,4 @@ export default function EvidenceSection() {
     </section>
   );
 }
+

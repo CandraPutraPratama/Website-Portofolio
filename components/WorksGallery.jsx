@@ -86,7 +86,8 @@ export default function WorksGallery({ projects = [] }) {
                     src={project.image}
                     alt={project.title}
                     className="works-card-img"
-                    loading="lazy"
+                    loading={idx < 3 ? "eager" : "lazy"}
+                    decoding={idx < 3 ? "sync" : "async"}
                   />
                   <div className="works-card-overlay">
                     {project.liveUrl ? (

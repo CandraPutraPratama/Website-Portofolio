@@ -18,7 +18,7 @@ export const METRICS_DATA: MetricItem[] = [
     sublabel: "Platform Live Jasdor Kopi Cima",
     description: "Pesanan pelanggan terproses langsung pada PWA aggregator multi-brand aktif dengan antrean real-time dan checkout WhatsApp.",
     tag: "High Traffic PWA",
-    methodology: "Data transaksi pesanan F&B terproses di platform live Jasdor",
+    methodology: "Data transaksi platform live Jasdor Kopi Cima",
   },
   {
     id: "gpa-score",
@@ -28,7 +28,7 @@ export const METRICS_DATA: MetricItem[] = [
     sublabel: "D4 Teknik Informatika (Semester 5)",
     description: "Capaian akademik tinggi dengan predikat Dean's Honor, berfokus pada rekayasa perangkat lunak dan arsitektur sistem.",
     tag: "Academic Excellence",
-    methodology: "Transkrip akademik resmi PENS D4 Teknik Informatika semester 5",
+    methodology: "Transkrip akademik resmi D4 TI PENS semester 5",
   },
   {
     id: "query-latency",
@@ -37,7 +37,7 @@ export const METRICS_DATA: MetricItem[] = [
     sublabel: "Optimasi Skema & Indeks Relasional",
     description: "Peningkatan efisiensi query lewat indeks komposit, normalisasi 3NF, dan eliminasi query berulang.",
     tag: "Database Performance",
-    methodology: "Hasil pengujian benchmark indeks skema relasional PostgreSQL & MySQL",
+    methodology: "Benchmark pengujian skema relasional PostgreSQL",
   },
   {
     id: "system-uptime",
@@ -46,7 +46,7 @@ export const METRICS_DATA: MetricItem[] = [
     sublabel: "Infrastruktur Live PWA & Cloud Edge",
     description: "Tingkat ketersediaan layanan live platform mandiri dengan pemantauan otomatis dan arsitektur edge terdistribusi.",
     tag: "System Reliability",
-    methodology: "Monitoring ketersediaan 99,8% uptime platform mandiri & Vercel edge",
+    methodology: "Monitoring ketersediaan platform mandiri & Vercel edge",
   },
   {
     id: "systems-built",
@@ -55,6 +55,6 @@ export const METRICS_DATA: MetricItem[] = [
     sublabel: "Enterprise & Relational Databases",
     description: "Merancang dan membangun 5+ sistem web bisnis berbasis basis data relasional terstruktur dengan performa teruji.",
     tag: "Software Engineering",
-    methodology: "Koleksi implementasi sistem web operasional, PWA, dan backend API",
+    methodology: "Arsip sistem web mandiri, PWA & backend API",
   },
 ];
