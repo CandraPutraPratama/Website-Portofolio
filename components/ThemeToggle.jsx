@@ -16,7 +16,7 @@ export default function ThemeToggle({ className = "", style = {} }) {
     >
       <div className={`transition-transform duration-500 ease-in-out ${dark ? "rotate-180 scale-100" : "rotate-0 scale-100"}`}>
         {dark ? (
-          <Sun className="w-4 h-4 text-amber-400" />
+          <Sun className="w-4 h-4 text-amber-700 dark:text-amber-400" />
         ) : (
           <Moon className="w-4 h-4 text-zinc-700" />
         )}

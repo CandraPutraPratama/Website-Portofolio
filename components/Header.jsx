@@ -110,7 +110,7 @@ export default function Header({ alwaysShowBackToTop = false }) {
                   <Search size={14} />
                   <span>Pencarian Cepat</span>
                 </span>
-                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface-2 border border-line rounded">⌘K</kbd>
+                <kbd className="px-1.5 py-0.5 text-xs font-mono bg-surface-2 border border-line rounded">⌘K</kbd>
               </button>
               <a href="/#evidence" className="nav-link" onClick={() => setMenuOpen(false)}>
                 Bukti & Dampak
@@ -137,7 +137,7 @@ export default function Header({ alwaysShowBackToTop = false }) {
                 className="nav-link"
                 onClick={() => setMenuOpen(false)}
               >
-                Arsip Proyek Lengkap (5+)
+                Arsip Proyek Lengkap
               </a>
               <a
                 href="/resume.pdf"
@@ -185,8 +185,8 @@ export default function Header({ alwaysShowBackToTop = false }) {
             aria-label="Buka pencarian cepat"
           >
             <Search size={13} />
-            <span className="hidden xl:inline text-[11px]">Cari</span>
-            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-surface border border-line rounded text-muted">
+            <span className="hidden xl:inline text-xs">Cari</span>
+            <kbd className="px-1.5 py-0.5 text-xs font-mono bg-surface border border-line rounded text-muted">
               ⌘K
             </kbd>
           </button>

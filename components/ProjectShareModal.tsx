@@ -66,7 +66,7 @@ export default function ProjectShareModal({
       >
         <div className="flex items-center justify-between pb-3 border-b border-line mb-4">
           <div className="flex items-center gap-2">
-            <Share2 className="w-4 h-4 text-emerald-400" />
+            <Share2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
             <h4 className="text-sm font-semibold text-text">Bagikan Proyek</h4>
           </div>
           <button
@@ -81,7 +81,7 @@ export default function ProjectShareModal({
           <p className="text-xs font-semibold text-text truncate">
             {project.title}
           </p>
-          <p className="text-[11px] text-muted truncate mt-0.5">
+          <p className="text-xs text-muted truncate mt-0.5">
             {project.category}
           </p>
         </div>
@@ -95,13 +95,13 @@ export default function ProjectShareModal({
           >
             <span className="flex items-center gap-2">
               {copied ? (
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <Check className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
               ) : (
                 <Copy className="w-3.5 h-3.5 text-muted" />
               )}
               <span>{copied ? "Tautan Tersalin!" : "Salin Tautan"}</span>
             </span>
-            <span className="text-[10px] font-mono text-muted">URL</span>
+            <span className="text-xs font-mono text-muted">URL</span>
           </button>
 
           {/* LinkedIn */}
@@ -110,10 +110,10 @@ export default function ProjectShareModal({
             className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border border-line bg-surface-2/60 hover:bg-surface-2 text-text text-xs font-medium transition-all"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-blue-700 dark:text-blue-400" />
               <span>Bagikan ke LinkedIn</span>
             </span>
-            <span className="text-[10px] font-mono text-muted">Post</span>
+            <span className="text-xs font-mono text-muted">Post</span>
           </button>
 
           {/* X / Twitter */}
@@ -122,10 +122,10 @@ export default function ProjectShareModal({
             className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border border-line bg-surface-2/60 hover:bg-surface-2 text-text text-xs font-medium transition-all"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-sky-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-sky-700 dark:text-sky-400" />
               <span>Bagikan ke X (Twitter)</span>
             </span>
-            <span className="text-[10px] font-mono text-muted">Tweet</span>
+            <span className="text-xs font-mono text-muted">Tweet</span>
           </button>
 
           {/* WhatsApp */}
@@ -134,10 +134,10 @@ export default function ProjectShareModal({
             className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border border-line bg-surface-2/60 hover:bg-surface-2 text-text text-xs font-medium transition-all"
           >
             <span className="flex items-center gap-2">
-              <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
               <span>Kirim via WhatsApp</span>
             </span>
-            <span className="text-[10px] font-mono text-muted">Chat</span>
+            <span className="text-xs font-mono text-muted">Chat</span>
           </button>
         </div>
       </div>

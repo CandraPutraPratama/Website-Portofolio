@@ -8,7 +8,7 @@
   --surface-2: #f4f4f5;
   --line: rgba(23, 23, 23, 0.08);
   --text: #171717;
-  --muted: #737373;
+  --muted: #666666;
   --light-gray: #e4e4e7;
   --surface-rgb: 255, 255, 255;
   --accent: #2563eb;
@@ -6017,3 +6017,241 @@ textarea.contact-modal-input {
   background: var(--muted);
 }
 
+
+/* ==========================================================================
+   UI audit fixes (2026-11): simplified hero, tablet nav, tap targets, focus
+   The older .hero-* rules above are no longer used by the hero markup.
+   ========================================================================== */
+.hx-root {
+  position: relative;
+  padding: 112px 32px 80px;
+  background: var(--bg);
+}
+.hx-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 56px;
+  align-items: center;
+}
+.hx-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+.hx-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.hx-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #059669;
+  flex-shrink: 0;
+}
+.hx-name {
+  margin: 22px 0 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 6.2vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  color: var(--text);
+}
+.hx-role {
+  margin: 0;
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 600;
+  color: var(--text);
+}
+.hx-desc {
+  margin: 16px 0 0;
+  max-width: 52ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.hx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  margin-top: 28px;
+}
+.hx-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  background: var(--text);
+  color: var(--bg) !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.hx-cta:hover {
+  opacity: 0.88;
+}
+.hx-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hx-link:hover {
+  color: var(--text);
+}
+.hx-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.hx-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hx-social a:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+.hx-photo {
+  justify-self: end;
+  width: min(100%, 380px);
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.hx-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+  .hx-inner {
+    gap: 32px;
+  }
+  .hx-photo {
+    width: min(100%, 300px);
+  }
+}
+
+/* Tablet nav: the desktop nav needs ~1100px, so drop the extras below that */
+@media (min-width: 769px) and (max-width: 1099px) {
+  .nav-brand {
+    white-space: nowrap;
+  }
+  .nav-center {
+    gap: 16px !important;
+  }
+  .nav-resume-btn {
+    display: none !important;
+  }
+  .nav-search-btn kbd {
+    display: none;
+  }
+  .nav-link {
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hx-root {
+    padding: 96px 20px 56px;
+  }
+  .hx-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hx-photo {
+    order: -1;
+    justify-self: start;
+    width: 112px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+  .hx-desc {
+    font-size: 15px;
+  }
+  .hx-actions {
+    width: 100%;
+  }
+  .hx-cta {
+    width: 100%;
+  }
+  /* 44px minimum touch targets */
+  .nav-mobile-header button,
+  .nav-mobile-header .nav-theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  main button,
+  main a[class*="inline-flex"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  footer a,
+  footer button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  [aria-label="Kembali ke atas"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .contact-resume-btn,
+  .nav-left {
+    min-height: 44px;
+  }
+}

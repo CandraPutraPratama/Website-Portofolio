@@ -50,7 +50,7 @@ export default function LocalTime({ className = "", showIcon = true }: LocalTime
       </span>
       {showIcon && <Clock className="w-3.5 h-3.5 text-muted opacity-80" />}
       <span className="font-medium text-text/80">{siteConfig.city}, {siteConfig.country}</span>
-      <span className="text-muted/60">·</span>
+      <span className="text-muted">·</span>
       <span className="font-semibold tabular-nums text-text">
         {timeString ?? "--:--:-- WIB"}
       </span>

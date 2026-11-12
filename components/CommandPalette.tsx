@@ -72,7 +72,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "Pesanan Jasdor, IPK, dan afiliasi",
         tags: ["bukti", "capaian", "angka", "ipk", "orders"],
-        icon: <Sparkles className="w-4 h-4 text-amber-400" />,
+        icon: <Sparkles className="w-4 h-4 text-amber-700 dark:text-amber-400" />,
         action: () => navigateTo("/#evidence"),
       },
       {
@@ -81,7 +81,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "Aplikasi pemesanan live dan sistem persetujuan anggaran",
         tags: ["proyek", "portfolio", "showcase", "jasdor", "budgex"],
-        icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
+        icon: <FolderGit2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />,
         action: () => navigateTo("/#work"),
       },
       {
@@ -90,7 +90,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "Keahlian rekayasa backend, database relasional, dan frontend",
         tags: ["skills", "keahlian", "stack", "tools", "backend", "database"],
-        icon: <Code2 className="w-4 h-4 text-blue-400" />,
+        icon: <Code2 className="w-4 h-4 text-blue-700 dark:text-blue-400" />,
         action: () => navigateTo("/#skills"),
       },
       {
@@ -99,7 +99,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "PKL di PT Angkasa Pura I Juanda & pendidikan di PENS",
         tags: ["pengalaman", "sertifikat", "magang", "angkasa pura", "juanda", "pens"],
-        icon: <Briefcase className="w-4 h-4 text-sky-400" />,
+        icon: <Briefcase className="w-4 h-4 text-sky-700 dark:text-sky-400" />,
         action: () => navigateTo("/#experience"),
       },
       {
@@ -108,7 +108,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "Daftar lengkap proyek web dan basis data",
         tags: ["arsip", "work", "proyek lengkap", "database"],
-        icon: <FolderGit2 className="w-4 h-4 text-violet-400" />,
+        icon: <FolderGit2 className="w-4 h-4 text-violet-700 dark:text-violet-400" />,
         action: () => navigateTo("/work"),
       },
       {
@@ -117,7 +117,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Navigasi",
         description: "Kirim pesan langsung via form atau email",
         tags: ["kontak", "email", "hubungi", "pesan"],
-        icon: <GraduationCap className="w-4 h-4 text-teal-400" />,
+        icon: <GraduationCap className="w-4 h-4 text-teal-700 dark:text-teal-400" />,
         action: () => navigateTo("/#contact"),
       },
 
@@ -128,7 +128,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Aksi Cepat",
         description: "Unduh resume terbaru Candra Putra Pratama format PDF",
         tags: ["cv", "resume", "pdf", "unduh", "download"],
-        icon: <FileText className="w-4 h-4 text-emerald-400" />,
+        icon: <FileText className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />,
         action: () => navigateTo("/resume.pdf"),
         external: true,
       },
@@ -162,7 +162,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Proyek",
         description: p.desc,
         tags: [p.title.toLowerCase(), p.category.toLowerCase(), ...(p.tech || [])],
-        icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
+        icon: <FolderGit2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />,
         action: () => {
           if (p.liveUrl) {
             navigateTo(p.liveUrl);
@@ -182,7 +182,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         category: "Teknologi",
         description: `${s.category} • Dipakai di: ${s.usedIn}`,
         tags: [s.name.toLowerCase(), s.category.toLowerCase(), "skill", "tech"],
-        icon: <Code2 className="w-4 h-4 text-blue-400" />,
+        icon: <Code2 className="w-4 h-4 text-blue-700 dark:text-blue-400" />,
         action: () => navigateTo("/#skills"),
       });
     });
@@ -285,7 +285,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
               <X className="w-4 h-4" />
             </button>
           ) : (
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[11px] font-mono text-muted bg-surface-2 border border-line rounded-md">
+            <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-xs font-mono text-muted bg-surface-2 border border-line rounded-md">
               ESC
             </kbd>
           )}
@@ -335,7 +335,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                           <span className="text-sm font-medium text-text truncate">
                             {item.title}
                           </span>
-                          <span className="text-[10px] px-1.5 py-0.5 rounded font-mono uppercase tracking-wider bg-surface-2 text-muted border border-line shrink-0">
+                          <span className="text-xs px-1.5 py-0.5 rounded font-mono uppercase tracking-wider bg-surface-2 text-muted border border-line shrink-0">
                             {item.category}
                           </span>
                         </div>
@@ -362,7 +362,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         </div>
 
         {/* Footer shortcuts */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-surface-2/60 border-t border-line text-[11px] text-muted font-mono">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-surface-2/60 border-t border-line text-xs text-muted font-mono">
           <div className="flex items-center gap-3">
             <span>
               <kbd className="px-1.5 py-0.5 rounded bg-surface border border-line mr-1">↑</kbd>

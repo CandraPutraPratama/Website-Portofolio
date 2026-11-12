@@ -50,7 +50,7 @@ export default function MilestonesGallery() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
-              <Camera className="w-3.5 h-3.5 text-sky-400" />
+              <Camera className="w-3.5 h-3.5 text-sky-700 dark:text-sky-400" />
               <span>Dokumentasi Perjalanan</span>
             </div>
             <h2 className="section-title text-2xl sm:text-3xl font-bold tracking-tight text-text mb-2">
@@ -108,7 +108,7 @@ export default function MilestonesGallery() {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                      <span className="text-[11px] font-mono text-white/90">
+                      <span className="text-xs font-mono text-white/90">
                         {group.year} • Dokumentasi #{i + 1}
                       </span>
                     </div>

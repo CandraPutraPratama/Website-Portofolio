@@ -21,7 +21,7 @@ export default function Footer() {
             <span className="font-semibold text-sm text-text">
               Candra Putra Pratama
             </span>
-            <span className="text-xs text-muted/60">•</span>
+            <span className="text-xs text-muted">•</span>
             <span className="text-xs text-muted">Fullstack Web Developer</span>
           </div>
           <p className="text-xs text-muted">

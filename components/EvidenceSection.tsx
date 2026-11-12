@@ -27,7 +27,7 @@ export default function EvidenceSection() {
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
             <span>Bukti &amp; Capaian</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-4">
@@ -44,7 +44,7 @@ export default function EvidenceSection() {
         <div className="mb-12 p-4 sm:p-5 rounded-2xl bg-surface/40 border border-line backdrop-blur-xs">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left shrink-0">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted/70 block">
+              <span className="text-xs font-mono uppercase tracking-widest text-muted block">
                 Afiliasi
               </span>
               <span className="text-xs font-medium text-text/80">
@@ -65,7 +65,7 @@ export default function EvidenceSection() {
                     <span className="text-xs font-semibold text-text/90">
                       {collab.name}
                     </span>
-                    <span className="text-[10px] text-muted font-mono">
+                    <span className="text-xs text-muted font-mono">
                       ({collab.badge})
                     </span>
                   </div>
@@ -84,10 +84,10 @@ export default function EvidenceSection() {
               <div>
                 {/* Metric Tag */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-surface-2 text-muted border border-line font-medium">
+                  <span className="text-xs font-mono px-2.5 py-0.5 rounded-md bg-surface-2 text-muted border border-line font-medium">
                     {metric.tag}
                   </span>
-                  <TrendingUp className="w-4 h-4 text-emerald-400/80 group-hover:text-emerald-400 transition-colors" />
+                  <TrendingUp className="w-4 h-4 text-emerald-700 dark:text-emerald-400/80 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors" />
                 </div>
 
                 {/* Big Metric Number */}
@@ -104,10 +104,10 @@ export default function EvidenceSection() {
 
                 {/* Metric Title & Sublabel */}
                 <div className="space-y-1 mb-3">
-                  <h3 className="text-sm sm:text-base font-bold text-text group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                     {metric.label}
                   </h3>
-                  <div className="text-xs font-mono text-muted/90">
+                  <div className="text-xs font-mono text-muted">
                     {metric.sublabel}
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export default function EvidenceSection() {
 
               {/* Verified Source / Methodology Note */}
               <div className="mt-5 pt-3 border-t border-line/60">
-                <div className="flex items-start gap-1.5 text-[11px] text-muted/80 font-mono leading-relaxed">
+                <div className="flex items-start gap-1.5 text-xs text-muted font-mono leading-relaxed">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1" />
                   <span className="break-words">{metric.methodology}</span>
                 </div>

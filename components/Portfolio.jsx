@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   FileDown,
   ArrowDown,
@@ -26,139 +26,82 @@ export default function Portfolio() {
   const [formStatus, setFormStatus] = useState("idle");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const heroRef = useRef(null);
-  const marqueeTrackRef = useRef(null);
   const rootRef = useRef(null);
-
-  // Parallax Marquee effect in Hero
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (marqueeTrackRef.current) {
-            const scrollY = window.scrollY;
-            marqueeTrackRef.current.style.transform = `translateX(${-(scrollY * 0.25)}px)`;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div ref={rootRef} className="portfolio-root">
       <Header />
 
+      <main id="main">
       {/* 1. HERO SECTION */}
-      <section id="hero" className="hero-root" ref={heroRef}>
-        <h1 className="hero-sr-title">
-          Candra Putra Pratama — Fullstack Web Developer
-        </h1>
+      <section id="hero" className="hx-root">
+        <div className="hx-inner">
+          <div className="hx-copy">
+            <p className="hx-pill">
+              <span className="hx-dot" aria-hidden="true" />
+              <span>Tersedia magang mulai 6 Jan 2027 • WFO Surabaya / Sidoarjo</span>
+            </p>
+            <h1 className="hx-name">Candra Putra Pratama</h1>
+            <p className="hx-role">Fullstack Web Developer</p>
+            <p className="hx-desc">
+              Mahasiswa D4 Teknik Informatika PENS. Next.js, REST API, dan basis
+              data relasional. Magang penuh waktu Senin sampai Jumat.
+            </p>
 
-        {/* Subtle Geometric Grid & Ambient Glow */}
-        <div className="hero-grid-pattern" aria-hidden="true" />
-        <div className="hero-ambient-spotlight" aria-hidden="true" />
+            <div className="hx-actions">
+              <a
+                href="/resume.pdf"
+                download="Resume_Candra_Putra.pdf"
+                className="hx-cta"
+                title="Download CV / Resume Candra Putra"
+              >
+                <FileDown size={16} />
+                <span>Download CV</span>
+              </a>
+              <a href="#work" className="hx-link">
+                <span>Lihat Proyek</span>
+                <ArrowDown size={14} />
+              </a>
+              <a href="#contact" className="hx-link">
+                <span>Hubungi Saya</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
 
-        {/* Availability Badge */}
-        <div className="hero-availability-container">
-          <div className="hero-availability-pill">
-            <span className="availability-dot">
-              <span className="availability-dot-ping" />
-              <span className="availability-dot-core" />
-            </span>
-            <span className="availability-label">
-              Tersedia magang mulai 6 Jan 2027 • WFO Surabaya / Sidoarjo
-            </span>
+            <div className="hx-social">
+              <a
+                href="https://github.com/CandraPutraPratama"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+              >
+                <Github size={18} />
+              </a>
+              <a
+                href="https://linkedin.com/in/candra-putra-pratama"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a href="mailto:candraputrap46@gmail.com" aria-label="Email Candra">
+                <Mail size={18} />
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Headline & Subheadline */}
-        <div className="hero-content-meta">
-          <h2 className="hero-headline-role">Fullstack Web Developer</h2>
-          <p className="hero-headline-desc">
-            Mahasiswa D4 Teknik Informatika PENS{" "}
-            <span className="hero-headline-sep">•</span> Next.js, REST API, dan basis data relasional. Magang penuh waktu Senin–Jumat.
-          </p>
-        </div>
-
-        {/* Dynamic Name Marquee (Stroke Outlined Signature) */}
-        <div className="bg-name-marquee">
-          <div className="bg-name-track" ref={marqueeTrackRef}>
-            <span className="bg-name-text">CANDRA PUTRA</span>
-            <span className="bg-name-text">CANDRA PUTRA</span>
+          <div className="hx-photo">
+            <img
+              src="/images/profile-hero.webp"
+              alt="Foto Candra Putra Pratama"
+              width="640"
+              height="800"
+              fetchPriority="high"
+              decoding="async"
+              draggable={false}
+            />
           </div>
-        </div>
-
-        {/* Profile Silhouette */}
-        <div className="profile-wrap">
-          <img
-            src="/images/profile.png"
-            alt="Candra Putra"
-            className="profile-image"
-            draggable={false}
-          />
-          <div className="profile-overlay" aria-hidden="true" />
-        </div>
-
-        {/* Hero Actions: Single Primary CTA + Secondary Text Links */}
-        <div className="hero-cta-group">
-          <a
-            href="/resume.pdf"
-            download="Resume_Candra_Putra.pdf"
-            className="hero-primary-cta"
-            title="Download CV / Resume Candra Putra"
-          >
-            <FileDown size={15} />
-            <span>Download CV</span>
-          </a>
-
-          <div className="hero-secondary-links">
-            <a href="#work" className="hero-sublink">
-              <span>Lihat Proyek</span>
-              <ArrowDown size={13} />
-            </a>
-            <span className="hero-sublink-sep">•</span>
-            <a href="#contact" className="hero-sublink">
-              <span>Hubungi Saya</span>
-              <ArrowUpRight size={13} />
-            </a>
-          </div>
-        </div>
-
-        {/* Hero Social Shortcuts Bar */}
-        <div className="hero-social-bar">
-          <a
-            href="https://github.com/CandraPutraPratama"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-social-btn"
-            aria-label="GitHub Profile"
-          >
-            <Github size={15} />
-            <span className="hero-social-tooltip">GitHub</span>
-          </a>
-          <a
-            href="https://linkedin.com/in/candra-putra-pratama"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-social-btn"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin size={15} />
-            <span className="hero-social-tooltip">LinkedIn</span>
-          </a>
-          <a
-            href="mailto:candraputrap46@gmail.com"
-            className="hero-social-btn"
-            aria-label="Email Candra"
-          >
-            <Mail size={15} />
-            <span className="hero-social-tooltip">Email</span>
-          </a>
         </div>
       </section>
 
@@ -231,7 +174,7 @@ export default function Portfolio() {
                     <span className="contact-link-role text-xs text-muted font-mono">
                       Email
                     </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
+                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                       candraputrap46@gmail.com
                     </span>
                   </div>
@@ -250,7 +193,7 @@ export default function Portfolio() {
                     <span className="contact-link-role text-xs text-muted font-mono">
                       GitHub
                     </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
+                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                       github.com/CandraPutraPratama
                     </span>
                   </div>
@@ -269,7 +212,7 @@ export default function Portfolio() {
                     <span className="contact-link-role text-xs text-muted font-mono">
                       LinkedIn
                     </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
+                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                       linkedin.com/in/candra-putra-pratama
                     </span>
                   </div>
@@ -280,6 +223,8 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      </main>
 
       {/* FOOTER */}
       <Footer />

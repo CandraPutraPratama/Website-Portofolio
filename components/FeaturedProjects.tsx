@@ -42,7 +42,7 @@ export default function FeaturedProjects() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
-              <FolderGit2 className="w-3.5 h-3.5 text-emerald-400" />
+              <FolderGit2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
               <span>Karya Pilihan</span>
             </div>
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-3">
@@ -71,7 +71,7 @@ export default function FeaturedProjects() {
             <div className="space-y-5">
               {/* Header Badges */}
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Live
                 </span>
@@ -82,7 +82,7 @@ export default function FeaturedProjects() {
 
               {/* Title & Preview Image */}
               <div>
-                <h3 className="text-2xl font-bold text-text group-hover:text-emerald-400 transition-colors mb-2">
+                <h3 className="text-2xl font-bold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors mb-2">
                   Jasdor Kopi Cima
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
@@ -93,15 +93,15 @@ export default function FeaturedProjects() {
               {/* Key Engineering Highlights */}
               <div className="space-y-2 py-1">
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Promo beberapa brand F&amp;B dalam satu antarmuka</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Antrean pesanan di sisi klien dengan localStorage</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Pembayaran QRIS dan checkout pesanan lewat WhatsApp</span>
                 </div>
               </div>
@@ -164,8 +164,8 @@ export default function FeaturedProjects() {
             <div className="space-y-5">
               {/* Header Badges */}
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                  <Layers className="w-3.5 h-3.5 text-blue-400" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
+                  <Layers className="w-3.5 h-3.5 text-blue-700 dark:text-blue-400" />
                   Backend API
                 </span>
                 <span className="text-xs font-mono text-muted">
@@ -175,7 +175,7 @@ export default function FeaturedProjects() {
 
               {/* Title & Preview Image */}
               <div>
-                <h3 className="text-2xl font-bold text-text group-hover:text-blue-400 transition-colors mb-2">
+                <h3 className="text-2xl font-bold text-text group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors mb-2">
                   BudgEx - Persetujuan Anggaran
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
@@ -186,39 +186,39 @@ export default function FeaturedProjects() {
               {/* Key Engineering Highlights */}
               <div className="space-y-2 py-1">
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0" />
                   <span>State machine persetujuan bertingkat konsisten &amp; transaksional</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0" />
                   <span>Penanganan pengajuan anggaran yang masuk bersamaan</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
-                  <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-blue-700 dark:text-blue-400 shrink-0" />
                   <span>Jejak audit menyeluruh (audit trail) untuk akuntabilitas status</span>
                 </div>
               </div>
 
               {/* Visual Architecture & Approval Workflow Pipeline */}
               <div className="p-3 rounded-xl bg-surface-2 border border-line space-y-1.5">
-                <div className="flex items-center justify-between text-[11px] font-mono text-muted">
+                <div className="flex items-center justify-between text-xs font-mono text-muted">
                   <span className="font-semibold text-text/80">Approval Workflow &amp; Audit Trail</span>
-                  <span className="text-blue-400 font-semibold">PostgreSQL ACID</span>
+                  <span className="text-blue-700 dark:text-blue-400 font-semibold">PostgreSQL ACID</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono overflow-x-auto pb-0.5 text-text/80">
+                <div className="flex items-center gap-1.5 text-xs sm:text-xs font-mono overflow-x-auto pb-0.5 text-text/80">
                   <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
                     1. Pengajuan Unit
                   </span>
-                  <span className="text-muted/60 shrink-0">→</span>
+                  <span className="text-muted shrink-0">→</span>
                   <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
                     2. Validasi Plafon
                   </span>
-                  <span className="text-muted/60 shrink-0">→</span>
+                  <span className="text-muted shrink-0">→</span>
                   <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
                     3. Otorisasi Bertingkat
                   </span>
-                  <span className="text-muted/60 shrink-0">→</span>
-                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0 font-semibold">
+                  <span className="text-muted shrink-0">→</span>
+                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 shrink-0 font-semibold">
                     4. Audit Logged
                   </span>
                 </div>
@@ -242,7 +242,7 @@ export default function FeaturedProjects() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-6 mt-6 border-t border-line">
               <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-2 border border-line text-xs font-mono text-muted">
-                <ShieldCheck size={14} className="text-blue-400" />
+                <ShieldCheck size={14} className="text-blue-700 dark:text-blue-400" />
                 <span>PBL PENS (Private Organization Repo)</span>
               </div>
 
@@ -275,7 +275,7 @@ export default function FeaturedProjects() {
             href="/work"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-text text-surface font-semibold text-xs hover:opacity-90 transition-opacity shrink-0"
           >
-            <span>Buka Arsip Proyek (5+)</span>
+            <span>Buka Arsip Proyek</span>
             <ArrowRight size={13} />
           </Link>
         </div>

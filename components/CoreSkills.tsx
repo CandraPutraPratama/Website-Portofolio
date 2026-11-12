@@ -11,7 +11,7 @@ export default function CoreSkills() {
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
-            <Code2 className="w-3.5 h-3.5 text-blue-400" />
+            <Code2 className="w-3.5 h-3.5 text-blue-700 dark:text-blue-400" />
             <span>Keahlian</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-4">
@@ -39,13 +39,13 @@ export default function CoreSkills() {
                       draggable={false}
                     />
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-surface-2 text-muted border border-line">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface-2 text-muted border border-line">
                     {skill.category}
                   </span>
                 </div>
 
                 {/* Skill Name (Tampil TEPAT 1 KALI per kartu) */}
-                <h3 className="text-base font-bold text-text group-hover:text-blue-400 transition-colors mb-2">
+                <h3 className="text-base font-bold text-text group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors mb-2">
                   {skill.name}
                 </h3>
 
@@ -57,7 +57,7 @@ export default function CoreSkills() {
 
               {/* Proven in Project Note */}
               <div className="pt-3 border-t border-line/60">
-                <div className="text-[11px] font-mono text-muted/90 leading-normal">
+                <div className="text-xs font-mono text-muted leading-normal">
                   <span className="text-text font-semibold mr-1.5">Dipakai di:</span>
                   <span className="break-words">{skill.usedIn}</span>
                 </div>
