@@ -43,3 +43,6 @@ next-env.d.ts
 docs/
 
 .vercel
+
+# personal internship drafts (contain personal data)
+draft-kp/

@@ -179,16 +179,16 @@ export default function Portfolio() {
         <div className="contact-grid">
           <div className="contact-left">
             <Reveal>
-              <h2 className="contact-headline">Let&apos;s work together</h2>
+              <h2 className="contact-headline">Hubungi Saya</h2>
             </Reveal>
             <Reveal delay={60}>
               <p className="contact-description">
-                Mencari peluang magang Web Development &amp; Backend Engineering berikutnya yang menantang dan berdampak.
+                Mencari magang di bidang pengembangan perangkat lunak dan basis data.
               </p>
             </Reveal>
             <Reveal delay={120}>
               <p className="contact-secondary">
-                Terbuka untuk posisi magang mulai 6 Januari 2027 (WFO Surabaya / Sidoarjo, Hybrid, atau Remote).
+                Siap magang WFO di Surabaya / Sidoarjo mulai 6 Januari 2027, Senin–Jumat.
               </p>
             </Reveal>
             <Reveal delay={180}>
@@ -229,7 +229,7 @@ export default function Portfolio() {
                 >
                   <div className="flex flex-col gap-1 text-left">
                     <span className="contact-link-role text-xs text-muted font-mono">
-                      Direct Communication
+                      Email
                     </span>
                     <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
                       candraputrap46@gmail.com
@@ -248,7 +248,7 @@ export default function Portfolio() {
                 >
                   <div className="flex flex-col gap-1 text-left">
                     <span className="contact-link-role text-xs text-muted font-mono">
-                      Source Code &amp; Architecture
+                      GitHub
                     </span>
                     <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
                       github.com/CandraPutraPratama
@@ -267,7 +267,7 @@ export default function Portfolio() {
                 >
                   <div className="flex flex-col gap-1 text-left">
                     <span className="contact-link-role text-xs text-muted font-mono">
-                      Professional Network
+                      LinkedIn
                     </span>
                     <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-400 transition-colors">
                       linkedin.com/in/candra-putra-pratama

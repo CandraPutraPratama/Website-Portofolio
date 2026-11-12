@@ -15,7 +15,7 @@ export const CORE_SKILLS = [
   },
   {
     name: "ASP.NET Core",
-    category: "Enterprise Backend",
+    category: "Backend Framework",
     usedIn: "BudgEx (Tim PBL PENS)",
     description: "Arsitektur Web API terstruktur, Clean Architecture, dan Dependency Injection.",
     logo: "/images/logos/dotnet.svg",
@@ -42,11 +42,11 @@ export const CORE_SKILLS = [
     logo: "/images/logos/postman.svg",
   },
   {
-    name: "Tailwind CSS",
-    category: "UI & Styling",
-    usedIn: "Jasdor, Portfolio",
-    description: "Desain antarmuka responsif berbasis design tokens, dark/light theme presisi.",
-    logo: "/images/logos/tailwind.svg",
+    name: "PHP",
+    category: "Backend Language",
+    usedIn: "Data Pegawai, Inventaris, Kasir, Keuangan, RoomBook",
+    description: "PHP native dengan PDO untuk aplikasi CRUD berbasis PostgreSQL: autentikasi, pencarian, dan laporan.",
+    logo: "/images/logos/php.png",
   },
   {
     name: "Git & GitHub",

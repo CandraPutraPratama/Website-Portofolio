@@ -3,7 +3,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 
 export const metadata = {
   metadataBase: new URL(
-    "https://website-portofolio-candraputrapratamas-projects.vercel.app",
+    "https://website-portofolio-lac-pi.vercel.app",
   ),
   title: "Candra Putra : Fullstack Web Developer",
   description:

@@ -16,13 +16,13 @@ export default function ExperienceCertifications() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
             <Award className="w-3.5 h-3.5 text-amber-400" />
-            <span>Rekam Jejak Nyata</span>
+            <span>Pengalaman</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-4">
-            Pengalaman Industri &amp; Capaian Akademik
+            Pengalaman &amp; Pendidikan
           </h2>
           <p className="section-desc text-muted text-sm sm:text-base leading-relaxed">
-            Pengalaman magang profesional di BUMN kebandarudaraan dan konsistensi rekam jejak akademik di Politeknik Elektronika Negeri Surabaya.
+            Praktik kerja lapangan di Bandara Juanda dan studi D4 Teknik Informatika di PENS.
           </p>
         </div>
       </Reveal>
@@ -37,7 +37,7 @@ export default function ExperienceCertifications() {
                   <Building2 size={20} />
                 </div>
                 <span className="text-xs font-mono px-3 py-1 rounded-full bg-surface-2 text-muted border border-line">
-                  Mei 2023 – Nov 2023
+                  Jan 2023 – Jun 2023
                 </span>
               </div>
 
@@ -51,13 +51,13 @@ export default function ExperienceCertifications() {
               </div>
 
               <p className="text-sm text-muted leading-relaxed">
-                Magang industri 6 bulan di Stakeholder Relation Section Bandara Juanda dengan predikat memuaskan. Bertanggung jawab dalam tata kelola komunikasi eksternal korporat, pemantauan kepuasan pengguna jasa kebandarudaraan, dan koordinasi operasional lintas divisi.
+                Praktik kerja lapangan (PKL) selama 6 bulan sebagai siswa Multimedia SMK Negeri 3 Surabaya di Stakeholder Relation Section Bandara Juanda (bukan peran teknis). Membantu komunikasi eksternal, pemantauan kepuasan pengguna jasa bandara, dan koordinasi lintas divisi.
               </p>
 
               {/* Certifications (Teks tanpa link mati karena file PDF belum di-upload) */}
               <div className="space-y-2.5 pt-2">
                 <div className="text-xs font-mono font-semibold uppercase tracking-wider text-text/80">
-                  Sertifikat &amp; Penghargaan Resmi:
+                  Sertifikat:
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-surface-2 border border-line space-y-1">
@@ -66,7 +66,7 @@ export default function ExperienceCertifications() {
                     <span>Sertifikat PKL Stakeholder Relation Bandara Juanda</span>
                   </div>
                   <div className="text-[11px] text-muted pl-6">
-                    Predikat Sangat Memuaskan dengan nilai akhir 87,86 (evaluasi performa praktik kerja lapangan).
+                    Nilai akhir 87,86 pada evaluasi praktik kerja lapangan.
                   </div>
                 </div>
 
@@ -76,15 +76,12 @@ export default function ExperienceCertifications() {
                     <span>Sertifikat Penghargaan Latihan PKD ke-108</span>
                   </div>
                   <div className="text-[11px] text-muted pl-6">
-                    Peserta aktif Operasional Simulasi Penanggulangan Keadaan Darurat di Bandara Internasional Juanda (Mei 2023).
+                    Peserta aktif Operasional Simulasi Penanggulangan Keadaan Darurat di Bandara Internasional Juanda (17 Mei 2023).
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-line/60 text-[11px] text-muted font-mono">
-              Verifikasi: Sertifikat asli tercatat di arsip resmi PT Angkasa Pura I
-            </div>
           </div>
         </Reveal>
 
@@ -111,22 +108,22 @@ export default function ExperienceCertifications() {
               </div>
 
               <p className="text-sm text-muted leading-relaxed">
-                Menempuh studi sarjana terapan dengan fokus intensif pada rekayasa perangkat lunak, perancangan skema basis data relasional normalisasi 3NF, arsitektur web modern, dan sistem terdistribusi.
+                Menempuh D4 Teknik Informatika dengan fokus pada pengembangan web, perancangan basis data relasional, dan backend API.
               </p>
 
               {/* Academic Highlights */}
               <div className="space-y-2.5 pt-2">
                 <div className="text-xs font-mono font-semibold uppercase tracking-wider text-text/80">
-                  Capaian &amp; Peran Akademik:
+                  Capaian &amp; Peran:
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-surface-2 border border-line space-y-1">
                   <div className="flex items-center gap-2 text-xs font-semibold text-text">
                     <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
-                    <span>Dean&apos;s Honor Capaian Akademik</span>
+                    <span>IPK 3,76 / 4,00</span>
                   </div>
                   <div className="text-[11px] text-muted pl-6">
-                    Konsistensi capaian akademik berpredikat kehormatan di departemen Teknik Informatika PENS.
+                    IPK kumulatif sampai semester 5 di D4 Teknik Informatika PENS.
                   </div>
                 </div>
 

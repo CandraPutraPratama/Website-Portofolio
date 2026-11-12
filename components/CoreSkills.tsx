@@ -12,13 +12,13 @@ export default function CoreSkills() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
             <Code2 className="w-3.5 h-3.5 text-blue-400" />
-            <span>Keahlian Rekayasa</span>
+            <span>Keahlian</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-4">
-            Core Technical Skills
+            Keahlian Teknis
           </h2>
           <p className="section-desc text-muted text-sm sm:text-base leading-relaxed">
-            Teknologi inti yang saya kuasai dan implementasikan langsung dalam pembangunan arsitektur backend, basis data relasional, dan frontend modern.
+            Teknologi yang sudah saya pakai di proyek, lengkap dengan proyek tempat saya memakainya.
           </p>
         </div>
       </Reveal>

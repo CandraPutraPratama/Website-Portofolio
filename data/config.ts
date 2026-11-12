@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
   availability: {
     status: "Tersedia magang",
     startDate: "6 Jan 2027",
-    workPreference: "WFO Surabaya / Sidoarjo / Remote",
+    workPreference: "WFO Surabaya / Sidoarjo",
     hours: "Magang penuh waktu Senin–Jumat",
   },
 };

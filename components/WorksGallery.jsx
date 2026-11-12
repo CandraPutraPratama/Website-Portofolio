@@ -51,9 +51,9 @@ export default function WorksGallery({ projects = [] }) {
         {/* Section Header */}
         <Reveal>
           <div className="works-header">
-            <h1 className="works-title">Works &amp; Projects</h1>
+            <h1 className="works-title">Arsip Proyek</h1>
             <p className="works-subtitle">
-              Koleksi sistem produksi nyata, arsitektur backend, dan aplikasi web terstruktur yang dirancang untuk keandalan dan skalabilitas.
+              Proyek mandiri, tugas kuliah, dan proyek tim PBL: aplikasi web dengan backend dan basis data relasional.
             </p>
           </div>
         </Reveal>

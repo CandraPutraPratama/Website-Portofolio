@@ -11,7 +11,7 @@ export const COLLABORATIONS_DATA: CollaborationItem[] = [
   {
     id: "pens",
     name: "PENS Surabaya",
-    role: "Pendidikan Tinggi Vokasi IT No. 1",
+    role: "Politeknik Negeri",
     category: "Institution",
     description: "Politeknik Elektronika Negeri Surabaya • D4 Teknik Informatika",
     badge: "Almamater Kampus",
@@ -22,7 +22,7 @@ export const COLLABORATIONS_DATA: CollaborationItem[] = [
     role: "Bandara Internasional Juanda",
     category: "Industry Partner",
     description: "Praktik Kerja Lapangan • Stakeholder Relation Section",
-    badge: "Mitra Industri PKL",
+    badge: "PKL 2023",
   },
   {
     id: "cima-group",
@@ -38,14 +38,6 @@ export const COLLABORATIONS_DATA: CollaborationItem[] = [
     role: "Himpunan Mahasiswa Informatika",
     category: "Student Organization",
     description: "Komunitas pengembang mahasiswa dan kegiatan kolaboratif IT",
-    badge: "Komunitas Developer",
-  },
-  {
-    id: "pbl-lab",
-    name: "PBL Enterprise Lab",
-    role: "Project-Based Learning PENS",
-    category: "Institution",
-    description: "Pengembangan sistem korporat BudgEx Budgeting System",
-    badge: "Arsitektur Enterprise",
+    badge: "Organisasi Mahasiswa",
   },
 ];

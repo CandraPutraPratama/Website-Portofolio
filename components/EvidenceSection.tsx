@@ -28,13 +28,13 @@ export default function EvidenceSection() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider uppercase bg-surface-2 text-muted border border-line mb-3">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Bukti Rekayasa &amp; Dampak Terukur</span>
+            <span>Bukti &amp; Capaian</span>
           </div>
           <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-4">
-            What the Work Moved
+            Capaian Singkat
           </h2>
           <p className="section-desc text-muted text-sm sm:text-base leading-relaxed">
-            Metrik nyata dari platform produksi live, pengujian basis data relasional, dan institusi yang mempercayai kemampuan rekayasa saya.
+            Angka dari proyek yang berjalan, nilai akademik, dan institusi tempat saya belajar dan magang.
           </p>
         </div>
       </Reveal>
@@ -45,10 +45,10 @@ export default function EvidenceSection() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left shrink-0">
               <span className="text-[10px] font-mono uppercase tracking-widest text-muted/70 block">
-                Trusted By &amp; Collaborations
+                Afiliasi
               </span>
               <span className="text-xs font-medium text-text/80">
-                Institusi, Mitra Industri &amp; Komunitas
+                Kampus, PKL &amp; Organisasi
               </span>
             </div>
 
@@ -77,7 +77,7 @@ export default function EvidenceSection() {
       </Reveal>
 
       {/* 2. Quantifiable Impact & Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {METRICS_DATA.map((metric, idx) => (
           <Reveal key={metric.id} delay={60 + idx * 40}>
             <div className="group h-full p-6 sm:p-7 rounded-2xl bg-surface border border-line hover:border-text/30 transition-all duration-300 hover:shadow-lg flex flex-col justify-between">

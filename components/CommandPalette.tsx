@@ -15,12 +15,11 @@ import {
 } from "lucide-react";
 import { PROJECTS } from "../data/projects";
 import { CORE_SKILLS } from "../data/skills";
-import { PUBLICATIONS_DATA } from "../data/publications";
 
 interface SearchItem {
   id: string;
   title: string;
-  category: "Navigasi" | "Proyek" | "Teknologi" | "Publikasi & Riset" | "Pengalaman & Prestasi" | "Aksi Cepat";
+  category: "Navigasi" | "Proyek" | "Teknologi" | "Pengalaman & Prestasi" | "Aksi Cepat";
   description?: string;
   tags?: string[];
   icon: React.ReactNode;
@@ -69,10 +68,10 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
       // Quick Navigation
       {
         id: "nav-evidence",
-        title: "Bukti Rekayasa & Dampak",
+        title: "Bukti & Capaian",
         category: "Navigasi",
-        description: "Metrik terukur, performa sistem nyata, dan kolaborasi",
-        tags: ["bukti", "metrik", "angka", "impact", "uptime", "latency", "orders"],
+        description: "Pesanan Jasdor, IPK, dan afiliasi",
+        tags: ["bukti", "capaian", "angka", "ipk", "orders"],
         icon: <Sparkles className="w-4 h-4 text-amber-400" />,
         action: () => navigateTo("/#evidence"),
       },
@@ -80,7 +79,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         id: "nav-work",
         title: "Proyek Pilihan (Jasdor & BudgEx)",
         category: "Navigasi",
-        description: "Platform live PWA dan arsitektur enterprise backend",
+        description: "Aplikasi pemesanan live dan sistem persetujuan anggaran",
         tags: ["proyek", "portfolio", "showcase", "jasdor", "budgex"],
         icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
         action: () => navigateTo("/#work"),
@@ -98,7 +97,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         id: "nav-experience",
         title: "Pengalaman & Sertifikasi",
         category: "Navigasi",
-        description: "Magang industri PT Angkasa Pura I Juanda & capaian akademik PENS",
+        description: "PKL di PT Angkasa Pura I Juanda & pendidikan di PENS",
         tags: ["pengalaman", "sertifikat", "magang", "angkasa pura", "juanda", "pens"],
         icon: <Briefcase className="w-4 h-4 text-sky-400" />,
         action: () => navigateTo("/#experience"),
@@ -107,7 +106,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         id: "nav-archive",
         title: "Arsip Semua Proyek (Halaman /work)",
         category: "Navigasi",
-        description: "Koleksi lengkap 5+ sistem web relasional & aplikasi mandiri",
+        description: "Daftar lengkap proyek web dan basis data",
         tags: ["arsip", "work", "proyek lengkap", "database"],
         icon: <FolderGit2 className="w-4 h-4 text-violet-400" />,
         action: () => navigateTo("/work"),
@@ -185,19 +184,6 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         tags: [s.name.toLowerCase(), s.category.toLowerCase(), "skill", "tech"],
         icon: <Code2 className="w-4 h-4 text-blue-400" />,
         action: () => navigateTo("/#skills"),
-      });
-    });
-
-    // Publications
-    PUBLICATIONS_DATA.forEach((pub) => {
-      items.push({
-        id: pub.id,
-        title: pub.title,
-        category: "Publikasi & Riset",
-        description: `${pub.year} • ${pub.venue}`,
-        tags: ["paper", "riset", "publikasi", ...(pub.tags || [])],
-        icon: <FileText className="w-4 h-4 text-violet-400" />,
-        action: () => navigateTo("/work"),
       });
     });
 

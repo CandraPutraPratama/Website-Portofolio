@@ -20,17 +20,17 @@ export default function FeaturedProjects() {
 
   const jasdorData = {
     title: "Jasdor Kopi Cima",
-    category: "Proyek Mandiri • PWA Live",
-    desc: "Platform pemesanan F&B hemat mahasiswa dan komunitas. Agregator promo tiga brand kopi (Kopi Kenangan, Fore Coffee, TOMORO Coffee) dengan antrean pesanan real-time dan checkout otomatis WhatsApp.",
+    category: "Proyek Mandiri • Live",
+    desc: "Aplikasi pemesanan F&B hemat untuk mahasiswa dan komunitas. Menampilkan promo tiga brand kopi (Kopi Kenangan, Fore Coffee, TOMORO Coffee) dengan antrean pesanan dan checkout lewat WhatsApp.",
     liveUrl: "https://jasdor.cimagroup.my.id",
-    githubUrl: "https://github.com/CandraPutraPratama/CimaV2",
-    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "PWA", "WhatsApp API"],
+    githubUrl: "https://github.com/CandraPutraPratama/jasdorkopicima",
+    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "PWA", "WhatsApp"],
   };
 
   const budgexData = {
-    title: "BudgEx - Enterprise Budgeting System",
-    category: "Enterprise Backend API • Tim PBL PENS",
-    desc: "Sistem alur persetujuan anggaran berjenjang dengan review antar departemen, validasi batas plafon tahunan, dan jejak audit komprehensif bebas race condition.",
+    title: "BudgEx - Sistem Persetujuan Anggaran",
+    category: "Backend API • Tim PBL PENS",
+    desc: "Sistem alur persetujuan anggaran berjenjang dengan review antar departemen, validasi batas plafon tahunan, dan jejak audit.",
     liveUrl: null,
     githubUrl: null,
     tech: ["ASP.NET Core", "C#", "PostgreSQL", "REST API", "Clean Architecture"],
@@ -46,10 +46,10 @@ export default function FeaturedProjects() {
               <span>Karya Pilihan</span>
             </div>
             <h2 className="section-title text-3xl sm:text-4xl font-bold tracking-tight text-text mb-3">
-              Featured Systems
+              Proyek Pilihan
             </h2>
             <p className="section-desc text-muted text-sm sm:text-base max-w-2xl leading-relaxed">
-              Dua proyek rekayasa utama yang membuktikan kapabilitas end-to-end: platform live bernilai bisnis nyata dan sistem backend enterprise berskala tim.
+              Dua proyek utama: aplikasi pemesanan yang sudah dipakai pelanggan sungguhan, dan backend sistem persetujuan anggaran yang dikerjakan dalam tim.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function FeaturedProjects() {
             href="/work"
             className="inline-flex items-center gap-2 text-xs font-mono text-muted hover:text-text transition-colors self-start sm:self-end border border-line px-3.5 py-2 rounded-xl bg-surface-2"
           >
-            <span>Buka Arsip Semua Proyek (5+)</span>
+            <span>Lihat Semua Proyek</span>
             <ArrowRight size={13} />
           </Link>
         </div>
@@ -73,7 +73,7 @@ export default function FeaturedProjects() {
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Live Production PWA
+                  Live
                 </span>
                 <span className="text-xs font-mono text-muted">
                   Lead Developer &amp; Creator
@@ -86,7 +86,7 @@ export default function FeaturedProjects() {
                   Jasdor Kopi Cima
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
-                  Platform pemesanan F&amp;B hemat untuk mahasiswa dan komunitas, dirancang dan dikelola secara mandiri. Mengagregasi katalog promo Kopi Kenangan, Fore Coffee, dan TOMORO Coffee dalam satu PWA ringan dengan antrean pesanan real-time dan checkout WhatsApp.
+                  Aplikasi pemesanan F&amp;B hemat untuk mahasiswa dan komunitas, dirancang dan dikelola secara mandiri. Menampilkan katalog promo Kopi Kenangan, Fore Coffee, dan TOMORO Coffee dalam satu PWA dengan antrean pesanan dan checkout WhatsApp.
                 </p>
               </div>
 
@@ -94,21 +94,21 @@ export default function FeaturedProjects() {
               <div className="space-y-2 py-1">
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
                   <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Aggregator promo multi-brand F&amp;B dalam satu antarmuka</span>
+                  <span>Promo beberapa brand F&amp;B dalam satu antarmuka</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
                   <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Antrean pesanan real-time dengan localStorage buffer</span>
+                  <span>Antrean pesanan di sisi klien dengan localStorage</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
                   <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Automated checkout &amp; order dispatching via WhatsApp API</span>
+                  <span>Pembayaran QRIS dan checkout pesanan lewat WhatsApp</span>
                 </div>
               </div>
 
               {/* Tech Stack Pills */}
               <div className="flex flex-wrap items-center gap-1.5 pt-2">
-                {["Next.js 14", "TypeScript", "Tailwind CSS", "PWA", "WhatsApp API"].map(
+                {["Next.js 14", "TypeScript", "Tailwind CSS", "PWA", "WhatsApp"].map(
                   (t) => (
                     <span
                       key={t}
@@ -135,7 +135,7 @@ export default function FeaturedProjects() {
               </a>
 
               <a
-                href="https://github.com/CandraPutraPratama/CimaV2"
+                href="https://github.com/CandraPutraPratama/jasdorkopicima"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-2 text-text border border-line font-medium text-xs hover:border-text/30 transition-colors"
@@ -166,7 +166,7 @@ export default function FeaturedProjects() {
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
                   <Layers className="w-3.5 h-3.5 text-blue-400" />
-                  Enterprise Backend API
+                  Backend API
                 </span>
                 <span className="text-xs font-mono text-muted">
                   Backend &amp; Database Developer
@@ -176,10 +176,10 @@ export default function FeaturedProjects() {
               {/* Title & Preview Image */}
               <div>
                 <h3 className="text-2xl font-bold text-text group-hover:text-blue-400 transition-colors mb-2">
-                  BudgEx - Budget Approval Flow
+                  BudgEx - Persetujuan Anggaran
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
-                  Backend alur persetujuan anggaran berjenjang (multi-level hierarchical approval flow) dengan review antar departemen, validasi batas plafon tahunan, dan pencatatan jejak audit. Proyek tim Project-Based Learning (PBL) di PENS.
+                  Backend alur persetujuan anggaran berjenjang dengan review antar departemen, validasi batas plafon tahunan, dan pencatatan jejak audit. Proyek tim Project-Based Learning (PBL) di PENS.
                 </p>
               </div>
 
@@ -191,11 +191,36 @@ export default function FeaturedProjects() {
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
                   <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span>Pencegahan race condition saat pengajuan anggaran simultan</span>
+                  <span>Penanganan pengajuan anggaran yang masuk bersamaan</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-text/90 font-medium">
                   <CheckCircle className="w-4 h-4 text-blue-400 shrink-0" />
                   <span>Jejak audit menyeluruh (audit trail) untuk akuntabilitas status</span>
+                </div>
+              </div>
+
+              {/* Visual Architecture & Approval Workflow Pipeline */}
+              <div className="p-3 rounded-xl bg-surface-2 border border-line space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] font-mono text-muted">
+                  <span className="font-semibold text-text/80">Approval Workflow &amp; Audit Trail</span>
+                  <span className="text-blue-400 font-semibold">PostgreSQL ACID</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono overflow-x-auto pb-0.5 text-text/80">
+                  <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
+                    1. Pengajuan Unit
+                  </span>
+                  <span className="text-muted/60 shrink-0">→</span>
+                  <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
+                    2. Validasi Plafon
+                  </span>
+                  <span className="text-muted/60 shrink-0">→</span>
+                  <span className="px-2 py-0.5 rounded bg-surface border border-line shrink-0">
+                    3. Otorisasi Bertingkat
+                  </span>
+                  <span className="text-muted/60 shrink-0">→</span>
+                  <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0 font-semibold">
+                    4. Audit Logged
+                  </span>
                 </div>
               </div>
 
@@ -240,10 +265,10 @@ export default function FeaturedProjects() {
         <div className="mt-10 p-6 rounded-2xl bg-surface-2/60 border border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="space-y-1">
             <h4 className="text-sm font-semibold text-text">
-              Mencari portofolio teknis dan sistem lainnya?
+              Proyek lainnya
             </h4>
             <p className="text-xs text-muted">
-              Tersedia 5+ sistem web relasional (Sistem Data Pegawai, Inventaris Gudang, Kasir POS, RoomBook) di arsip proyek lengkap.
+              Inventaris Gudang, Data Pegawai, Kasir POS, Keuangan Pribadi, dan RoomBook ada di arsip proyek.
             </p>
           </div>
           <Link

@@ -8,7 +8,7 @@ const MILESTONES = [
   {
     year: "2026",
     title: "Ekspansi Sistem & Proyek Mandiri",
-    desc: "Pengembangan arsitektur Jasdor Kopi Cima dan riset sistem terdistribusi.",
+    desc: "Pengembangan Jasdor Kopi Cima dan proyek mandiri lainnya.",
     images: [
       { src: "/images/journey/jf12026.jpg", alt: "Journey 2026 Foto 1" },
       { src: "/images/journey/jf22026.jpg", alt: "Journey 2026 Foto 2" },
@@ -57,7 +57,7 @@ export default function MilestonesGallery() {
               Milestones &amp; Journey Gallery
             </h2>
             <p className="section-desc text-muted text-sm max-w-xl">
-              Dokumentasi aktivitas studi, kolaborasi riset, dan pengembangan sistem nyata di PENS.
+              Dokumentasi aktivitas studi dan pengembangan proyek di PENS.
             </p>
           </div>
 
