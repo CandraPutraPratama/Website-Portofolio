@@ -1,24 +1,10 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import {
-  FileDown,
-  ArrowDown,
-  ArrowUpRight,
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  Minus,
-  X,
-} from "lucide-react";
-import Header from "./Header";
-import EvidenceSection from "./EvidenceSection";
-import FeaturedProjects from "./FeaturedProjects";
-import CoreSkills from "./CoreSkills";
-import ExperienceCertifications from "./ExperienceCertifications";
-import Footer from "./Footer";
-import Reveal from "./Reveal";
+import React, { useState } from "react";
+import { Minus, X } from "lucide-react";
+import SiteNav from "./SiteNav";
+import SiteMotion from "./SiteMotion";
+import { Hero, Work, Skills, About, Journey } from "./SiteSections";
 
 export default function Portfolio() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,208 +12,71 @@ export default function Portfolio() {
   const [formStatus, setFormStatus] = useState("idle");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const rootRef = useRef(null);
-
   return (
-    <div ref={rootRef} className="portfolio-root">
-      <Header />
+    <div className="r-root">
+      <a className="r-skip" href="#main">
+        Lewati ke konten
+      </a>
+
+      <SiteNav />
+      <SiteMotion />
 
       <main id="main">
-      {/* 1. HERO SECTION */}
-      <section id="hero" className="hx-root">
-        <div className="hx-inner">
-          <div className="hx-copy">
-            <p className="hx-pill">
-              <span className="hx-dot" aria-hidden="true" />
-              <span>Tersedia magang mulai 6 Jan 2027 • WFO Surabaya / Sidoarjo</span>
-            </p>
-            <h1 className="hx-name">Candra Putra Pratama</h1>
-            <p className="hx-role">Fullstack Web Developer</p>
-            <p className="hx-desc">
-              Mahasiswa D4 Teknik Informatika PENS. Next.js, REST API, dan basis
-              data relasional. Magang penuh waktu Senin sampai Jumat.
-            </p>
+        <Hero />
+        <Work />
+        <Skills />
+        <About />
+        <Journey />
 
-            <div className="hx-actions">
-              <a
-                href="/resume.pdf"
-                download="Resume_Candra_Putra.pdf"
-                className="hx-cta"
-                title="Download CV / Resume Candra Putra"
+        <section id="kontak" className="r-section" aria-labelledby="h-kontak">
+          <div className="r-contact" data-reveal>
+            <h2 className="r-h2" id="h-kontak">
+              Kontak
+            </h2>
+            <p className="r-sub">
+              Terbuka untuk diskusi proyek dan kerja sama.
+            </p>
+            <a className="r-mail" href="mailto:candraputrap46@gmail.com">
+              candraputrap46@gmail.com
+            </a>
+            <div className="r-contact-actions">
+              <button
+                type="button"
+                className="r-btn"
+                onClick={() => {
+                  setIsModalOpen(true);
+                  setIsModalMinimized(false);
+                }}
               >
-                <FileDown size={16} />
-                <span>Download CV</span>
+                Kirim pesan lewat formulir
+              </button>
+              <a className="r-link" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
+                Unduh CV (PDF)
               </a>
-              <a href="#work" className="hx-link">
-                <span>Lihat Proyek</span>
-                <ArrowDown size={14} />
-              </a>
-              <a href="#contact" className="hx-link">
-                <span>Hubungi Saya</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </div>
-
-            <div className="hx-social">
               <a
+                className="r-link"
                 href="https://github.com/CandraPutraPratama"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub Profile"
               >
-                <Github size={18} />
+                GitHub
               </a>
               <a
+                className="r-link"
                 href="https://linkedin.com/in/candra-putra-pratama"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn Profile"
               >
-                <Linkedin size={18} />
-              </a>
-              <a href="mailto:candraputrap46@gmail.com" aria-label="Email Candra">
-                <Mail size={18} />
+                LinkedIn
               </a>
             </div>
           </div>
-
-          <div className="hx-photo">
-            <img
-              src="/images/profile-hero.webp"
-              alt="Foto Candra Putra Pratama"
-              width="640"
-              height="800"
-              fetchPriority="high"
-              decoding="async"
-              draggable={false}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 2. BUKTI SECTION (Collaborations + Metrics Gabungan) */}
-      <EvidenceSection />
-
-      {/* 3. PROYEK PILIHAN SECTION (Jasdor + BudgEx) */}
-      <FeaturedProjects />
-
-      {/* 4. SKILL INTI SECTION (8 Core Skills) */}
-      <CoreSkills />
-
-      {/* 5. PENGALAMAN & SERTIFIKASI SECTION (Angkasa Pura I + PENS) */}
-      <ExperienceCertifications />
-
-      {/* 6. KONTAK SECTION */}
-      <section id="contact" className="section relative py-16 sm:py-20">
-        <div className="contact-grid">
-          <div className="contact-left">
-            <Reveal>
-              <h2 className="contact-headline">Hubungi Saya</h2>
-            </Reveal>
-            <Reveal delay={60}>
-              <p className="contact-description">
-                Mencari magang di bidang pengembangan perangkat lunak dan basis data.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <p className="contact-secondary">
-                Siap magang WFO di Surabaya / Sidoarjo mulai 6 Januari 2027, Senin–Jumat.
-              </p>
-            </Reveal>
-            <Reveal delay={180}>
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <a
-                  href="/resume.pdf"
-                  download="Resume_Candra_Putra.pdf"
-                  className="contact-resume-btn flex items-center gap-2 bg-text text-surface font-semibold hover:opacity-90 transition-opacity"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FileDown size={14} />
-                  <span>Unduh Resume (PDF)</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsModalOpen(true);
-                    setIsModalMinimized(false);
-                  }}
-                  className="contact-resume-btn flex items-center gap-2 border border-line bg-surface hover:bg-surface-2 transition-colors cursor-pointer"
-                >
-                  <Mail size={14} />
-                  <span>Kirim Pesan</span>
-                </button>
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="contact-right">
-            <div className="contact-links-list space-y-3">
-              <Reveal delay={100}>
-                <a
-                  href="mailto:candraputrap46@gmail.com"
-                  className="contact-link-row flex items-center justify-between p-4 rounded-xl bg-surface border border-line hover:border-text/30 transition-all group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="flex flex-col gap-1 text-left">
-                    <span className="contact-link-role text-xs text-muted font-mono">
-                      Email
-                    </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                      candraputrap46@gmail.com
-                    </span>
-                  </div>
-                  <ExternalLink size={15} className="contact-link-arrow text-muted group-hover:text-text transition-colors" />
-                </a>
-              </Reveal>
-
-              <Reveal delay={160}>
-                <a
-                  href="https://github.com/CandraPutraPratama"
-                  className="contact-link-row flex items-center justify-between p-4 rounded-xl bg-surface border border-line hover:border-text/30 transition-all group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="flex flex-col gap-1 text-left">
-                    <span className="contact-link-role text-xs text-muted font-mono">
-                      GitHub
-                    </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                      github.com/CandraPutraPratama
-                    </span>
-                  </div>
-                  <ExternalLink size={15} className="contact-link-arrow text-muted group-hover:text-text transition-colors" />
-                </a>
-              </Reveal>
-
-              <Reveal delay={220}>
-                <a
-                  href="https://linkedin.com/in/candra-putra-pratama"
-                  className="contact-link-row flex items-center justify-between p-4 rounded-xl bg-surface border border-line hover:border-text/30 transition-all group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="flex flex-col gap-1 text-left">
-                    <span className="contact-link-role text-xs text-muted font-mono">
-                      LinkedIn
-                    </span>
-                    <span className="contact-link-val text-sm font-semibold text-text group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                      linkedin.com/in/candra-putra-pratama
-                    </span>
-                  </div>
-                  <ExternalLink size={15} className="contact-link-arrow text-muted group-hover:text-text transition-colors" />
-                </a>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
+        </section>
       </main>
 
-      {/* FOOTER */}
-      <Footer />
+      <footer className="r-footer">
+        <p>2026, Candra Putra Pratama</p>
+      </footer>
 
       {/* CONTACT MODAL */}
       {isModalOpen && (

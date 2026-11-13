@@ -22,14 +22,14 @@ export const PROJECTS: Project[] = [
     title: "Jasdor Kopi Cima",
     category: "Proyek Mandiri • Live",
     categoryFilter: "Fullstack",
-    desc: "Platform pemesanan F&B hemat untuk mahasiswa dan komunitas, dirancang dan dikelola sendiri. Katalog promo Kopi Kenangan, Fore Coffee, dan TOMORO Coffee dalam satu PWA ringan, dengan antrean pesanan dan checkout via WhatsApp.",
-    tech: ["Next.js", "TypeScript", "PWA", "Tailwind CSS", "WhatsApp"],
+    desc: "Aplikasi jasa order kopi untuk mahasiswa dan komunitas, dirancang dan dikelola sendiri. Customer memilih outlet dan menu dari tiga brand, membayar lewat QRIS, lalu pesanan dikonfirmasi lewat WhatsApp. Layanan independen, bukan mitra resmi brand.",
+    tech: ["Next.js", "TypeScript", "Supabase", "Cloudflare Workers", "Tailwind CSS", "PWA"],
     awards: ["Live", "1.600+ Pesanan"],
     impact: [
       "1.600+ pesanan pelanggan masuk lewat aplikasi yang berjalan live",
-      "Katalog promo 3 brand kopi (Kopi Kenangan, Fore Coffee, TOMORO Coffee) dalam satu aplikasi",
-      "Pembayaran QRIS dan checkout dikirim ke WhatsApp penjual",
-      "PWA responsif dengan antrean pesanan di sisi klien"
+      "Tiga brand kopi (Kopi Kenangan, Fore Coffee, TOMORO Coffee): pilih outlet, varian, dan paket bundling",
+      "Pembayaran QRIS dan konfirmasi pesanan lewat WhatsApp, plus panel admin dengan notifikasi Telegram",
+      "Backend di Cloudflare Workers dengan Supabase (PostgreSQL), rate limiting, dan 600+ test otomatis"
     ],
     image: "/images/projects/jasdor.svg",
     link: "https://jasdor.cimagroup.my.id",
@@ -65,12 +65,12 @@ export const PROJECTS: Project[] = [
     title: "Personal Portfolio v2",
     category: "Aplikasi Web",
     categoryFilter: "Frontend",
-    desc: "Website portofolio pribadi dengan tema terang/gelap, command palette (Ctrl+K), dan halaman arsip proyek.",
+    desc: "Website portofolio pribadi dengan tema terang dan gelap serta halaman arsip proyek.",
     tech: ["Next.js 14", "React 18", "Tailwind CSS", "Lucide Icons"],
     awards: [],
     impact: [
       "Next.js 14 App Router dengan halaman beranda dan arsip proyek",
-      "Tema terang/gelap dan command palette untuk navigasi cepat",
+      "Tema terang dan gelap yang mengikuti pengaturan perangkat",
       "Responsif di perangkat mobile dan desktop"
     ],
     image: "/images/projects/project1.png",

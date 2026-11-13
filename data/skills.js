@@ -30,7 +30,7 @@ export const CORE_SKILLS = [
   {
     name: "PostgreSQL",
     category: "Relational Database",
-    usedIn: "BudgEx, Sistem Pegawai",
+    usedIn: "Jasdor, BudgEx, Sistem Pegawai",
     description: "Normalisasi skema relasional 3NF, optimasi indeks B-Tree, dan integritas ACID.",
     logo: "/images/logos/postgresql.svg",
   },
