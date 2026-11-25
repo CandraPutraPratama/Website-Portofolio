@@ -8,10 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-        display: ["Space Grotesk", "sans-serif"],
-        handwriting: ["Great Vibes", "cursive"],
+        sans: ["IBM Plex Sans", "sans-serif"],
       },
       colors: {
         bg: "var(--bg)",
@@ -20,7 +17,6 @@ module.exports = {
         line: "var(--line)",
         text: "var(--text)",
         muted: "var(--muted)",
-        "light-gray": "var(--light-gray)",
       },
     },
   },
