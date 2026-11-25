@@ -7,16 +7,15 @@ Live: https://website-portofolio-lac-pi.vercel.app
 ## Isi website
 
 - **Beranda**: profil singkat, capaian, proyek pilihan (Jasdor Kopi Cima dan BudgEx), keahlian, pengalaman, dan kontak.
-- **Arsip proyek** (`/work`): daftar semua proyek dengan filter kategori, plus galeri dokumentasi.
-- **Command palette** (`Ctrl+K`): pencarian cepat untuk bagian, proyek, dan teknologi.
+- **Arsip proyek** (`/work`): daftar semua proyek dengan tema yang sama seperti beranda.
 - **Tema terang/gelap**.
 - **Formulir kontak**: pesan dikirim lewat API route ke Telegram atau webhook.
-- **Unduh CV**: `public/resume.pdf`.
+- **Unduh CV**: `public/CV_Candra_Putra_Pratama.pdf`.
 
 ## Teknologi
 
 - Next.js 14 (App Router), React 18
-- Tailwind CSS 3 dan CSS kustom di `app/globals.css`
+- Tailwind CSS 3 dan CSS kustom di `app/site.css`
 - TypeScript dan JavaScript (campuran)
 - lucide-react untuk ikon
 - Deploy di Vercel
@@ -55,17 +54,16 @@ Simpan di `.env.local` (tidak ikut di-commit).
 
 ```text
 app/            halaman (/ dan /work) dan API route (contact, coffee-count)
-components/     komponen UI: section beranda, header, command palette, galeri
+components/     komponen UI: section beranda, navigasi, galeri foto, tema
 data/           konten: proyek, keahlian, metrik, afiliasi, konfigurasi situs
-public/         gambar, logo teknologi, dan resume.pdf
-resume-src/     sumber HTML untuk resume.pdf
+public/         gambar, logo teknologi, dan CV_Candra_Putra_Pratama.pdf
 ```
 
 Konten situs (proyek, keahlian, metrik) diatur dari folder `data/`, jadi mengubah teks tidak perlu menyentuh komponen.
 
 ## Memperbarui CV
 
-Edit `resume-src/resume.html`, cetak ke PDF, lalu simpan hasilnya sebagai `public/resume.pdf`.
+CV dikelola di luar repo. Timpa `public/CV_Candra_Putra_Pratama.pdf` dengan versi terbaru dan nama file yang sama, tautan unduh di situs tidak perlu diubah.
 
 ## Kontak
 

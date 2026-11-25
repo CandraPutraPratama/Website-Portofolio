@@ -177,7 +177,7 @@ export function Hero() {
           Fullstack Web Developer · Mahasiswa Teknik Informatika PENS
         </p>
         <div className="r-hero-actions" style={{ "--i": 1 }}>
-          <a className="r-btn" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
+          <a className="r-btn" href="/CV_Candra_Putra_Pratama.pdf" download="CV_Candra_Putra_Pratama.pdf">
             Unduh CV
           </a>
           <a className="r-btn r-btn--ghost" href="#proyek">
@@ -391,7 +391,7 @@ export function About() {
 
           <p className="r-about-more">
             Pengalaman lengkap ada di{" "}
-            <a className="r-inline" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
+            <a className="r-inline" href="/CV_Candra_Putra_Pratama.pdf" download="CV_Candra_Putra_Pratama.pdf">
               CV saya
             </a>
             .

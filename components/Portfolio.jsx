@@ -50,7 +50,7 @@ export default function Portfolio() {
               >
                 Kirim pesan lewat formulir
               </button>
-              <a className="r-link" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
+              <a className="r-link" href="/CV_Candra_Putra_Pratama.pdf" download="CV_Candra_Putra_Pratama.pdf">
                 Unduh CV (PDF)
               </a>
               <a

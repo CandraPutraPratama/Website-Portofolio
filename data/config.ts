@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
   city: "Surabaya",
   country: "ID",
   email: "candraputrap46@gmail.com",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/CV_Candra_Putra_Pratama.pdf",
   socials: {
     github: "https://github.com/CandraPutraPratama",
     linkedin: "https://linkedin.com/in/candra-putra-pratama",
