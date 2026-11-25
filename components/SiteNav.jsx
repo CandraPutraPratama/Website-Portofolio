@@ -12,7 +12,9 @@ const LINKS = [
   ["kontak", "Kontak"],
 ];
 
-export default function SiteNav() {
+// `home` is true on pages other than the home page, so the links point back to it.
+export default function SiteNav({ home = false }) {
+  const base = home ? "/" : "";
   const { dark, toggleTheme } = useTheme();
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
@@ -37,7 +39,7 @@ export default function SiteNav() {
 
   return (
     <header className={`r-nav${scrolled ? " is-scrolled" : ""}`}>
-      <a className="r-nav-brand" href="#main" aria-label="Candra Putra Pratama, ke atas">
+      <a className="r-nav-brand" href={home ? "/" : "#main"} aria-label="Candra Putra Pratama, ke atas">
         <span className="r-nav-mark" aria-hidden="true" />
         <span className="r-nav-name">Candra Putra</span>
       </a>
@@ -47,7 +49,7 @@ export default function SiteNav() {
           {LINKS.map(([id, label]) => (
             <li key={id}>
               <a
-                href={`#${id}`}
+                href={`${base}#${id}`}
                 aria-current={active === id ? "true" : undefined}
                 onClick={() => setOpen(false)}
               >
@@ -67,7 +69,7 @@ export default function SiteNav() {
         >
           {dark ? <Sun size={19} aria-hidden="true" /> : <Moon size={19} aria-hidden="true" />}
         </button>
-        <a className="r-nav-cta" href="#kontak">
+        <a className="r-nav-cta" href={`${base}#kontak`}>
           Hubungi
         </a>
         <button
