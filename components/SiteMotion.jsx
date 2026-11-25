@@ -7,7 +7,6 @@ import { Pause, Play } from "lucide-react";
 /**
  * Motion layer for the home page.
  * - scroll reveal for [data-reveal] (each element animates once)
- * - count-up for [data-count]
  * - timeline progress line (--prog on .r-journey)
  * - a pause control for the looping animations (marquee, scroll hint)
  * Everything is skipped under prefers-reduced-motion, and without JS the
@@ -34,30 +33,6 @@ export default function SiteMotion() {
     }
 
     let alive = true;
-    const started = new WeakSet();
-    const counters = [...root.querySelectorAll("[data-count]")];
-
-    const format = (el, value) =>
-      new Intl.NumberFormat("id-ID", {
-        minimumFractionDigits: parseInt(el.dataset.decimals || "0", 10),
-        maximumFractionDigits: parseInt(el.dataset.decimals || "0", 10),
-      }).format(value) + (el.dataset.suffix || "");
-
-    const run = (el) => {
-      const end = parseFloat(el.dataset.count);
-      const t0 = performance.now();
-      const tick = (t) => {
-        if (!alive) return;
-        const p = Math.min(1, (t - t0) / 1400);
-        el.textContent = format(el, end * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-
-    counters.forEach((el) => {
-      el.textContent = format(el, 0);
-    });
 
     // One position-based pass, run on mount, after layout settles, on scroll and
     // on resize. No IntersectionObserver: it never delivered a callback for
@@ -67,12 +42,6 @@ export default function SiteMotion() {
       const h = window.innerHeight;
       root.querySelectorAll("[data-reveal]:not(.is-in)").forEach((el) => {
         if (el.getBoundingClientRect().top < h * 0.94) el.classList.add("is-in");
-      });
-      counters.forEach((el) => {
-        if (!started.has(el) && el.getBoundingClientRect().top < h * 0.88) {
-          started.add(el);
-          run(el);
-        }
       });
       if (journey) {
         const r = journey.getBoundingClientRect();

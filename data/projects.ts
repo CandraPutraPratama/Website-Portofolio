@@ -24,9 +24,9 @@ export const PROJECTS: Project[] = [
     categoryFilter: "Fullstack",
     desc: "Aplikasi jasa order kopi untuk mahasiswa dan komunitas, dirancang dan dikelola sendiri. Customer memilih outlet dan menu dari tiga brand, membayar lewat QRIS, lalu pesanan dikonfirmasi lewat WhatsApp. Layanan independen, bukan mitra resmi brand.",
     tech: ["Next.js", "TypeScript", "Supabase", "Cloudflare Workers", "Tailwind CSS", "PWA"],
-    awards: ["Live", "1.600+ Pesanan"],
+    awards: ["Live"],
     impact: [
-      "1.600+ pesanan pelanggan masuk lewat aplikasi yang berjalan live",
+      "Berjalan live dan dipakai pelanggan nyata",
       "Tiga brand kopi (Kopi Kenangan, Fore Coffee, TOMORO Coffee): pilih outlet, varian, dan paket bundling",
       "Pembayaran QRIS dan konfirmasi pesanan lewat WhatsApp, plus panel admin dengan notifikasi Telegram",
       "Backend di Cloudflare Workers dengan Supabase (PostgreSQL), rate limiting, dan 600+ test otomatis"
@@ -65,12 +65,12 @@ export const PROJECTS: Project[] = [
     title: "Personal Portfolio v2",
     category: "Aplikasi Web",
     categoryFilter: "Frontend",
-    desc: "Website portofolio pribadi dengan tema terang dan gelap serta halaman arsip proyek.",
-    tech: ["Next.js 14", "React 18", "Tailwind CSS", "Lucide Icons"],
+    desc: "Website portofolio pribadi bergaya galeri gelap dengan opsi tema terang, linimasa perjalanan, dan halaman arsip proyek.",
+    tech: ["Next.js 14", "React 18", "Lucide Icons"],
     awards: [],
     impact: [
       "Next.js 14 App Router dengan halaman beranda dan arsip proyek",
-      "Tema terang dan gelap yang mengikuti pengaturan perangkat",
+      "Tema gelap bawaan dengan opsi tema terang",
       "Responsif di perangkat mobile dan desktop"
     ],
     image: "/images/projects/project1.png",
@@ -86,7 +86,7 @@ export const PROJECTS: Project[] = [
     title: "Sistem Data Pegawai",
     category: "Full-Stack Web",
     categoryFilter: "Fullstack",
-    desc: "Aplikasi web sederhana untuk mengelola data pegawai: login admin, dashboard, CRUD, dan pencarian berdasarkan nama, NIP, jabatan, atau departemen.",
+    desc: "Aplikasi web untuk mengelola data pegawai: login admin, dashboard, CRUD, dan pencarian berdasarkan nama, NIP, jabatan, atau departemen.",
     tech: ["PHP", "PostgreSQL", "Bootstrap 5", "PDO"],
     awards: [],
     impact: [
@@ -107,7 +107,7 @@ export const PROJECTS: Project[] = [
     title: "Sistem Manajemen Inventaris Gudang",
     category: "Full-Stack Web",
     categoryFilter: "Backend & Database",
-    desc: "Aplikasi web sederhana untuk mengelola barang, kategori, stok masuk, stok keluar, dan riwayat transaksi stok.",
+    desc: "Aplikasi web untuk mengelola barang, kategori, stok masuk, stok keluar, dan riwayat transaksi stok.",
     tech: ["PHP", "PostgreSQL", "PDO", "CSS"],
     awards: [],
     impact: [

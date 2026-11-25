@@ -6,7 +6,7 @@ export const metadata = {
   metadataBase: new URL(
     "https://website-portofolio-lac-pi.vercel.app",
   ),
-  title: "Candra Putra : Fullstack Web Developer",
+  title: "Candra Putra Pratama | Fullstack Web Developer",
   description:
     "Portofolio Candra Putra Pratama, mahasiswa D4 Teknik Informatika PENS. Membangun sistem web dengan Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027, WFO Surabaya/Sidoarjo.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata = {
   ],
   authors: [{ name: "Candra Putra" }],
   openGraph: {
-    title: "Candra Putra : Fullstack Web Developer",
+    title: "Candra Putra Pratama | Fullstack Web Developer",
     description:
       "Mahasiswa D4 Teknik Informatika PENS. Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027.",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Candra Putra : Fullstack Web Developer",
+    title: "Candra Putra Pratama | Fullstack Web Developer",
     images: ["/images/profile.png"],
   },
 };

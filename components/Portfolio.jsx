@@ -34,7 +34,7 @@ export default function Portfolio() {
               Kontak
             </h2>
             <p className="r-sub">
-              Terbuka untuk diskusi proyek dan kerja sama.
+              Terbuka untuk kesempatan magang (Fullstack / Backend Web Developer) dan kolaborasi proyek.
             </p>
             <a className="r-mail" href="mailto:candraputrap46@gmail.com">
               candraputrap46@gmail.com

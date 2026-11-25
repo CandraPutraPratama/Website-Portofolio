@@ -73,9 +73,9 @@ const BUDGEX_STEPS = [
   ["Catatan audit", "setiap perubahan status"],
 ];
 
-const STATS = [
-  ["Pesanan Jasdor", "1.600+", { count: 1600, suffix: "+" }],
-  ["IPK", "3,76", { count: 3.76, decimals: 2 }],
+const PROFILE_META = [
+  ["Fokus", "Fullstack Web & Database"],
+  ["Domisili", "Surabaya, Indonesia"],
 ];
 
 const photo = (n, year, file) => ({
@@ -90,7 +90,7 @@ const JOURNEY = [
     title: "Lead developer, Jasdor Kopi Cima",
     Icon: Code2,
     where: "Live di jasdor.cimagroup.my.id",
-    text: "Merancang dan menjalankan aplikasi jasa order kopi sampai menerima lebih dari 1.600 pesanan. Backend di Cloudflare Workers dengan Supabase, panel admin, notifikasi Telegram, dan lebih dari 600 test otomatis.",
+    text: "Merancang dan menjalankan aplikasi jasa order kopi yang dipakai pelanggan nyata. Backend di Cloudflare Workers dengan Supabase, panel admin, notifikasi Telegram, dan lebih dari 600 test otomatis.",
     tags: ["Next.js", "Supabase", "Cloudflare Workers", "QRIS"],
     photos: [
       photo(1, 2026, "jf12026.jpg"),
@@ -100,7 +100,7 @@ const JOURNEY = [
   },
   {
     year: "2026",
-    kind: "Latihan",
+    kind: "Eksplorasi",
     title: "Lima aplikasi PHP dan PostgreSQL",
     Icon: Database,
     where: "Data pegawai, inventaris, kasir, keuangan pribadi, reservasi ruangan",
@@ -127,7 +127,7 @@ const JOURNEY = [
     title: "D4 Teknik Informatika",
     Icon: GraduationCap,
     where: "Politeknik Elektronika Negeri Surabaya",
-    text: "Mulai kuliah di PENS. IPK 3,76 dari 4,00 sampai semester 5, dengan fokus pada pengembangan web dan basis data.",
+    text: "Mulai kuliah di PENS dengan fokus pada pengembangan web dan basis data. Saat ini di semester 5.",
     tags: ["Pemrograman web", "Basis data", "Algoritma"],
     photos: [
       photo(1, 2024, "jf12024.jpg"),
@@ -141,7 +141,7 @@ const JOURNEY = [
     title: "Stakeholder Relation Section",
     Icon: Briefcase,
     where: "PT Angkasa Pura I, Bandara Internasional Juanda",
-    text: "PKL enam bulan (Januari sampai Juni 2023) sebagai siswa Multimedia SMK Negeri 3 Surabaya, bukan peran teknis. Nilai rata-rata 87,86. Ikut latihan penanggulangan keadaan darurat (PKD) ke-108 pada 17 Mei 2023.",
+    text: "PKL enam bulan (Januari sampai Juni 2023) sebagai siswa Multimedia SMK Negeri 3 Surabaya. Nilai rata-rata 87,86. Ikut latihan penanggulangan keadaan darurat (PKD) ke-108 pada 17 Mei 2023.",
     tags: ["PKL", "Stakeholder relation", "PKD ke-108"],
   },
 ];
@@ -176,6 +176,9 @@ export function Hero() {
         <i />
       </div>
       <div className="r-hero-copy">
+        <p className="r-hero-role" style={{ "--i": 0 }}>
+          Fullstack Web Developer · Mahasiswa Teknik Informatika PENS
+        </p>
         <div className="r-hero-actions" style={{ "--i": 1 }}>
           <a className="r-btn" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
             Unduh CV
@@ -212,7 +215,7 @@ export function Work() {
       <SectionHead
         id="h-proyek"
         title="Proyek pilihan"
-        text="Dua proyek utama, lalu proyek latihan yang saya buat sepanjang kuliah."
+        text="Dua proyek utama, diikuti proyek eksplorasi yang saya bangun sepanjang kuliah."
       />
 
       <div className="r-work">
@@ -227,7 +230,6 @@ export function Work() {
               mitra resmi brand.
             </p>
             <ul className="r-facts">
-              <li>Lebih dari 1.600 pesanan masuk lewat aplikasi ini.</li>
               <li>
                 Backend di Cloudflare Workers dengan Supabase (PostgreSQL), rate
                 limiting, dan lebih dari 600 test otomatis.
@@ -353,7 +355,7 @@ export function About() {
       <div data-reveal>
         <p className="r-eyebrow">Tentang saya</p>
         <h2 className="r-about-title" id="h-tentang">
-          <span>Problem Solver.</span> <span>Web Systems Builder.</span>
+          Merancang Sistem yang Rapi dari Belakang Layar hingga Tampilan.
         </h2>
       </div>
 
@@ -371,36 +373,29 @@ export function About() {
           <p className="r-about-name">Candra Putra Pratama</p>
 
           <dl className="r-stats">
-            {STATS.map(([label, value, c]) => (
+            {PROFILE_META.map(([label, value]) => (
               <div key={label}>
                 <dt>{label}</dt>
-                <dd>
-                  <span
-                    aria-hidden="true"
-                    data-count={c.count}
-                    data-decimals={c.decimals}
-                    data-suffix={c.suffix}
-                  >
-                    {value}
-                  </span>
-                  <span className="r-sr">{value}</span>
-                </dd>
+                <dd>{value}</dd>
               </div>
             ))}
           </dl>
 
           <p className="r-about-text">
-            Mahasiswa semester 5 yang fokus pada pengembangan web dan basis
-            data. Proyek utama saya adalah Jasdor Kopi Cima, aplikasi jasa order
-            kopi yang dipakai pelanggan nyata, dan BudgEx, backend sistem
-            persetujuan anggaran dari tim PBL kampus. Sisanya latihan: lima
-            aplikasi PHP dan PostgreSQL.
+            Saya mahasiswa D4 Teknik Informatika PENS yang tertarik membangun
+            aplikasi web secara utuh—dari perancangan skema basis data, logika
+            backend, hingga antarmuka yang nyaman dipakai. Berangkat dari latar
+            belakang Multimedia sebelum mendalami rekayasa perangkat lunak, saya
+            terbiasa menjaga keseimbangan antara struktur sistem yang kuat dan
+            detail visual yang bersih. Saat ini saya fokus mengasah keahlian di
+            ekosistem Next.js, TypeScript, dan PostgreSQL/MySQL sambil
+            mempersiapkan diri untuk magang sebagai Fullstack Web Developer.
           </p>
 
           <p className="r-about-more">
-            Ingin tahu lebih banyak tentang pengalaman saya?{" "}
+            Pengalaman lengkap ada di{" "}
             <a className="r-inline" href="/resume.pdf" download="Resume_Candra_Putra.pdf">
-              Unduh CV saya
+              CV saya
             </a>
             .
           </p>

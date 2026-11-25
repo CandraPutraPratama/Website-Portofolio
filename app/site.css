@@ -288,6 +288,13 @@
   padding: 0 24px 28px;
   text-align: center;
 }
+.r-hero-role {
+  margin: 0;
+  color: var(--text);
+  font-weight: 500;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.5;
+}
 .r-hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -848,9 +855,6 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
-}
-.r-stats dd span[data-count] {
-  font-variant-numeric: tabular-nums;
 }
 
 .r-scroll {
