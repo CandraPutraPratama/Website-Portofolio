@@ -25,12 +25,19 @@ export const metadata = {
       "Mahasiswa D4 Teknik Informatika PENS. Next.js, REST API, dan basis data relasional. Tersedia magang mulai 6 Januari 2027.",
     type: "website",
     locale: "id_ID",
-    images: [{ url: "/images/profile.png", alt: "Candra Putra Pratama" }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Candra Putra Pratama, Fullstack Web Developer",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Candra Putra Pratama | Fullstack Web Developer",
-    images: ["/images/profile.png"],
+    images: ["/og.png"],
   },
 };
 

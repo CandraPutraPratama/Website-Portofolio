@@ -78,10 +78,7 @@ const PROFILE_META = [
   ["Domisili", "Surabaya, Indonesia"],
 ];
 
-const photo = (n, year, file) => ({
-  src: `/images/journey/${file}`,
-  alt: `Foto dokumentasi ${year}, ${n}`,
-});
+const photo = (file, alt) => ({ src: `/images/journey/${file}`, alt });
 
 const JOURNEY = [
   {
@@ -93,9 +90,9 @@ const JOURNEY = [
     text: "Merancang dan menjalankan aplikasi jasa order kopi yang dipakai pelanggan nyata. Backend di Cloudflare Workers dengan Supabase, panel admin, notifikasi Telegram, dan lebih dari 600 test otomatis.",
     tags: ["Next.js", "Supabase", "Cloudflare Workers", "QRIS"],
     photos: [
-      photo(1, 2026, "jf12026.jpg"),
-      photo(2, 2026, "jf22026.jpg"),
-      photo(3, 2026, "jf312026.png"),
+      photo("jf12026.webp", "Swafoto Candra berseragam biru dengan kerah hitam dan tali kartu pengenal di area parkir kampus"),
+      photo("jf22026.webp", "Swafoto Candra bersama tiga rekan berkaus hitam, dua di antaranya memakai apron, di teras sebuah bangunan"),
+      photo("jf312026.webp", "Tangkapan layar panggilan video Discord di kanal BudgEx, tujuh anggota tim PBL berpose huruf L di depan kamera"),
     ],
   },
   {
@@ -116,9 +113,9 @@ const JOURNEY = [
     text: "Mengerjakan skema basis data dan alur persetujuan anggaran berjenjang untuk beberapa peran, dengan catatan audit di setiap perubahan status.",
     tags: ["ASP.NET Core", "C#", "PostgreSQL", "REST API"],
     photos: [
-      photo(1, 2025, "jf12025.jpg"),
-      photo(2, 2025, "jf22025.jpg"),
-      photo(3, 2025, "jf32025.jpg"),
+      photo("jf12025.webp", "Selfie kelompok belasan mahasiswa berkaus biru duduk di taman halaman kampus, sebagian mengacungkan tanda damai"),
+      photo("jf22025.webp", "Foto malam ratusan mahasiswa berkaus biru berkumpul di halaman gedung kampus di depan spanduk Forza Informatika"),
+      photo("jf32025.webp", "Sekelompok mahasiswa berkaus biru berpose di tangga malam hari di bawah spanduk Forza Informatika, memegang camilan"),
     ],
   },
   {
@@ -130,9 +127,9 @@ const JOURNEY = [
     text: "Mulai kuliah di PENS dengan fokus pada pengembangan web dan basis data. Saat ini di semester 5.",
     tags: ["Pemrograman web", "Basis data", "Algoritma"],
     photos: [
-      photo(1, 2024, "jf12024.jpg"),
-      photo(2, 2024, "jf22024.jpg"),
-      photo(3, 2024, "jf32024.jpg"),
+      photo("jf12024.webp", "Candra tersenyum berkemeja putih dan berdasi hitam di tengah peserta lain di bawah tenda hijau"),
+      photo("jf22024.webp", "Swafoto enam mahasiswa di ruang kelas, sebagian berseragam navy berlogo PENS"),
+      photo("jf32024.webp", "Foto studio dua mahasiswa duduk saling membelakangi di bangku emas, satu berjas almamater abu-abu PENS dan satu berblazer navy"),
     ],
   },
   {
